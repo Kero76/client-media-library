@@ -19,6 +19,7 @@
     
     namespace MediaClientTest\Tests\Rest;
     
+    use MediaClient\Http\HttpCodeStatus;
     use MediaClient\Rest\RestClient;
     use PHPUnit\Framework\TestCase;
 
@@ -32,29 +33,85 @@
      */
     class RestClientTest extends TestCase {
         
-        public function testGetMedia(){
+        public function testGetAllAnimes() {
+            // Given - Instantiate client and uri.
+            $client = new RestClient();
+            $uri = "animes/";
+            $sizeExpected = 43;
+            
+            // When - Execute request.
+            $result = $client->get($uri);
+            
+            // Then - Display result
+            $this->assertEquals(count($result), $sizeExpected);
+        }
+        
+        public function testGetAllMovies() {
+            // Given - Instantiate client and uri.
+            $client = new RestClient();
+            $uri = "movies/";
+            $sizeExpected = 361;
+            
+            // When - Execute request.
+            $result = $client->get($uri);
+            
+            // Then - Display result
+            $this->assertEquals(count($result), $sizeExpected);
+        }
+        
+        public function testGetAllCartoons() {
+            // Given - Instantiate client and uri.
+            $client = new RestClient();
+            $uri = "cartoons/";
+            $sizeExpected = 75;
+            
+            // When - Execute request.
+            $result = $client->get($uri);
+            
+            // Then - Display result
+            $this->assertEquals(count($result), $sizeExpected);
+        }
+        
+        public function testGetAllSeries() {
+            // Given - Instantiate client and uri.
+            $client = new RestClient();
+            $uri = "series/";
+            $sizeExpected = 73;
+            
+            // When - Execute request.
+            $result = $client->get($uri);
+            
+            // Then - Display result
+            $this->assertEquals(count($result), $sizeExpected);
+        }
+        
+        public function testGetOneAnime(){
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "animes/search/id/1";
-            $mediaExpected = "{\"id\":1,\"title\":\"Scooby-Doo : Mystères associés\",\"synopsis\":\"\",\"releaseDate\":1270339200000,\"genres\":[\"MYSTERY\",\"COMEDY\",\"DRAMA\"],\"supports\":[\"DVD\"],\"originalTitle\":\"Scooby-Doo! Mystery Incorporated\",\"languagesSpoken\":[\"fr\",\"en\",\"es\",\"he\",\"pl\",\"cs\"],\"subtitles\":[\"fr\",\"en\",\"es\",\"he\",\"pl\",\"cs\"],\"producers\":[{\"id\":4,\"firstName\":\"Spike\",\"lastName\":\"Brandt\",\"videos\":null},{\"id\":6,\"firstName\":\"Tony\",\"lastName\":\"Cervone\",\"videos\":null},{\"id\":8,\"firstName\":\"Luke\",\"lastName\":\"Briers\",\"videos\":null},{\"id\":3,\"firstName\":\"Mitch\",\"lastName\":\"Watson\",\"videos\":null},{\"id\":2,\"firstName\":\"Victor\",\"lastName\":\"Cook\",\"videos\":null},{\"id\":7,\"firstName\":\"Finn\",\"lastName\":\"Arnesen\",\"videos\":null},{\"id\":1,\"firstName\":\"Jay\",\"lastName\":\"Bastian\",\"videos\":null},{\"id\":5,\"firstName\":\"Sam\",\"lastName\":\"Register\",\"videos\":null},{\"id\":9,\"firstName\":\"Tina\",\"lastName\":\"McCann\",\"videos\":null}],\"directors\":[{\"id\":11,\"firstName\":\"Victor\",\"lastName\":\"Cook\",\"videos\":null},{\"id\":10,\"firstName\":\"Curt\",\"lastName\":\"Geda\",\"videos\":null}],\"numberOfSeasons\":2,\"currentSeason\":1,\"endDate\":1365033600000,\"averageEpisodeRuntime\":22,\"numberOfEpisode\":26,\"maxEpisodes\":52}";
+            $idExpected    = 1;
+            $titleExpected = "Scooby-Doo : Mystères associés";
             
             // When - Execute request.
-            $result = $client->getMedia($uri);
-            
+            $result = $client->get($uri);
+
             // Then - Check result.
-            $this->assertEquals($result, $mediaExpected);
+            $this->assertEquals($result['id'], $idExpected);
+            $this->assertEquals($result['title'], $titleExpected);
         }
-    
-        public function testGetMediaAndGet204Error() {
+
+        public function testGetMovieAndGet204Error() {
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "movies/search/id/1";
-            $mediaExpected = "No content found.";
-        
+            $codeErrorExcepted = HttpCodeStatus::NO_CONTENT()->getValue();
+            $messageExpected   = "No content found.";
+
             // When - Execute request.
-            $result = $client->getMedia($uri);
-        
+            $result = $client->get($uri);
+
             // Then - Check result.
-            $this->assertEquals($result, $mediaExpected);
+            $this->assertEquals($result['message'], $messageExpected);
+            $this->assertEquals($result['code_error'], $codeErrorExcepted);
         }
     }
