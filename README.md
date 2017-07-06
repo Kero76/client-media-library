@@ -4,7 +4,7 @@
 Media Client is a client side for the project Media Library.
 
 ## Contributions 
-Work in Progress.
+You can see how to contribute on Media Client project here : [CONTRIBUTING.md](https://github.com/Kero76/client-media-library/blob/master/CONTRIBUTING.md)
 
 ## Changelog
 Work in Progress.
