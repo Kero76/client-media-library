@@ -54,6 +54,7 @@
          *
          * Instantiate the client of the Restful service with initial settings.
          *
+         * @constructor
          * @since 1.0
          * @version 1.0
          */
@@ -63,36 +64,65 @@
                 'timeout'  => 2,
             ]);
         }
-    
+        
         /**
          * Get specific media from the restful service thanks to the URI passed on parameter.
          *
          * @param string $uri
          *  URI request to get media.
-         * @return string
+         * @return array
          *  Return the response as a String.
          * @since 1.0
          * @version 1.0
          */
-        public function getMedia(string $uri) : string {
+        public function get(string $uri) : array {
             $response = $this->_client->get($uri);
-            
+    
             switch ($response->getStatusCode()) {
                 // Response is OK
                 case HttpCodeStatus::OK()->getValue() :
-                    return (string)$response->getBody();
+                    return \GuzzleHttp\json_decode($response->getBody(), true);
                     break;
-                
+        
                 // Response is OK, but it return nothing.
                 case HttpCodeStatus::NO_CONTENT()->getValue() :
-                    return "No content found.";
+                    return array(
+                        "code_error" => HttpCodeStatus::NO_CONTENT()->getValue(),
+                        "message" => "No content found.",
+                    );
                     break;
-                
+        
                 // Wrong URI.
                 case HttpCodeStatus::NOT_FOUND()->getValue() :
-                    return "404";
+                    return array(
+                        "code_error" => HttpCodeStatus::NOT_FOUND()->getValue(),
+                        "message" => "Not found.",
+                    );
                     break;
             }
-            return "";
+            return array();
+        }
+    
+        /**
+         * Post new media on Media Library.
+         *
+         * The media is previously encode in JSON format to respect the operation of Media Library.
+         * In fact, it receive an object on JSON format and transform it to insert it on Database.
+         * So, the media passed on parameter must encode in JSON format before sending on service.
+         *
+         * @param string $uri
+         *  URI request to post new media.
+         * @param string $media
+         *  Media at post on body on format json.
+         * @return bool
+         *  Return TRUE or FALSE if the media post worked or not.
+         * @see json_encode()
+         * @since 1.0
+         * @version 1.0
+         */
+        public function post(string $uri, string $media) : bool {
+            $response = $this->_client->request('POST', $uri, $media);
+            
+            return $response->getStatusCode() == HttpCodeStatus::CREATED()->getValue();
         }
     }
