@@ -42,6 +42,15 @@
         public static $_REST_SERVICE_URI = "Http://localhost:8080/media-library/";
     
         /**
+         * Add debug on request.
+         *
+         * @var bool
+         *  Indicate if the project is on debug or not.
+         * @since 1.0
+         */
+        public static $_DEBUG_MODE = true;
+    
+        /**
          * Client object used to interact with the restful service.
          *
          * @var \GuzzleHttp\Client
@@ -76,7 +85,7 @@
          * @version 1.0
          */
         public function get(string $uri) : array {
-            $response = $this->_client->get($uri);
+            $response = $this->_client->get($uri, array("debug" => RestClient::$_DEBUG_MODE));
     
             switch ($response->getStatusCode()) {
                 // Response is OK
@@ -121,7 +130,10 @@
          * @version 1.0
          */
         public function post(string $uri, string $media) : bool {
-            $response = $this->_client->request('POST', $uri, $media);
+            $response = $this->_client->post($uri, array(
+                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+                'body' => $media,
+                'debug' => RestClient::$_DEBUG_MODE));
             
             return $response->getStatusCode() === HttpCodeStatus::CREATED()->getValue();
         }
@@ -137,7 +149,10 @@
          * @version 1.0
          */
         public function delete(string $uri) : bool {
-            $response = $this->_client->request('DELETE', $uri);
+            $response = $this->_client->delete($uri, array(
+                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+                "debug" => RestClient::$_DEBUG_MODE,
+            ));
             
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
         }

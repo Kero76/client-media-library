@@ -114,4 +114,70 @@
             $this->assertEquals($result['message'], $messageExpected);
             $this->assertEquals($result['code_error'], $codeErrorExcepted);
         }
+        
+        public function testPostMovie() {
+            // Given - Instantiate Movie at insert, uri at request.
+            $client = new RestClient();
+            $uri = "movies/";
+            
+            $actors = array(
+                array(
+                    "firstName" => "Jacky",
+                    "lastName"  => "La Frite",
+                ),
+                array(
+                    "firstName" => "Osiris",
+                    "lastName"  => "La Saucisse",
+                ),
+            );
+            
+            $producers = array(
+                array(
+                    "firstName" => "Nicolas",
+                    "lastName"  => "GILLE",
+                ),
+            );
+            
+            $directors = array(
+                array(
+                    "firstName" => "Nicolas",
+                    "lastName"  => "GILLE",
+                ),
+            );
+            
+            $movieData = array(
+                "title" => "Mon Film",
+                "originalTitle" => "My Movie",
+                "synopsis" => "This is a super movie !",
+                "mainActors" => $actors,
+                "directors" => $directors,
+                "producers" => $producers,
+                "genres" => array("ACTION", "ADVENTURE", "COMEDY"),
+                "supports" => array("DIGITAL", "DVD"),
+                "languageSpoken" => array("fr", "en"),
+                "subtitles" => array("fr", "en", "de", "es", "nl"),
+                "releaseDate" => "1499427234255",
+                "runtime" => 123,
+            );
+            $movie = \GuzzleHttp\json_encode($movieData);
+
+            // When - Execute request.
+            $result = $client->post($uri, $movie);
+
+            // Then - Check result.
+            $this->assertTrue($result);
+        }
+        
+        public function testDeleteMovie() {
+            // Given - Instantiate client, uri, and expected result.
+            $client = new RestClient();
+            $id = $client->get("movies/search/title/Mon Film")['id'];
+            $uri = "movies/" . $id;
+            
+            // When - Execute request.
+            $result = $client->delete($uri);
+            
+            // Then - Check result.
+            $this->assertTrue($result);
+        }
     }
