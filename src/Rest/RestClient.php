@@ -139,6 +139,27 @@
         }
     
         /**
+         * Update a media on Media Library.
+         *
+         * @param string $uri
+         *  URI request to update media.
+         * @param string $media
+         *  New media with new data.
+         * @return bool
+         *  True or FALSE if the media will update or not.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function put(string $uri, string $media) : bool {
+            $response = $this->_client->put($uri, array(
+                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+                'body' => $media,
+                'debug' => RestClient::$_DEBUG_MODE));
+    
+            return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
+        }
+    
+        /**
          * Delete a media on Media Library.
          *
          * @param string $uri
