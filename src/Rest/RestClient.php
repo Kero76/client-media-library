@@ -123,6 +123,22 @@
         public function post(string $uri, string $media) : bool {
             $response = $this->_client->request('POST', $uri, $media);
             
-            return $response->getStatusCode() == HttpCodeStatus::CREATED()->getValue();
+            return $response->getStatusCode() === HttpCodeStatus::CREATED()->getValue();
+        }
+    
+        /**
+         * Delete a media on Media Library.
+         *
+         * @param string $uri
+         *  URI request to delete media.
+         * @return bool
+         *  TRUE or FALSE if the media is delete or not.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function delete(string $uri) : bool {
+            $response = $this->_client->request('DELETE', $uri);
+            
+            return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
         }
     }
