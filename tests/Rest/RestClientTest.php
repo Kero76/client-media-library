@@ -26,6 +26,10 @@
     /**
      * Class RestClientTest used to execute unit test for class RestClient.
      *
+     * All unit tests present on this class used Media Library fill with all media data present on the resource folder.
+     * So, when the methods getAllXXX() are execute, it get all media from the file, and return an array composed by x object.
+     * Then, if you execute these test on your own computing, you must insert all data on your Media Library to valid test.
+     *
      * @author Nicolas GILLE
      * @package MediaClientTest\Tests\Rest
      * @since
@@ -38,60 +42,60 @@
             $client = new RestClient();
             $uri = "animes/";
             $sizeExpected = 43;
-            
+
             // When - Execute request.
             $result = $client->get($uri);
-            
+
             // Then - Display result
             $this->assertEquals(count($result), $sizeExpected);
         }
-        
+
         public function testGetAllMovies() {
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "movies/";
             $sizeExpected = 361;
-            
+
             // When - Execute request.
             $result = $client->get($uri);
-            
+
             // Then - Display result
             $this->assertEquals(count($result), $sizeExpected);
         }
-        
+
         public function testGetAllCartoons() {
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "cartoons/";
             $sizeExpected = 75;
-            
+
             // When - Execute request.
             $result = $client->get($uri);
-            
+
             // Then - Display result
             $this->assertEquals(count($result), $sizeExpected);
         }
-        
+
         public function testGetAllSeries() {
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "series/";
             $sizeExpected = 73;
-            
+
             // When - Execute request.
             $result = $client->get($uri);
-            
+
             // Then - Display result
             $this->assertEquals(count($result), $sizeExpected);
         }
-        
+
         public function testGetOneAnime(){
             // Given - Instantiate client and uri.
             $client = new RestClient();
             $uri = "animes/search/id/1";
             $idExpected    = 1;
             $titleExpected = "Scooby-Doo : Mystères associés";
-            
+
             // When - Execute request.
             $result = $client->get($uri);
 
@@ -146,18 +150,18 @@
             );
             
             $movieData = array(
-                "title" => "Mon Film",
-                "originalTitle" => "My Movie",
-                "synopsis" => "This is a super movie !",
-                "mainActors" => $actors,
-                "directors" => $directors,
-                "producers" => $producers,
-                "genres" => array("ACTION", "ADVENTURE", "COMEDY"),
-                "supports" => array("DIGITAL", "DVD"),
+                "title"          => "Mon Film",
+                "originalTitle"  => "My Movie",
+                "synopsis"       => "This is a cool movie !",
+                "mainActors"     => $actors,
+                "directors"      => $directors,
+                "producers"      => $producers,
+                "genres"         => array("ACTION", "ADVENTURE", "COMEDY"),
+                "supports"       => array("DIGITAL", "DVD"),
                 "languageSpoken" => array("fr", "en"),
-                "subtitles" => array("fr", "en", "de", "es", "nl"),
-                "releaseDate" => "1499427234255",
-                "runtime" => 123,
+                "subtitles"      => array("fr", "en", "de", "es", "nl"),
+                "releaseDate"    => "1499427234255",
+                "runtime"        => 123,
             );
             $movie = \GuzzleHttp\json_encode($movieData);
 
@@ -167,7 +171,64 @@
             // Then - Check result.
             $this->assertTrue($result);
         }
+    
+        public function testPutMovie() {
+            // Given - Instantiate Movie at update, uri at request.
+            $client = new RestClient();
+            $id = $client->get("movies/search/title/Mon Film")['id'];
+            $uri = "movies/" . $id;
         
+            $actors = array(
+                array(
+                    "firstName" => "Jacky",
+                    "lastName"  => "La Frite",
+                ),
+                array(
+                    "firstName" => "Osiris",
+                    "lastName"  => "La Saucisse",
+                ),
+            );
+        
+            $producers = array(
+                array(
+                    "firstName" => "Nicolas",
+                    "lastName"  => "GILLE",
+                ),
+            );
+        
+            $directors = array(
+                array(
+                    "firstName" => "Nicolas",
+                    "lastName"  => "GILLE",
+                ),
+            );
+        
+            $movieData = array(
+                "id"             => $id,
+                "title"          => "Mon Film",
+                "originalTitle"  => "My Movie",
+                "synopsis"       => "This is a cool movie !",
+                "mainActors"     => $actors,
+                "directors"      => $directors,
+                "producers"      => $producers,
+                "genres"         => array("ACTION", "ADVENTURE", "COMEDY"),
+                "supports"       => array("DIGITAL", "DVD"),
+                "languageSpoken" => array("fr", "en"),
+                "subtitles"      => array("fr", "en", "de", "es", "nl"),
+                "releaseDate"    => "1499427234255",
+                "runtime"        => 123,
+            );
+            $movie = \GuzzleHttp\json_encode($movieData);
+        
+            // When - Execute request.
+            $result = $client->put($uri, $movie);
+            $movieExpected = $client->get("movies/search/id/" . $id);
+
+            // Then - Check result.
+            $this->assertTrue($result);
+            $this->assertEquals($movieExpected['synopsis'], $movieData['synopsis']);
+        }
+    
         public function testDeleteMovie() {
             // Given - Instantiate client, uri, and expected result.
             $client = new RestClient();
