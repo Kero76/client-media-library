@@ -97,7 +97,7 @@
                 case HttpCodeStatus::NO_CONTENT()->getValue() :
                     return array(
                         "code_error" => HttpCodeStatus::NO_CONTENT()->getValue(),
-                        "message" => "No content found.",
+                        "message"    => "No content found.",
                     );
                     break;
         
@@ -105,7 +105,7 @@
                 case HttpCodeStatus::NOT_FOUND()->getValue() :
                     return array(
                         "code_error" => HttpCodeStatus::NOT_FOUND()->getValue(),
-                        "message" => "Not found.",
+                        "message"    => "Not found.",
                     );
                     break;
             }
@@ -132,8 +132,8 @@
         public function post(string $uri, string $media) : bool {
             $response = $this->_client->post($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'body' => $media,
-                'debug' => RestClient::$_DEBUG_MODE));
+                'body'    => $media,
+                'debug'   => RestClient::$_DEBUG_MODE));
             
             return $response->getStatusCode() === HttpCodeStatus::CREATED()->getValue();
         }
@@ -153,8 +153,8 @@
         public function put(string $uri, string $media) : bool {
             $response = $this->_client->put($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'body' => $media,
-                'debug' => RestClient::$_DEBUG_MODE));
+                'body'    => $media,
+                'debug'   => RestClient::$_DEBUG_MODE));
     
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
         }
@@ -172,7 +172,7 @@
         public function delete(string $uri) : bool {
             $response = $this->_client->delete($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                "debug" => RestClient::$_DEBUG_MODE,
+                "debug"   => RestClient::$_DEBUG_MODE,
             ));
             
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
