@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="Media Library, {% block keywords %}{% endblock %}">
+        {% block meta_tags %}{% endblock %}
+
+        <link rel="icon" href="../web/favicon.ico">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../web/css/style.css"> <!-- Personnal Stylesheet -->
+
+        {# Add other stylesheets #}
+        {% block stylesheets %}{% endblock %}
+
+        <title>Media Library - {% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+    <section id="media-library-body" class="container">
+        <div class="row">
+            {% block page_title %}{% endblock %}
+            <!-- Navigation -->
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <aside id="media-library-summary" class="media-library-anchor-link">
+                    <nav class="navbar">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div id="media-library-left-navigation" class="list-group">
+                                <a class="list-group-item media-library-brand"          href="/web/index.php"> Home</a>
+
+                                <!-- Search field -->
+                                <form class="form-inline" method="post" action="/web/index.php">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="search-field"></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input type="text" class="form-control" id="search-field" name="search-field" placeholder="Search media ...">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </nav>
+                </aside>
+            </div>
+
+            <!-- Body of webpage -->
+            <div id="media-library-body-page" class="row">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Loading script section -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jquery    -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!-- bootstrap -->
+            {% block javascripts %}{% endblock %}
+        </div>
+    </section>
+
+    <!-- Footer of the webpage. -->
+    <div class="container">
+        <div class="row">
+            <footer class="media-library-footer-page col-md-12 col-sm-12 col-xs-12">
+                <p class="media-library-italic media-library-header-page-subtitle">Media Library, 2017, All Rights Reserved.</p>
+            </footer>
+        </div>
+    </div>
+    </body>
+</html>
