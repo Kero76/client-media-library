@@ -15,18 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
  */
-    // Home page.
-    $app->get('/', function() use ($app) {
-        // All uri used in Media Library to get all medias.
-        $uri = array(
-            'animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books', 'comics', 'video-games',
-        );
-        $medias = array();
-        
-        $uriSize = count($uri);
-        for ($i = 0; $i < $uriSize; ++$i) {
-            $medias = array_merge($medias, $app['rest']->get($uri[$i]));
-        }
-        
-        return $medias;
-    });
+
+// Debug mode
+$app['debug'] = true;

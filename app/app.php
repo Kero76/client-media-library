@@ -15,13 +15,14 @@
      * You should have received a copy of the GNU General Public License
      * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
      */
-    require_once __DIR__ . '/../vendor/autoload.php';
-    require_once __DIR__ . '/../app/app.php';
-    require_once __DIR__ . '/../app/routes.php';
-    require_once __DIR__ . '/../app/config/dev.php';
+    use Symfony\Component\Debug\ErrorHandler;
+    use Symfony\Component\Debug\ExceptionHandler;
     
-    // Create instance of Application
-    $app = new Silex\Application();
-        
-    // Run the application.
-    $app->run();
+    // Register global errors and exceptions handler.
+    ErrorHandler::register();
+    ExceptionHandler::register();
+
+    // Registers services.
+    $app['rest'] = function($app) {
+        return new MediaClient\Rest\RestClient();
+    };
