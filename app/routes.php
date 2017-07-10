@@ -15,18 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
  */
-    // Home page.
-    $app->get('/', function() use ($app) {
-        // All uri used in Media Library to get all medias.
-        $uri = array(
-            'animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books', 'comics', 'video-games',
-        );
-        $medias = array();
-        
-        $uriSize = count($uri);
-        for ($i = 0; $i < $uriSize; ++$i) {
-            $medias = array_merge($medias, $app['rest']->get($uri[$i]));
-        }
-        
-        return $medias;
-    });
+declare(strict_types=1);
+
+// Home page.
+$app->get('/', function() use ($app) {
+    // Instantiate uri, medias array's and count element on uri array.
+    $uri     = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books', 'comics', 'video-games');
+    $medias  = array();
+    $uriSize = count($uri);
+    
+    // Loop on each uri and get all medias.
+    for ($i = 0; $i < $uriSize; ++$i) {
+        $medias = array_merge($medias, $app['rest']->get($uri[$i]));
+    }
+    
+    // Return all medias.
+    return $app['twig']->render('home.html.twig', array('medias' => $medias));
+});
