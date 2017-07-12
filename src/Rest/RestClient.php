@@ -39,7 +39,7 @@
          *  URI of the restful service.
          * @since 1.0
          */
-        public static $_REST_SERVICE_URI = "Http://localhost:8080/media-library/";
+        public static $_REST_SERVICE_URI = "http://localhost:8080/media-library/";
     
         /**
          * Add debug on request.
@@ -48,7 +48,7 @@
          *  Indicate if the project is on debug or not.
          * @since 1.0
          */
-        public static $_DEBUG_MODE = true;
+        public static $_DEBUG_MODE = false;
     
         /**
          * Client object used to interact with the restful service.
@@ -85,27 +85,29 @@
          * @version 1.0
          */
         public function get(string $uri) : array {
-            $response = $this->_client->get($uri, array("debug" => RestClient::$_DEBUG_MODE));
+            $response = $this->_client->get($uri, array(
+                'debug' => RestClient::$_DEBUG_MODE
+            ));
     
             switch ($response->getStatusCode()) {
                 // Response is OK
                 case HttpCodeStatus::OK()->getValue() :
-                    return \GuzzleHttp\json_decode($response->getBody(), true);
+                    return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
                     break;
         
                 // Response is OK, but it return nothing.
                 case HttpCodeStatus::NO_CONTENT()->getValue() :
                     return array(
-                        "code_error" => HttpCodeStatus::NO_CONTENT()->getValue(),
-                        "message"    => "No content found.",
+                        'code_error' => HttpCodeStatus::NO_CONTENT()->getValue(),
+                        'message'    => 'No content found.',
                     );
                     break;
         
                 // Wrong URI.
                 case HttpCodeStatus::NOT_FOUND()->getValue() :
                     return array(
-                        "code_error" => HttpCodeStatus::NOT_FOUND()->getValue(),
-                        "message"    => "Not found.",
+                        'code_error' => HttpCodeStatus::NOT_FOUND()->getValue(),
+                        'message'    => 'Not found.',
                     );
                     break;
             }
@@ -133,7 +135,8 @@
             $response = $this->_client->post($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
                 'body'    => $media,
-                'debug'   => RestClient::$_DEBUG_MODE));
+                'debug'   => RestClient::$_DEBUG_MODE
+            ));
             
             return $response->getStatusCode() === HttpCodeStatus::CREATED()->getValue();
         }
@@ -154,7 +157,8 @@
             $response = $this->_client->put($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
                 'body'    => $media,
-                'debug'   => RestClient::$_DEBUG_MODE));
+                'debug'   => RestClient::$_DEBUG_MODE
+            ));
     
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
         }
@@ -172,7 +176,7 @@
         public function delete(string $uri) : bool {
             $response = $this->_client->delete($uri, array(
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                "debug"   => RestClient::$_DEBUG_MODE,
+                'debug'   => RestClient::$_DEBUG_MODE,
             ));
             
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
