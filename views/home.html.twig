@@ -12,6 +12,13 @@
 {# Body of the page #}
 {% block content %}
     <section class="col-md-8 col-sm-8 col-xs-8">
-
+        {% for media in medias %}
+            {% for m in media|keys|slice(0,10) %}
+                <article>
+                    <h2>{{ m.title }}</h2>
+                    <p>{{ m.synopsis }}</p>
+                </article>
+            {% endfor %}
+        {% endfor %}
     </section>
 {% endblock %}

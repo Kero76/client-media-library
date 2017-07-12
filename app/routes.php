@@ -20,7 +20,7 @@ declare(strict_types=1);
 // Home page.
 $app->get('/', function() use ($app) {
     // Instantiate uri, medias array's and count element on uri array.
-    $uri     = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books', 'comics', 'video-games');
+    $uri     = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books/', 'comics/', 'video-games/');
     $medias  = array();
     $uriSize = count($uri);
     
