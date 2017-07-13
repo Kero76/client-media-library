@@ -12,11 +12,102 @@
 {# Body of the page #}
 {% block content %}
     <section class="col-md-8 col-sm-8 col-xs-8">
-        {% for m in medias %}
-            <article>
-                <h2>{{ m.title }}</h2>
-                <p>{{ m.synopsis }}</p>
-            </article>
-        {% endfor %}
+
+        <article>
+            <h2>Last Animes</h2>
+            {% if animes|length > 0 %}
+                {% for a in animes %}
+                    <h3>{{ a.title }} - Saison {{ a.currentSeason }}</h3>
+                    <p>{{ a.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No animes found.</p>
+            {% endif %}
+
+        </article>
+
+        <article>
+            <h2>Last Cartoons</h2>
+            {% if cartoons|length > 0 %}
+                {% for c in cartoons %}
+                    <h3>{{ c.title }}</h3>
+                    <p>{{ c.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No cartoons found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Movies</h2>
+            {% if movies|length > 0 %}
+                {% for m in movies %}
+                    <h3>{{ m.title }}</h3>
+                    <p>{{ m.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No movies found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Series</h2>
+            {% if series|length > 0 %}
+                {% for s in series %}
+                    <h3>{{ s.title }} - Saison {{ s.currentSeason }}</h3>
+                    <p>{{ s.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No series found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Albums</h2>
+            {% if musics|length > 0 %}
+                {% for m in musics %}
+                    <h3>{{ m.title }}</h3>
+                    <p>{{ m.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No albums found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Books</h2>
+            {% if books|length > 0 %}
+                {% for b in books %}
+                    <h3>{{ b.title }}</h3>
+                    <p>{{ b.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No books found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Comics</h2>
+            {% if comics|length > 0 %}
+                {% for c in comics %}
+                    <h3>{{ c.title }}</h3>
+                    <p>{{ c.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No comics found.</p>
+            {% endif %}
+        </article>
+
+        <article>
+            <h2>Last Video Game</h2>
+            {% if video_games|length > 0 %}
+                {% for v in video_games %}
+                    <h3>{{ v.title }}</h3>
+                    <p>{{ v.synopsis }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No video games found.</p>
+            {% endif %}
+        </article>
     </section>
 {% endblock %}
