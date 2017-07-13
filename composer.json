@@ -20,7 +20,8 @@
   "require": {
     "silex/silex": "2.1.0",
     "twig/twig": "2.4.3",
-    "twig/extensions": "1.5.1",
+    "symfony/twig-bridge": "^3.3",
+    "symfony/asset": "^3.3",
     "guzzlehttp/guzzle": "6.3.0",
     "marc-mabe/php-enum": "2.3.1"
   },
