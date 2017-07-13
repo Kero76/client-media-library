@@ -18,17 +18,26 @@
 declare(strict_types=1);
 
 // Home page.
-$app->get('/', function() use ($app) {
+    use MediaClient\Model\Video\Anime;
+    
+    $app->get('/', function() use ($app) {
     // Instantiate uri, medias array's and count element on uri array.
-    $uri     = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', 'books/', 'comics/', 'video-games/');
-    $medias  = array();
-    $uriSize = count($uri);
+    $uri     = array('animes/', /*'cartoons/', 'movies/', 'series/', 'musics/', 'books/', 'comics/', 'video-games/'*/);
+    $media  = array();
+    $uri_size = count($uri);
     
     // Loop on each uri and get all medias.
-    for ($i = 0; $i < $uriSize; ++$i) {
-        $medias = array_merge($medias, $app['rest']->get($uri[$i]));
+    for ($i = 0; $i < $uri_size; ++$i) {
+        $media_request = $app['rest']->get($uri[$i]); // Get all specific media.
+        $media_object = array();
+        foreach ($media_request as $k) {
+            $id = $k['id'];
+            $media_object[$id] = new Anime($k);
+        }
+            
+        $media = array_merge($media, $media_object);
     }
     
     // Return all medias.
-    return $app['twig']->render('home.html.twig', array('medias' => $medias));
+    return $app['twig']->render('home.html.twig', array('medias' => $media));
 });
