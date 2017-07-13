@@ -236,6 +236,7 @@
                 for ($i = 0; $i < $count; $i++ ) {
                     $method .= ucfirst($keySplit[$i]); // Replace first characters of each word in uppercase form.
                 }
+                
                 // Execute method if exists on is object.
                 if(method_exists($this, $method)) {
                     $this->$method($value);

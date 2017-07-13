@@ -154,4 +154,19 @@
         public function setMaxEpisodes(int $maxEpisodes) {
             $this->_maxEpisodes = $maxEpisodes;
         }
+    
+        /**
+         *
+         * @return string
+         *
+         * @since 1.0
+         * @version 1.0
+         */
+        function __toString() : string {
+            return 'Anime={' .
+                'title=' . $this->_title .
+                ' originalTitle=' . $this->_original_title .
+                ' synopsis=' . $this->_synopsis .
+                '';
+        }
     }
