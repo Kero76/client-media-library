@@ -106,13 +106,13 @@ $app->get('/', function() use ($app) {
     
     // Return all medias.
     return $app['twig']->render('home.html.twig', array(
-        'animes'   => array_slice($animes, count($animes) - 10),
-        'cartoons' => array_slice($cartoons, count($cartoons) - 10),
-        'movies'   => array_slice($movies, count($movies) - 10),
-        'series'   => array_slice($series, count($series) - 10),
-        'musics'   => array_slice($musics, count($musics) - 10),
-        'books'    => array_slice($books, count($books) - 10),
-        'comics'   => array_slice($comics, count($comics) - 10),
-        'video_games' => array_slice($video_games, count($video_games) - 10),
+        'animes'   => array_reverse(array_slice($animes, count($animes) - 10)),
+        'cartoons' => array_reverse(array_slice($cartoons, count($cartoons) - 10)),
+        'movies'   => array_reverse(array_slice($movies, count($movies) - 10)),
+        'series'   => array_reverse(array_slice($series, count($series) - 10)),
+        'musics'   => array_reverse(array_slice($musics, count($musics) - 10)),
+        'books'    => array_reverse(array_slice($books, count($books) - 10)),
+        'comics'   => array_reverse(array_slice($comics, count($comics) - 10)),
+        'video_games' => array_reverse(array_slice($video_games, count($video_games) - 10)),
     ));
 });
