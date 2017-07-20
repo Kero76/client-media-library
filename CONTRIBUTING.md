@@ -1,35 +1,45 @@
-# Contribution Rule
+# Contribution Rules
+If you would contribute on the project, you must respect many rules about commit format, pull request or issues.
 
-## About the commits
+## How to commit my work ?
 ### Format
 All commit messages **MUST** respect the following format : <br>
 ```
-:emoji1: :emoji2: short description of modifications.
+:emoji1: :emoji2: Short description of modifications.
 ```
 
 ### Rules
 1. Short description **must** begin by a Capitalize character.
 2. Each commit **must** write in the present.
-3. You **must** add one emoji or more to help people about changes made in project.
-4. If you post an WiP commit, you **MUST** indicate it by the emoji :construction:
+3. You **must** add one emoji or more to help people about modifications made in project.
+4. If you post a WiP commit, you **MUST** indicate it by the emoji :construction:
 5. Respect _Markdown_ rules.
-6. Respect _emoji_ description below to indicate the modification made in the commit.
+6. Respect _emoji_ description below to indicate the modification made by the commit modification.
  
 ### Emoji description
-|      Emoji     |    Emoji code    |                     Description                     |
-|:--------------:|:----------------:|:---------------------------------------------------:|
-| :newspaper:    | `:newspaper:`    | When you update **documentations**.                 |
-| :art:          | `:art:`          | When you write **major code** modifications.        |
-| :pencil:       | `:pencil:`       | When you perform **minor code** modifications.      |
-| :racehorse:    | `:racehorse:`    | When you improve code **performances**.             |
-| :books:        | `:books`         | When you write **docs** on source code.             |
-| :sparkles:     | `:sparkles:`     | When you add new **features**.                      |
-| :bug:          | `:bug:`          | When fixing a **bug**                               |
-| :umbrella::    | `:umbrella:`     | When you write **test**.                            |
-| :fire:         | `:fire:`         | When you remove **features** or **file**.           |
-| :construction: | `:construction:` | When you commit code on **Work in Progress** state. |
-| :arrow_up:     | `:arrow_up:`     | When upgrading **dependencies**.                    |
-| :arrow_down:   | `:arrow_down:`   | When downgrading **dependencies**.                  |
+|          Emoji         |        Emoji code        |                                 Description                                |
+|:----------------------:|:------------------------:|:--------------------------------------------------------------------------:|
+| :newspaper:            | `:newspaper:`            | When you update **documentations** file (README.md, CONTRIBUTING.md, ...). |
+| :art:                  | `:art:`                  | When you write **major code** modifications.                               |
+| :pencil:               | `:pencil:`               | When you perform **minor code** modifications.                             |
+| :racehorse:            | `:racehorse:`            | When improving code **performances**.                                      |
+| :books:                | `:books`                 | When writting **docs** on source code.                                     |
+| :sparkles:             | `:sparkles:`             | When adding new **features**.                                              |
+| :bug:                  | `:bug:`                  | When fixing a **bug**                                                      |
+| :umbrella::            | `:umbrella:`             | When writing **test**.                                                     |
+| :fire:                 | `:fire:`                 | When removing **features** or **file**.                                    |
+| :construction:         | `:construction:`         | When commiting code on **Work in Progress** state.                         |
+| :wrench:               | `:wrench:`               | When updating **settings** or **package manager** file.                    |
+| :arrow_up:             | `:arrow_up:`             | When upgrading **dependencies**.                                           |
+| :arrow_down:           | `:arrow_down:`           | When downgrading **dependencies**.                                         |
+| :lock:                 | `:lock:`                 | When dealing with **security**.                                            |
+| :lipstick:             | `:lipstick:`             | When improving **UI** / **Cosmetic**.                                      |
+| :wheelchair:           | `:wheelchair:`           | When improving **accessibility**.                                          |
+| :globe_with_meridians: | `:globe_with_meridians:` | When dealing with **globalization** / **I18N** / **G11N**.                 |
+| :tada:                 | `:tada:`                 | **Initial** commit.                                                        |
+| :bookmark:             | `:bookmark:`             | Version **tags**.                                                          |
+| :trophy:               | `:trophy:`               | New **release**.                                                           |
+| :handshake:            | `:handshake:`            | When **merging** files.                                                    |
 
 ## How to report a bug ?
 This section is :construction:.
