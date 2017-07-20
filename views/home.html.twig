@@ -22,7 +22,7 @@
                         {% for c in cartoons %}
                             <tr>
                                 <td>{{ c.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : c.id, 'media' : 'cartoons'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -39,7 +39,7 @@
                         {% for m in movies %}
                             <tr>
                                 <td>{{ m.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : m.id, 'media' : 'movies'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -62,7 +62,7 @@
                                 {% else %}
                                     <td>{{ a.title }} - Saison {{ a.currentSeason }}</td>
                                 {% endif %}
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : a.id, 'media' : 'animes'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -83,7 +83,7 @@
                                 {% else %}
                                     <td>{{ s.title }} - Saison {{ s.currentSeason }}</td>
                                 {% endif %}
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : s.id, 'media' : 'series'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -104,7 +104,7 @@
                         {% for b in books %}
                             <tr>
                                 <td>{{ b.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : b.id, 'media' : 'books'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -121,7 +121,7 @@
                         {% for c in comics %}
                             <tr>
                                 <td>{{ c.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : c.id, 'media' : 'comics'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -142,7 +142,7 @@
                         {% for m in musics %}
                             <tr>
                                 <td>{{ m.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : m.id, 'media' : 'musics'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -159,7 +159,7 @@
                         {% for v in video_games %}
                             <tr>
                                 <td>{{ v.title }}</td>
-                                <td><a href="" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                                <td><a href="{{ path('media', {'id' : v.id, 'media' : 'video-games'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
                         {% endfor %}
                     </table>

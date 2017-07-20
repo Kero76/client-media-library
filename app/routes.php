@@ -115,4 +115,13 @@ $app->get('/', function() use ($app) {
         'comics'   => array_reverse(array_slice($comics, count($comics) - 10)),
         'video_games' => array_reverse(array_slice($video_games, count($video_games) - 10)),
     ));
-});
+})->bind('home');
+
+// Home page : "/media/{media}/{id}".
+$app->get('/media/{media}/{id}', function($media, $id) use($app) {
+    $media = $app['rest']->get($media . '/search/id/' . $id);
+    
+    return $app['twig']->render('media.html.twig', array(
+        'media' => $media,
+    ));
+})->bind('media');
