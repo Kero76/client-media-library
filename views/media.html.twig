@@ -6,12 +6,9 @@
 {# Title of the page present on head markup #}
 {% block title %}{{ media.title }}{% endblock %}
 
-{# Page Title present on h1 markup #}
-{% block page_title %}Media Library : {{ media.title }}{% endblock %}
-
 {# Body of the page #}
 {% block content %}
     <section class="col-md-12 col-sm-12 col-xs-12">
-
+        <h1>{{ media.title }}</h1>
     </section>
 {% endblock %}

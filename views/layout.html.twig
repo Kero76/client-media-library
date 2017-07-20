@@ -68,9 +68,8 @@
             </nav>
 
             <!-- Body of webpage -->
-            <section id="media-library-body" class="container">
-                <section id="media-library-body-page" class="row">
-                    <h1>{% block page_title %}{% endblock %}</h1>
+            <section class="container">
+                <section class="row">
                     {% block content %}{% endblock %}
                 </section>
             </section>
@@ -78,15 +77,15 @@
             <!-- Footer of the webpage. -->
             <div class="container">
                 <div class="row">
-                    <footer class="media-library-footer-page col-md-12 col-sm-12 col-xs-12">
-                        <p class="media-library-italic media-library-header-page-subtitle">Media Library &copy;, 2017, All Rights Reserved.</p>
+                    <footer class="col-md-12 col-sm-12 col-xs-12">
+                        <p class="text-center">Media Library &copy;, 2017, All Rights Reserved.</p>
                     </footer>
                 </div>
             </div>
 
             <!-- Loading script section -->
-            <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script> <!-- jquery    -->
-            <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!-- bootstrap -->
+            <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
             {% block javascripts %}{% endblock %}
         </div>
     </body>
