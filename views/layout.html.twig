@@ -17,77 +17,77 @@
     </head>
 
     <body>
-    <section id="media-library-body" class="container">
         <div class="row">
-            <h1>{% block page_title %}{% endblock %}</h1>
             <!-- Navigation -->
-                <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="main-menu−collapse" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="/MediaClient/web/index.php"> Media Library</a>
-                        </div>
-
-                        <!-- Links -->
-                        <div class="collapse navbar-collapse" id="main-menu−collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="">Home </a></li>
-                                {# Get all medias #}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Animes</a></li>
-                                        <li><a href="#">Cartoons</a></li>
-                                        <li><a href="#">Movies</a></li>
-                                        <li><a href="#">Series</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Books</a></li>
-                                        <li><a href="#">Comics</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Musics</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Video Games</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="">Administration </a></li>
-                            </ul>
-
-                            {# form field #}
-                            <form class="navbar-form navbar-right">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
-                        </div>
+            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="main-menu−collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/MediaClient/web/index.php"> Media Library</a>
                     </div>
-                </nav>
+
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse" id="main-menu−collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="">Home </a></li>
+                            {# Get all medias #}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Animes</a></li>
+                                    <li><a href="#">Cartoons</a></li>
+                                    <li><a href="#">Movies</a></li>
+                                    <li><a href="#">Series</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Books</a></li>
+                                    <li><a href="#">Comics</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Musics</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Administration </a></li>
+                        </ul>
+
+                        {# form field #}
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
 
             <!-- Body of webpage -->
-            <div id="media-library-body-page" class="row">
-                {% block content %}{% endblock %}
+            <section id="media-library-body" class="container">
+                <section id="media-library-body-page" class="row">
+                    <h1>{% block page_title %}{% endblock %}</h1>
+                    {% block content %}{% endblock %}
+                </section>
+            </section>
+
+            <!-- Footer of the webpage. -->
+            <div class="container">
+                <div class="row">
+                    <footer class="media-library-footer-page col-md-12 col-sm-12 col-xs-12">
+                        <p class="media-library-italic media-library-header-page-subtitle">Media Library &copy;, 2017, All Rights Reserved.</p>
+                    </footer>
+                </div>
             </div>
 
             <!-- Loading script section -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jquery    -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!-- bootstrap -->
+            <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script> <!-- jquery    -->
+            <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!-- bootstrap -->
             {% block javascripts %}{% endblock %}
         </div>
-    </section>
-
-    <!-- Footer of the webpage. -->
-    <div class="container">
-        <div class="row">
-            <footer class="media-library-footer-page col-md-12 col-sm-12 col-xs-12">
-                <p class="media-library-italic media-library-header-page-subtitle">Media Library, 2017, All Rights Reserved.</p>
-            </footer>
-        </div>
-    </div>
     </body>
 </html>
