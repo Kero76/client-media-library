@@ -139,7 +139,15 @@ $app->get('/media/{media}/{id}', function($media, $id) use($app) {
     
     // Check if an error occurred during HTTP request.
     if (isset($medias['code_error']) && $medias['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
-        $medias = array();
+        $media = array();
+    }
+    
+    // Problem with timestamp who contains 13 instead of 10 chars.
+    // So divide it by 1000 and the timestamp become correct.
+    $media['releaseDate'] = $media['releaseDate'] / 1000;
+    
+    if (isset($media['endDate'])) {
+        $media['endDate'] = $media['endDate'] / 1000;
     }
         
     return $app['twig']->render('media.html.twig', array(
