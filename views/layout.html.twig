@@ -40,17 +40,17 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Animes</a></li>
-                                    <li><a href="#">Cartoons</a></li>
-                                    <li><a href="#">Movies</a></li>
-                                    <li><a href="#">Series</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'animes'}) }}">Animes</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'cartoons'}) }}">Cartoons</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'movies'}) }}">Movies</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'series'}) }}">Series</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">Books</a></li>
-                                    <li><a href="#">Comics</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'books'}) }}">Books</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'comics'}) }}">Comics</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">Musics</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'musics'}) }}">Musics</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">Video Games</a></li>
+                                    <li><a href="{{ path('media-list', { 'media' : 'video-games'}) }}">Video Games</a></li>
                                 </ul>
                             </li>
                             <li><a href="">Administration </a></li>

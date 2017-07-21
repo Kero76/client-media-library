@@ -17,6 +17,7 @@
  */
 declare(strict_types=1);
     
+    use MediaClient\Http\HttpCodeStatus;
     use MediaClient\Model\Book\Comic;
     use MediaClient\Model\Game\VideoGame;
     use MediaClient\Model\Music\Album;
@@ -117,10 +118,30 @@ $app->get('/', function() use ($app) {
     ));
 })->bind('home');
 
-// Home page : "/media/{media}/{id}".
+// Get all specific media : "media/{media}/"
+$app->get('/media/{media}/', function($media) use($app) {
+    $medias = $app['rest']->get($media . '/');
+    
+    // Check if an error occurred during HTTP request.
+    if (isset($medias['code_error']) && $medias['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
+        $medias = array();
+    }
+        
+    return $app['twig']->render('media-list.html.twig', array(
+        'medias' => $medias,
+        'media_type' => $media,
+    ));
+})->bind('media-list');
+    
+// Get precise media : "/media/{media}/{id}".
 $app->get('/media/{media}/{id}', function($media, $id) use($app) {
     $media = $app['rest']->get($media . '/search/id/' . $id);
     
+    // Check if an error occurred during HTTP request.
+    if (isset($medias['code_error']) && $medias['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
+        $medias = array();
+    }
+        
     return $app['twig']->render('media.html.twig', array(
         'media' => $media,
     ));
