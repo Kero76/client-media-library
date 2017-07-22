@@ -23,7 +23,7 @@ All commit messages **MUST** respect the following format : <br>
 | :art:                  | `:art:`                  | When you write **major code** modifications.                               |
 | :pencil:               | `:pencil:`               | When you perform **minor code** modifications.                             |
 | :racehorse:            | `:racehorse:`            | When improving code **performances**.                                      |
-| :books:                | `:books`                 | When writting **docs** on source code.                                     |
+| :books:                | `:books:`                | When writting **docs** on source code.                                     |
 | :sparkles:             | `:sparkles:`             | When adding new **features**.                                              |
 | :bug:                  | `:bug:`                  | When fixing a **bug**                                                      |
 | :umbrella::            | `:umbrella:`             | When writing **test**.                                                     |
