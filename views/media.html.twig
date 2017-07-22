@@ -9,53 +9,93 @@
 {# Body of the page #}
 {% block content %}
     <section class="col-md-12 col-sm-12 col-xs-12">
-        <h1>{{ media.title }}</h1>
 
         <div class="row">
             <aside class="col-md-4 col-sm-6 col-xs-12 main-information">
-                <ul class="">
-                    {% if media.originalTitle is defined %}<li>Original Title : {{ media.originalTitle }}</li>{% endif %}
-                    {% if media.releaseDate is defined %}<li>Release Date : {{ media.releaseDate|date('d/m/y') }}</li>{% endif %}
-                    {% if media.endDate is defined %}<li>Last Release Date: {{ media.endDate|date('d/m/y') }}</li>{% endif %}
+                {% if media.title is defined %}
+                    <h1>{{ media.title }}</h1>
+                {% endif %}
+                <ul class="list-unstyled">
+                    {% if media.originalTitle is defined %}
+                        <li>Original Title : {{ media.originalTitle }}</li>
+                    {% endif %}
 
-                    {% if media.isbn is defined %}<li>ISBN : {{ media.isbn }}</li>{% endif %}
-                    {% if media.nbPages is defined %}<li>Pages : {{ media.nbPages}} pages</li>{% endif %}
-                    {% if media.currentVolume is defined %}<li>Current volume : {{ media.currentVolume}}</li>{% endif %}
-                    {% if media.volumes is defined %}<li>Volumes : {{ media.volumes}}</li>{% endif %}
+                    {% if media.releaseDate is defined %}
+                        {% if media.endDate is defined  %}
+                            <li>Original Release : {{ media.releaseDate|localizeddate('long', 'none', global.request.locale) }} - {{ media.endDate|localizeddate('long', 'none', global.request.locale) }}</li>
+                        {% else %}
+                            <li>Original Release : {{ media.releaseDate|date('d F Y') }}</li>
+                        {% endif %}
+                    {% endif %}
 
-                    {% if media.multiplayers is defined %}<li>Multiplayers : {{ media.multiplayers }}</li>{% endif %}
+                    {% if media.isbn is defined %}
+                        <li>ISBN : {{ media.isbn }}</li>
+                    {% endif %}
 
-                    {% if media.nbTracks is defined %}<li>Number of Tracks : {{ media.nbTracks }} tracks</li>{% endif %}
-                    {% if media.length is defined %}<li>Length : {{ media.length|replace({'.' : ':'}) }}</li>{% endif %}
+                    {% if media.nbPages is defined %}
+                        <li>Pages : {{ media.nbPages}} pages</li>
+                    {% endif %}
 
-                    {% if media.runtime is defined %}<li>Runtime : {{ media.runtime }}'</li>{% endif %}
-                    {% if media.numberOfSeasons is defined %}<li>Seasons : {{ media.numberOfSeasons }}</li>{% endif %}
-                    {% if media.currentSeason is defined %}<li>Current Season : {{ media.currentSeason }}</li>{% endif %}
-                    {% if media.averageEpisodeRuntime is defined %}<li>Time of Episode : {{ media.averageEpisodeRuntime }} minutes</li>{% endif %}
-                    {% if media.numberOfEpisode is defined %}<li>Number of Episode : {{ media.numberOfEpisode }}</li>{% endif %}
-                    {% if media.maxEpisodes is defined %}<li>Total of Episode : {{ media.maxEpisodes }}</li>{% endif %}
+                    {% if media.currentVolume is defined %}
+                        <li>Current volume : {{ media.currentVolume}}</li>
+                    {% endif %}
+
+                    {% if media.volumes is defined %}
+                        <li>Volumes : {{ media.volumes}}</li>
+                    {% endif %}
+
+                    {% if media.multiplayers is defined %}
+                        <li>Multiplayers : {{ media.multiplayers }}</li>
+                    {% endif %}
+
+                    {% if media.nbTracks is defined %}
+                        <li>Number of Tracks : {{ media.nbTracks }} tracks</li>
+                    {% endif %}
+
+                    {% if media.length is defined %}
+                        <li>Length : {{ media.length|replace({'.' : ':'}) }}</li>
+                    {% endif %}
+
+                    {% if media.runtime is defined %}
+                        <li>Runtime : {{ media.runtime }} minutes</li>
+                    {% endif %}
+
+                    {% if media.averageEpisodeRuntime is defined %}
+                        <li>Running time : {{ media.averageEpisodeRuntime }} minutes</li>
+                    {% endif %}
+
+                    {% if media.numberOfEpisode is defined and media.maxEpisodes is defined %}
+                        <li><abbr title="Number">No.</abbr> of Episode : {{ media.numberOfEpisode }} / {{ media.maxEpisodes }}</li>
+                    {% endif %}
+
+                    {% if media.currentSeason is defined and media.numberOfSeasons is defined %}
+                        <li><abbr title="Number">No.</abbr> of seasons : {{ media.currentSeason }} / {{ media.numberOfSeasons }}</li>
+                    {% endif %}
 
                     {% if media.languagesSpoken is defined %}
                         <li>Languages Spoken :
                             {% for l in media.languagesSpoken %}
-                                {{ l|lower|capitalize }},
+                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
                             {% endfor %}
                         </li>
                     {% endif %}
 
-                    {% if media.subtitles is defined %}
+                    {% if media.subtitles is defined and media.subtitles|length > 0 %}
                         <li>Subtitles :
                             {% for s in media.subtitles %}
-                                {{ s|lower|capitalize }},
+                                <span class="flag-icon flag-icon-{{ s|lower }}"></span>
                             {% endfor %}
                         </li>
                     {% endif %}
-
 
                     {% if media.genres is defined %}
                         <li>Genres :
                             {% for g in media.genres %}
-                                {{ g|lower|capitalize }},
+                                {% if loop.last %}
+                                    {{ g|lower|capitalize|replace({'_' : ' '}) }}
+                                {% else %}
+                                    {{ g|lower|capitalize }},
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -63,7 +103,11 @@
                     {% if media.supports is defined %}
                         <li>Supports :
                             {% for s in media.supports %}
-                                {{ s|lower|capitalize }},
+                                {% if loop.last %}
+                                    {{ s|lower|capitalize }}
+                                {% else %}
+                                    {{ s|lower|capitalize }},
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -71,7 +115,11 @@
                     {% if media.format is defined %}
                         <li>Format :
                             {% for f in media.format %}
-                                {{ f|lower|capitalize }},
+                                {% if loop.last %}
+                                    {{ f|lower|capitalize }}
+                                {% else %}
+                                    {{ f|lower|capitalize }},
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -79,7 +127,11 @@
                     {% if media.platforms is defined %}
                         <li>Platforms :
                             {% for p in media.platforms %}
-                                {{ p|lower|capitalize }},
+                                {% if loop.last %}
+                                    {{ p|lower|capitalize }}
+                                {% else %}
+                                    {{ p|lower|capitalize }},
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
