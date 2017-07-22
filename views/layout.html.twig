@@ -5,9 +5,10 @@
         <meta name="keywords" content="Media Library, {% block keywords %}{% endblock %}">
         {% block meta_tags %}{% endblock %}
 
-        <link rel="icon" href="{{ asset('favicon.ico') }}">
-        <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('favicon.ico') }}" rel="icon" >
+        <link href="{{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../vendor/fortawesome/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../vendor/components/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
         {# Add other stylesheets #}
@@ -84,8 +85,8 @@
             </div>
 
             <!-- Loading script section -->
-            <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
-            <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('../vendor/components/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('../vendor/twbs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
             {% block javascripts %}{% endblock %}
         </div>
     </body>

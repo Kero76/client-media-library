@@ -30,6 +30,13 @@ $app->register(new Silex\Provider\AssetServiceProvider(), array(
    'assets.version' => 'v1',
 ));
 
+// Extends Twig with some services.
+$app->extend('twig', function($twig, $app) {
+    $twig->addExtension(new Twig_Extensions_Extension_Intl());
+    
+    return $twig;
+});
+
 // Register Restful service providers.
 $app['rest'] = function() {
     return new MediaClient\Rest\RestClient();
