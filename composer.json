@@ -19,6 +19,9 @@
   },
   "require": {
     "silex/silex": "^2.1.0",
+    "symfony/form": "^3.3",
+    "symfony/config": "^3.3",
+    "symfony/translation": "^3.3",
     "twig/twig": "^2.4.3",
     "twig/extensions": "^1.5",
     "symfony/twig-bridge": "^3.3",
