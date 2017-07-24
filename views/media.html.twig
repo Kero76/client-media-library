@@ -13,7 +13,7 @@
         <div class="row">
             <aside class="col-md-4 col-sm-6 col-xs-12 main-information">
                 {% if media.title is defined %}
-                    <h1>{{ media.title }}</h1>
+                    <h2>{{ media.title }}</h2>
                 {% endif %}
                 <ul class="list-unstyled">
                     {% if media.originalTitle is defined %}
@@ -146,9 +146,160 @@
                     <p>No synopsis found.</p>
                 {% endif %}
 
-                {# authors, publishers, illustrators, developers, labelRecords, singers, producers, directors, mainActors #}
+                {% if media.authors is defined %}
+                    <h2>Authors</h2>
+                    {% if media.authors is not empty %}
+                        <p>
+                        {% for person in media.authors %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No author found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.mainActors is defined %}
+                    <h2>Main Actors</h2>
+                    {% if media.mainActors is not empty %}
+                        <p>
+                         {% for person in media.mainActors %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No actors found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.publishers is defined %}
+                    <h2>Publishers</h2>
+                    {% if media.publishers is not empty %}
+                        <p>
+                        {% for company in media.publishers %}
+                            {% if loop.last %}
+                                {{ company.name }}
+                            {% else %}
+                                {{ company.name }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No publishers found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.illustrators is defined %}
+                    <h2>Illustrators</h2>
+                    {% if media.illustrators is not empty %}
+                        <p>
+                        {% for person in media.illustrators %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No illustrators found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.developers is defined %}
+                    <h2>Developers</h2>
+                    {% if media.developers is not empty %}
+                        <p>
+                        {% for company in media.developers %}
+                            {% if loop.last %}
+                                {{ company.name }}
+                            {% else %}
+                                {{ company.name }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No developers found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.labelRecords is defined %}
+                    <h2>Label Records</h2>
+                    {% if media.labelRecords is not empty %}
+                        <p>
+                        {% for company in media.labelRecords %}
+                            {% if loop.last %}
+                                {{ company.name }}
+                            {% else %}
+                                {{ company.name }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No label records found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.singers is defined %}
+                    <h2>Singers or Bands</h2>
+                    {% if media.singers is not empty %}
+                        <p>
+                        {% for person in media.singers %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No singer/band found.</p>
+                    {% endif %}
+                {% endif %}
+
+
+                {% if media.producers is defined %}
+                    <h2>Producers</h2>
+                    {% if media.producers is not empty %}
+                        <p>
+                        {% for person in media.producers %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No producers found.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% if media.directors is defined %}
+                    <h2>Directors</h2>
+                    {% if media.directors is not empty %}
+                        <p>
+                        {% for person in media.directors %}
+                            {% if loop.last %}
+                                {{ person.firstName }} {{ person.lastName }}
+                            {% else %}
+                                {{ person.firstName }} {{ person.lastName }},
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% else %}
+                        <p>No directors found.</p>
+                    {% endif %}
+                {% endif %}
             </article>
         </div>
-
     </section>
 {% endblock %}
