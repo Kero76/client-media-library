@@ -19,6 +19,8 @@
     
     namespace MediaClient\Controller;
     
+    use MediaClient\Form\Search\SearchEntity;
+    use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
     use MediaClient\Model\Book\Book;
     use MediaClient\Model\Book\Comic;
@@ -51,7 +53,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function home(Application $app) {
+        public function home(Application $app, Request $request) {
             // Instantiate uri, medias array's and count element on uri array.
             $uri      = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', /*'books/', 'comics/', 'video-games/'*/);
             $uri_size = count($uri);
@@ -128,7 +130,12 @@
                         break;
                 }
             }
-    
+            
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form->handleRequest($request);
+            $search_form_view = $search_form->createView();
+            
             // Return all medias.
             return $app['twig']->render('home.html.twig', array(
                 'animes'   => array_reverse(array_slice($animes, count($animes) - 10)),
@@ -139,6 +146,7 @@
                 'books'    => array_reverse(array_slice($books, count($books) - 10)),
                 'comics'   => array_reverse(array_slice($comics, count($comics) - 10)),
                 'video_games' => array_reverse(array_slice($video_games, count($video_games) - 10)),
+                'search_form' => $search_form_view,
             ));
         }
     
@@ -154,7 +162,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getAllMedia(Application $app, $media) {
+        public function getAllMedia(Application $app, Request $request, $media) {
             $medias = $app['rest']->get($media . '/');
     
             // Check if an error occurred during HTTP request.
@@ -162,9 +170,15 @@
                 $medias = array();
             }
     
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form->handleRequest($request);
+            $search_form_view = $search_form->createView();
+    
             return $app['twig']->render('media-list.html.twig', array(
                 'medias' => $medias,
                 'media_type' => $media,
+                'search_form' => $search_form_view,
             ));
         }
     
@@ -182,7 +196,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getMedia(Application $app, $media, $id) {
+        public function getMedia(Application $app, Request $request, $media, $id) {
             $media = $app['rest']->get($media . '/search/id/' . $id);
     
             // Check if an error occurred during HTTP request.
@@ -197,9 +211,15 @@
             if (isset($media['endDate'])) {
                 $media['endDate'] = $media['endDate'] / 1000;
             }
-    
+            
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form->handleRequest($request);
+            $search_form_view = $search_form->createView();
+            
             return $app['twig']->render('media.html.twig', array(
                 'media' => $media,
+                'search_form' => $search_form_view,
             ));
         }
     
@@ -216,8 +236,11 @@
          * @version 1.0
          */
         public function search(Application $app, Request $request) {
-            // Get POST information.
-            $title_search = $request->request->get('search');
+            // Form builder.
+            $search = new SearchEntity();
+            $search_form = $app['form.factory']->create(SearchType::class, $search);
+            $search_form->handleRequest($request);
+            $search_form_view = $search_form->createView();
     
             // Instantiate uri, medias array's and count element on uri array.
             $uri      = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', /*'books/', 'comics/', 'video-games/'*/);
@@ -233,7 +256,12 @@
     
             // Loop on each uri and get media with name get from search form.
             for ($i = 0; $i < $uri_size; ++$i) {
-                $media_request = $app['rest']->get($uri[$i] . 'search/title/' . urlencode($title_search));
+                $media_request = $app['rest']->get($uri[$i] . 'search/title/' . urlencode($search->getSearch()));
+    
+                // If code error is equal to 404, break the loop on check new media.
+                if ($media_request['status'] == HttpCodeStatus::NOT_FOUND) {
+                    break;
+                }
         
                 // Switch to generate right object.
                 switch ($i) {
@@ -306,6 +334,7 @@
                 'books'    => $books,
                 'comics'   => $comics,
                 'video_games' => $video_games,
+                'search_form' => $search_form_view,
             ));
         }
     }

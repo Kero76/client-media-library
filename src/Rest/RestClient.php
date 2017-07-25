@@ -51,6 +51,15 @@
         public static $_DEBUG_MODE = false;
     
         /**
+         * Default timeout in seconds.
+         *
+         * @var int
+         *  Indicate the default timeout before the app close the connection.
+         * @since 1.0
+         */
+        public static $_DEFAULT_TIMEOUT = 5;
+    
+        /**
          * Client object used to interact with the restful service.
          *
          * @var \GuzzleHttp\Client
@@ -70,7 +79,7 @@
         public function __construct() {
             $this->_client = new Client([
                 'base_uri' => RestClient::$_REST_SERVICE_URI,
-                'timeout'  => 2,
+                'timeout'  => RestClient::$_DEFAULT_TIMEOUT,
             ]);
         }
         
