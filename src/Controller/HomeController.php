@@ -336,6 +336,7 @@
                 'comics'   => $comics,
                 'video_games' => $video_games,
                 'search_form' => $search_form_view,
+                'result_search' => $search->getSearch(),
             ));
         }
     }
