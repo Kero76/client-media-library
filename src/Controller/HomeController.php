@@ -48,6 +48,8 @@
          *
          * @param \Silex\Application $app
          *  Silex Application
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter get from form.
          * @return mixed
          *  Twig renderer web page.
          * @since 1.0
@@ -155,6 +157,8 @@
          *
          * @param \Silex\Application $app
          *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter get from form.
          * @param $media
          *  Media at search.
          * @return mixed
@@ -187,6 +191,8 @@
          *
          * @param \Silex\Application $app
          *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter get from form.
          * @param $media
          *  Category of the media at search.
          * @param $id
@@ -257,12 +263,7 @@
             // Loop on each uri and get media with name get from search form.
             for ($i = 0; $i < $uri_size; ++$i) {
                 $media_request = $app['rest']->get($uri[$i] . 'search/title/' . urlencode($search->getSearch()));
-    
-                // If code error is equal to 404, break the loop on check new media.
-                if ($media_request['status'] == HttpCodeStatus::NOT_FOUND) {
-                    break;
-                }
-        
+            
                 // Switch to generate right object.
                 switch ($i) {
                     // Anime
