@@ -23,16 +23,37 @@
             </table>
 
             <ul class="pagination">
+                {# Activate double pagination to reduce 10 by 10. #}
+                {% if pagination.size > 10 %}
+                    {% if pagination.active > 0 %}
+                        <li>
+                            {% if pagination.active > 0 and pagination.active < 10 %}
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : 0}) }}">
+                                    <span class="fa fa-angle-double-left"></span>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 10}) }}">
+                                    <span class="fa fa-angle-double-left"></span>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li><span class="fa fa-angle-double-left"></span></li>
+                    {% endif %}
+                {% endif %}
+
+                {# Activate simple pagination to reduce 1 by 1. #}
                 {% if pagination.active == 0 %}
-                    <li><span class="glyphicon glyphicon-chevron-left"></span></li>
+                    <li><span class="fa fa-angle-left"></span></li>
                 {% else %}
                     <li>
                         <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 1}) }}">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="fa fa-angle-left"></span>
                         </a>
                     </li>
                 {% endif %}
 
+                {# Loop on each object of the pagination. #}
                 {% for p in 0..pagination.size %}
                     {% if pagination.active == p %}
                         <li class="active">
@@ -43,14 +64,34 @@
                     </li>
                 {% endfor %}
 
+                {# Activate simple pagination to reduce 1 by 1. #}
                 {% if pagination.active == pagination.size %}
-                    <li><span class="glyphicon glyphicon-chevron-right"></span></li>
+                    <li><span class="fa fa-angle-right"></span></li>
                 {% else %}
                     <li>
                         <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 1}) }}">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="fa fa-angle-right"></span>
                         </a>
                     </li>
+                {% endif %}
+
+                {# Activate double pagination to reduce 10 by 10. #}
+                {% if pagination.size > 10 %}
+                    {% if pagination.active != pagination.size %}
+                        <li>
+                            {% if pagination.active > pagination.size - 9 %}
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.size}) }}">
+                                    <span class="fa fa-angle-double-right"></span>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 10}) }}">
+                                    <span class="fa fa-angle-double-right"></span>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li><span class="fa fa-angle-double-right"></span></li>
+                    {% endif %}
                 {% endif %}
             </ul>
         {% else %}
