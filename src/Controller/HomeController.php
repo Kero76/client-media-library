@@ -48,14 +48,12 @@
          *
          * @param \Silex\Application $app
          *  Silex Application
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         *  Request who contains parameter get from form.
          * @return mixed
          *  Twig renderer web page.
          * @since 1.0
          * @version 1.0
          */
-        public function home(Application $app, Request $request) {
+        public function home(Application $app) {
             // Instantiate uri, medias array's and count element on uri array.
             $uri      = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', /*'books/', 'comics/', 'video-games/'*/);
             $uri_size = count($uri);
@@ -135,7 +133,6 @@
             
             // Form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
-            $search_form->handleRequest($request);
             $search_form_view = $search_form->createView();
             
             // Return all medias.
@@ -157,17 +154,18 @@
          *
          * @param \Silex\Application $app
          *  Silex Application.
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         *  Request who contains parameter get from form.
          * @param $media
          *  Media at search.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request use to get parameter from HTTP request.
          * @return mixed
          *  Twig renderer web page.
          * @since 1.0
          * @version 1.0
          */
-        public function getAllMedia(Application $app, Request $request, $media) {
+        public function getAllMedia(Application $app, Request $request, string $media) {
             $medias = $app['rest']->get($media . '/');
+            $pagination = $request->get('pagination');
     
             // Check if an error occurred during HTTP request.
             if (isset($medias['code_error']) && $medias['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
@@ -176,13 +174,16 @@
     
             // Form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
-            $search_form->handleRequest($request);
             $search_form_view = $search_form->createView();
     
             return $app['twig']->render('media-list.html.twig', array(
-                'medias' => $medias,
+                'medias' => array_slice($medias, $pagination * 10, 10),
                 'media_type' => $media,
                 'search_form' => $search_form_view,
+                'pagination' => array(
+                    'active' => $pagination,
+                    'size' => floor(count($medias) / 10),
+                ),
             ));
         }
     
@@ -191,8 +192,6 @@
          *
          * @param \Silex\Application $app
          *  Silex Application.
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         *  Request who contains parameter get from form.
          * @param $media
          *  Category of the media at search.
          * @param $id
@@ -202,7 +201,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getMedia(Application $app, Request $request, $media, $id) {
+        public function getMedia(Application $app, $media, $id) {
             $media = $app['rest']->get($media . '/search/id/' . $id);
     
             // Check if an error occurred during HTTP request.
@@ -220,7 +219,6 @@
             
             // Form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
-            $search_form->handleRequest($request);
             $search_form_view = $search_form->createView();
             
             return $app['twig']->render('media.html.twig', array(
