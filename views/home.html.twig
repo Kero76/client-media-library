@@ -57,7 +57,7 @@
                                 {% if a.numberOfSeasons == 1 %}
                                     <td>{{ a.title }}</td>
                                 {% else %}
-                                    <td>{{ a.title }} - Saison {{ a.currentSeason }}</td>
+                                    <td>{{ a.title }} - Season {{ a.currentSeason }}</td>
                                 {% endif %}
                                 <td><a href="{{ path('media', {'id' : a.id, 'media' : 'animes'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
@@ -78,7 +78,7 @@
                                 {% if s.numberOfSeasons == 1 %}
                                     <td>{{ s.title }}</td>
                                 {% else %}
-                                    <td>{{ s.title }} - Saison {{ s.currentSeason }}</td>
+                                    <td>{{ s.title }} - Season {{ s.currentSeason }}</td>
                                 {% endif %}
                                 <td><a href="{{ path('media', {'id' : s.id, 'media' : 'series'}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
                             </tr>
