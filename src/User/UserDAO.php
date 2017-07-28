@@ -44,11 +44,12 @@
          */
         public function saveUser(User $user) {
             $userData = array(
-                'id' => '',
-                'username' => $user->getUsername(),
-                'password' => $user->getPassword(),
-                'salt' => $user->getSalt(),
-                'roles' => $user->getRoles(),
+                'usr_id' => '',
+                'usr_name' => $user->getUsername(),
+                'usr_mail' => $user->getEmail(),
+                'usr_password' => $user->getPassword(),
+                'usr_salt' => $user->getSalt(),
+                'usr_role' => $user->getRoles(),
             );
             
             // Update user previously register on system.

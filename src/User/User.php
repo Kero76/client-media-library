@@ -42,6 +42,13 @@
          * @var string
          */
         private $_username;
+        
+        /**
+         * Email of the user.
+         *
+         * @var string
+         */
+        private $_email;
     
         /**
          * Password of the user.
@@ -126,6 +133,30 @@
          */
         public function setRole(string $role) {
             $this->_role = $role;
+        }
+    
+        /**
+         * Get email of the user.
+         *
+         * @return string
+         *  The email of the user.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getEmail(): string {
+            return $this->_email;
+        }
+    
+        /**
+         * Set the mail of the user.
+         *
+         * @param string $email
+         *  New email of the user.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setEmail(string $email) {
+            $this->_email = $email;
         }
         
         /**
