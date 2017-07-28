@@ -18,13 +18,16 @@
     declare(strict_types=1);
     
     // Home page : "/".
-    $app->get('/', 'MediaClient\Controller\HomeController::home')->bind('home');
+    $app->get('/', 'MediaClient\Controller\HomeController::homeAction')->bind('home');
     
     // Get all specific media : "media/{media}/"
-    $app->get('/media/{media}/', 'MediaClient\Controller\HomeController::getAllMedia')->bind('media-list');
+    $app->get('/media/{media}/', 'MediaClient\Controller\HomeController::mediasAction')->bind('media-list');
     
     // Get precise media : "/media/{media}/{id}".
-    $app->get('/media/{media}/{id}', 'MediaClient\Controller\HomeController::getMedia')->bind('media');
+    $app->get('/media/{media}/{id}', 'MediaClient\Controller\HomeController::mediaAction')->bind('media');
     
     // Search media : "/search/".
-    $app->match('/search/', 'MediaClient\Controller\HomeController::search')->bind('search-result');
+    $app->match('/search/', 'MediaClient\Controller\HomeController::searchAction')->bind('search-result');
+    
+    // Login page : "/login/".
+    $app->get('/login/', 'MediaClient\Controller\HomeController::loginAction')->bind('login');

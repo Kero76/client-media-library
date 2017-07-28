@@ -70,5 +70,5 @@
          * @since 1.0
          * @version 1.0
          */
-        protected abstract function buildObject(array $data) : mixed;
+        protected abstract function buildObject(array $data);
     }

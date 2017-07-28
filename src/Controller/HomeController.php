@@ -53,7 +53,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function home(Application $app) {
+        public function homeAction(Application $app) {
             // Instantiate uri, medias array's and count element on uri array.
             $uri      = array('animes/', 'cartoons/', 'movies/', 'series/', 'musics/', /*'books/', 'comics/', 'video-games/'*/);
             $uri_size = count($uri);
@@ -163,7 +163,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getAllMedia(Application $app, Request $request, string $media) {
+        public function mediasAction(Application $app, Request $request, string $media) {
             $medias = $app['rest']->get($media . '/');
             $pagination = $request->get('pagination');
     
@@ -201,7 +201,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getMedia(Application $app, $media, $id) {
+        public function mediaAction(Application $app, $media, $id) {
             $media = $app['rest']->get($media . '/search/id/' . $id);
     
             // Check if an error occurred during HTTP request.
@@ -239,7 +239,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function search(Application $app, Request $request) {
+        public function searchAction(Application $app, Request $request) {
             // Form builder.
             $search = new SearchEntity();
             $search_form = $app['form.factory']->create(SearchType::class, $search);
@@ -335,6 +335,23 @@
                 'video_games' => $video_games,
                 'search_form' => $search_form_view,
                 'result_search' => $search->getSearch(),
+            ));
+        }
+    
+        /**
+         * Login page.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter fet from form.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function loginAction(Application $app, Request $request) {
+            return $app['twig']->render('login.html.twig', array(
+                'error'         => $app['security.last_error']($request),
+                'last_username' => $app['session']->get('_security.last_username'),
             ));
         }
     }

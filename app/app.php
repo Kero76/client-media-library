@@ -36,9 +36,25 @@
     // Form service providers.
     $app->register(new Silex\Provider\FormServiceProvider());
     
-    // I18N / Globalization services prodivers.
+    // I18N / Globalization services providers.
     $app->register(new Silex\Provider\LocaleServiceProvider());
     $app->register(new Silex\Provider\TranslationServiceProvider());
+    
+    // Security services providers.
+    $app->register(new Silex\Provider\SessionServiceProvider());
+    $app->register(new Silex\Provider\SecurityServiceProvider(), array(
+        'security.firewalls' => array(
+            'secured' => array(
+                'pattern' => '^/',
+                'anonymous' => true,
+                'logout' => true,
+                'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
+                'users' => function () use ($app) {
+                    return new MediaClient\User\UserDAO($app['db']);
+                },
+            ),
+        ),
+    ));
     
     // Extends Twig with some services.
     $app->extend('twig', function($twig, $app) {
@@ -50,4 +66,9 @@
     // Register Restful service providers.
     $app['rest'] = function() {
         return new MediaClient\Rest\RestClient();
+    };
+    
+    // Register DAO's services providers.
+    $app['dao.user'] = function($app) {
+        return new MediaClient\User\UserDAO($app['db']);
     };

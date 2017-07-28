@@ -69,7 +69,7 @@
         /**
          * @inheritdoc
          */
-        protected function buildObject(array $data) : mixed {
+        protected function buildObject(array $data) {
             $user = new User($data);
             return $user;
         }
