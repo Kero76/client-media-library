@@ -1,10 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {# Keywords from meta 'keyword' #}
-{% block keywords %}login, media, client, rest-client{% endblock %}
+{% block keywords %}inscription, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Log in{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {# Body of the page #}
 {% block content %}
@@ -12,11 +12,19 @@
         <h2 class="text-center">{{ block('title') }}</h2>
         {% if error %}
             <div class="alert alert-danger">
-                <strong>Login failed!</strong> {{ error }}
+                <strong>Inscription failed!</strong> {{ error }}
             </div>
         {% endif %}
         <div class="well">
             <form class="form-signin form-horizontal" role="form" action="{{ path('login_check') }}" method="post">
+                {# Email #}
+                <div class="form-group">
+                    <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_email">Email :</label>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="email" name="_email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                </div>
+
                 {# Username #}
                 <div class="form-group">
                     <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_username">Username :</label>

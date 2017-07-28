@@ -339,12 +339,35 @@
         }
     
         /**
+         * Inscription page.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter get from form.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function inscriptionAction(Application $app, Request $request) {
+            // Form builder.
+            $search = new SearchEntity();
+            $search_form = $app['form.factory']->create(SearchType::class, $search);
+            $search_form_view = $search_form->createView();
+        
+            return $app['twig']->render('inscription.html.twig', array(
+                'error'         => $app['security.last_error']($request),
+                'last_username' => $app['session']->get('_security.last_username'),
+                'search_form' => $search_form_view,
+            ));
+        }
+    
+        /**
          * Login page.
          *
          * @param \Silex\Application $app
          *  Silex Application.
          * @param \Symfony\Component\HttpFoundation\Request $request
-         *  Request who contains parameter fet from form.
+         *  Request who contains parameter get from form.
          * @since 1.0
          * @version 1.0
          */

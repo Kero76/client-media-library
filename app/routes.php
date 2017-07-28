@@ -29,5 +29,8 @@
     // Search media : "/search/".
     $app->match('/search/', 'MediaClient\Controller\HomeController::searchAction')->bind('search-result');
     
+    // Inscription page : "/inscription/".
+    $app->get('/inscription/', 'MediaClient\Controller\HomeController::inscriptionAction')->bind('inscription');
+    
     // Login page : "/login/".
     $app->get('/login/', 'MediaClient\Controller\HomeController::loginAction')->bind('login');
