@@ -349,9 +349,15 @@
          * @version 1.0
          */
         public function loginAction(Application $app, Request $request) {
+            // Form builder.
+            $search = new SearchEntity();
+            $search_form = $app['form.factory']->create(SearchType::class, $search);
+            $search_form_view = $search_form->createView();
+            
             return $app['twig']->render('login.html.twig', array(
                 'error'         => $app['security.last_error']($request),
                 'last_username' => $app['session']->get('_security.last_username'),
+                'search_form' => $search_form_view,
             ));
         }
     }

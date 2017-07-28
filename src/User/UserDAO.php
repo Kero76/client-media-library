@@ -35,11 +35,40 @@
      */
     class UserDAO extends AbstractDAO implements UserProviderInterface {
     
+    
+        /**
+         * @param \MediaClient\User\User $user
+         *  User to register on Database.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function saveUser(User $user) {
+            $userData = array(
+                'id' => '',
+                'username' => $user->getUsername(),
+                'password' => $user->getPassword(),
+                'salt' => $user->getSalt(),
+                'roles' => $user->getRoles(),
+            );
+            
+            // Update user previously register on system.
+            if ($user->getId()) {
+                // The user has already been saved : update it
+                $this->getDb()->update('mc_users', $userData, array('usr_id' => $user->getId()));
+            } else {
+                // The user has never been saved : insert it
+                $this->getDb()->insert('mc_users', $userData);
+                // Get the id of the newly created user and set it on the entity.
+                $id = $this->getDb()->lastInsertId();
+                $user->setId($id);
+            }
+        }
+    
         /**
          * @inheritdoc
          */
         public function loadUserByUsername($username) {
-            $sql = "SELECT * FROM users WHERE username = ?";
+            $sql = "SELECT * FROM mc_users WHERE username = ?";
             $row = $this->getDb()->fetchAssoc($sql, array($username));
     
             if ($row)
