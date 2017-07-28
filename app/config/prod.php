@@ -17,8 +17,13 @@
      */
     declare(strict_types=1);
     
-    // Add prod setting.
-    require __DIR__.'/prod.php';
-    
-    // Debug mode
-    $app['debug'] = true;
+    // Doctrine settings.
+    $app['db.options'] = array(
+        'driver'   => 'pdo_mysql',
+        'charset'  => 'utf8',
+        'host'     => 'localhost',
+        'port'     => '3306',
+        'dbname'   => 'database_name',
+        'user'     => 'username',
+        'password' => 'password',
+    );

@@ -29,7 +29,14 @@
     $app->register(new Silex\Provider\AssetServiceProvider(), array(
        'assets.version' => 'v1',
     ));
+    
+    // Doctrine service providers.
+    $app->register(new Silex\Provider\DoctrineServiceProvider());
+    
+    // Form service providers.
     $app->register(new Silex\Provider\FormServiceProvider());
+    
+    // I18N / Globalization services prodivers.
     $app->register(new Silex\Provider\LocaleServiceProvider());
     $app->register(new Silex\Provider\TranslationServiceProvider());
     
