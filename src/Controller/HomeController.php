@@ -19,6 +19,10 @@
     
     namespace MediaClient\Controller;
     
+    use MediaClient\Form\Inscription\InscriptionEntity;
+    use MediaClient\Form\Inscription\InscriptionType;
+    use MediaClient\Form\Login\LoginEntity;
+    use MediaClient\Form\Login\LoginType;
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
@@ -353,11 +357,16 @@
             $search = new SearchEntity();
             $search_form = $app['form.factory']->create(SearchType::class, $search);
             $search_form_view = $search_form->createView();
+            
+            $inscription = new InscriptionEntity();
+            $inscription_form = $app['form.factory']->create(InscriptionType::class, $inscription);
+            $inscription_form_view = $inscription_form->createView();
         
             return $app['twig']->render('inscription.html.twig', array(
                 'error'         => $app['security.last_error']($request),
                 'last_username' => $app['session']->get('_security.last_username'),
                 'search_form' => $search_form_view,
+                'inscription_form' => $inscription_form_view,
             ));
         }
     
@@ -376,11 +385,16 @@
             $search = new SearchEntity();
             $search_form = $app['form.factory']->create(SearchType::class, $search);
             $search_form_view = $search_form->createView();
+    
+            $login = new LoginEntity();
+            $login_form = $app['form.factory']->create(LoginType::class, $login);
+            $login_form_view = $login_form->createView();
             
             return $app['twig']->render('login.html.twig', array(
                 'error'         => $app['security.last_error']($request),
                 'last_username' => $app['session']->get('_security.last_username'),
                 'search_form' => $search_form_view,
+                'login_form' => $login_form_view,
             ));
         }
     }
