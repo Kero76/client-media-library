@@ -34,35 +34,35 @@
          *
          * @var integer
          */
-        private $_id;
+        private $_id = -1;
     
         /**
          * Username of the user.
          *
          * @var string
          */
-        private $_username;
+        private $_username = "";
         
         /**
          * Email of the user.
          *
          * @var string
          */
-        private $_email;
+        private $_email = "";
     
         /**
          * Password of the user.
          *
          * @var string
          */
-        private $_password;
+        private $_password = "";
     
         /**
          * Salt to improve security of the app.
          *
          * @var string
          */
-        private $_salt;
+        private $_salt = "";
     
         /**
          * Role of the user :
@@ -73,19 +73,7 @@
          *
          * @var string
          */
-        private $_role;
-    
-        /**
-         * User constructor.
-         *
-         * @param array $data
-         *  Data get from Database.
-         * @since 1.0
-         * @version 1.0
-         */
-        public function __construct(array $data) {
-            $this->hydrate($data);
-        }
+        private $_role = "";
     
         /**
          * Return the id of the user.
@@ -174,10 +162,34 @@
         }
     
         /**
+         * Set password of user.
+         *
+         * @param string $password
+         *  New password encoded.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setPassword(string $password) {
+            $this->_password = $password;
+        }
+    
+        /**
          * @inheritdoc
          */
         public function getSalt() {
             return $this->_salt;
+        }
+    
+        /**
+         * Set salt to encode password properly.
+         *
+         * @param string $salt
+         *  New salt.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setSalt(string $salt) {
+            $this->_salt = $salt;
         }
     
         /**
@@ -188,33 +200,21 @@
         }
     
         /**
+         * Set the username of the user.
+         *
+         * @param string $username
+         *  New username.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setUsername(string $username) {
+            $this->_username = $username;
+        }
+    
+        /**
          * @inheritdoc
          */
         public function eraseCredentials() {
             // Nothing implementation for the moment.
-        }
-    
-        /**
-         * Method use for hydrate object directly thanks the data from the Database.
-         *
-         * @access private
-         * @param array $data
-         *  An array with all data from the Database.
-         * @since 1.0
-         * @version 1.0
-         */
-        private function hydrate(array $data) {
-            foreach($data as $key => $value) {
-                $method = 'set';
-                $keySplit = explode("_", $key); // split key name if contains XXX_XXX_XXX
-                $count = count($keySplit);
-                for ($i = 0; $i < $count; $i++ ) {
-                    $method .= ucfirst($keySplit[$i]); // Replace first characters of each word in uppercase form.
-                }
-                // Execute method if exists on is object.
-                if(method_exists($this, $method)) {
-                    $this->$method($value);
-                }
-            }
         }
     }

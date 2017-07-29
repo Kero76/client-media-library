@@ -18,7 +18,7 @@
     declare(strict_types=1);
     
     // Home page : "/".
-    $app->get('/', 'MediaClient\Controller\HomeController::homeAction')->bind('home');
+    $app->match('/', 'MediaClient\Controller\HomeController::homeAction')->bind('home');
     
     // Get all specific media : "media/{media}/"
     $app->get('/media/{media}/', 'MediaClient\Controller\HomeController::mediasAction')->bind('media-list');
@@ -29,8 +29,8 @@
     // Search media : "/search/".
     $app->match('/search/', 'MediaClient\Controller\HomeController::searchAction')->bind('search-result');
     
-    // Inscription page : "/inscription/".
-    $app->get('/inscription/', 'MediaClient\Controller\HomeController::inscriptionAction')->bind('inscription');
+    // Registration page : "/register/".
+    $app->match('/register/', 'MediaClient\Controller\HomeController::registerAction')->bind('register');
     
     // Login page : "/login/".
-    $app->get('/login/', 'MediaClient\Controller\HomeController::loginAction')->bind('login');
+    $app->match('/login/', 'MediaClient\Controller\HomeController::loginAction')->bind('login');

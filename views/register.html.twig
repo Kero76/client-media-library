@@ -1,0 +1,94 @@
+{% extends "layout.html.twig" %}
+
+{# Keywords from meta 'keyword' #}
+{% block keywords %}register, media, client, rest-client{% endblock %}
+
+{# Title of the page present on head markup #}
+{% block title %}Register{% endblock %}
+
+{# Body of the page #}
+{% block content %}
+    <section class="col-md-12 col-sm-12 col-xs-12">
+        <h2 class="text-center">{{ block('title') }}</h2>
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>Registration failed!</strong> {{ error }}
+            </div>
+        {% endif %}
+
+        <div class="well">
+            {{ form_start(register_form, {
+                    'attr' : {
+                        'class' : 'form-signin form-horizontal',
+                        'role' : 'form',
+                        'method' : 'post',
+                    }
+                })
+            }}
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_username">Username :</label>
+                <div class="col-sm-6 col-md-4">
+                    {{ form_widget(register_form.username, {
+                            'attr' : {
+                                'name' : '_username',
+                                'class' : 'form-control',
+                                'placeholder' : 'Enter your username',
+                            }
+                        })
+                    }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_password">Password :</label>
+                <div class="col-sm-6 col-md-4">
+                    {{ form_widget(register_form.password.first, {
+                            'attr' : {
+                                'name' : '_password',
+                                'class' : 'form-control',
+                                'placeholder' : 'Enter your password',
+                            }
+                        })
+                    }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_repeat_password">Repeat Password :</label>
+                <div class="col-sm-6 col-md-4">
+                    {{ form_widget(register_form.password.second, {
+                            'attr' : {
+                                'name' : '_repeat_password',
+                                'class' : 'form-control',
+                                'placeholder' : 'Repeat your password',
+                            }
+                        })
+                    }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2" for="_email">Email :</label>
+                <div class="col-sm-6 col-md-4">
+                    {{ form_widget(register_form.email, {
+                            'attr' : {
+                                'name' : '_email',
+                                'class' : 'form-control',
+                                'placeholder' : 'Enter your email',
+                            }
+                        })
+                    }}
+                </div>
+            </div>
+
+            {# Submit #}
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Inscription</button>
+                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Erase data</button>
+                </div>
+            </div>
+            {{ form_end(register_form) }}
+        </div>
+    </section>
+{% endblock %}

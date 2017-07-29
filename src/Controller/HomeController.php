@@ -19,10 +19,10 @@
     
     namespace MediaClient\Controller;
     
-    use MediaClient\Form\Inscription\InscriptionEntity;
-    use MediaClient\Form\Inscription\InscriptionType;
     use MediaClient\Form\Login\LoginEntity;
     use MediaClient\Form\Login\LoginType;
+    use MediaClient\Form\Registration\RegistrationEntity;
+    use MediaClient\Form\Registration\RegistrationType;
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
@@ -34,6 +34,7 @@
     use MediaClient\Model\Video\Cartoon;
     use MediaClient\Model\Video\Movie;
     use MediaClient\Model\Video\Series;
+    use MediaClient\User\User;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -343,30 +344,51 @@
         }
     
         /**
-         * Inscription page.
+         * Registration page.
          *
          * @param \Silex\Application $app
          *  Silex Application.
          * @param \Symfony\Component\HttpFoundation\Request $request
-         *  Request who contains parameter get from form.
+         *  Interface used to encode password.
          * @since 1.0
          * @version 1.0
          */
-        public function inscriptionAction(Application $app, Request $request) {
+        public function registerAction(Application $app, Request $request) {
             // Form builder.
             $search = new SearchEntity();
             $search_form = $app['form.factory']->create(SearchType::class, $search);
             $search_form_view = $search_form->createView();
             
-            $inscription = new InscriptionEntity();
-            $inscription_form = $app['form.factory']->create(InscriptionType::class, $inscription);
-            $inscription_form_view = $inscription_form->createView();
+            $user = new User();
+            $register_form = $app['form.factory']->create(RegistrationType::class, $user);
+    
+            // User try to register on website.
+            $register_form->handleRequest($request);
+            if ($register_form->isSubmitted() && $register_form->isValid()) {
+                // generate a random salt value
+                $salt = substr(md5(time() . ""), 0, 23);
+                $user->setSalt($salt);
+                $plainPassword = $user->getPassword();
+                
+                // find the default encoder
+                $encoder = $app['security.encoder.bcrypt'];
+                
+                // compute the encoded password
+                $password = $encoder->encodePassword($plainPassword, $user->getSalt());
+                $user->setPassword($password);
+                $user->setRole('ROLE_ADMIN');
+                    
+                // Save on
+                $app['dao.user']->save($user);
+            }
+            
+            $register_form_view = $register_form->createView();
         
-            return $app['twig']->render('inscription.html.twig', array(
+            return $app['twig']->render('register.html.twig', array(
                 'error'         => $app['security.last_error']($request),
                 'last_username' => $app['session']->get('_security.last_username'),
                 'search_form' => $search_form_view,
-                'inscription_form' => $inscription_form_view,
+                'register_form' => $register_form_view,
             ));
         }
     

@@ -17,23 +17,24 @@
      */
     declare(strict_types=1);
     
-    namespace MediaClient\Form\Inscription;
+    namespace MediaClient\Form\Registration;
     
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\Extension\Core\Type\EmailType;
     use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+    use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
 
     /**
-     * Class InscriptionType
+     * Class RegistrationType
      *
      * @author Nicolas GILLE
-     * @package MediaClient\Form\Inscription
+     * @package MediaClient\Form\Registration
      * @since 1.0
      * @version 1.0
      */
-    class InscriptionType extends AbstractType {
+    class RegistrationType extends AbstractType {
     
         /**
          * Build form on twig template.
@@ -48,7 +49,11 @@
         public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder
                 ->add('username', TextType::class)
-                ->add('password', PasswordType::class)
+                ->add('password', RepeatedType::class, array(
+                    'type' => PasswordType::class,
+                    'first_options'  => array('label' => 'Password'),
+                    'second_options' => array('label' => 'Repeat Password'),
+                ))
                 ->add('email', EmailType::class);
         }
     
@@ -61,6 +66,6 @@
          * @version 1.0
          */
         public function getName() : string {
-            return 'inscription';
+            return 'register';
         }
     }

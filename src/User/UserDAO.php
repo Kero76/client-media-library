@@ -42,18 +42,17 @@
          * @since 1.0
          * @version 1.0
          */
-        public function saveUser(User $user) {
+        public function save(User $user) {
             $userData = array(
-                'usr_id' => '',
                 'usr_name' => $user->getUsername(),
                 'usr_mail' => $user->getEmail(),
                 'usr_password' => $user->getPassword(),
                 'usr_salt' => $user->getSalt(),
-                'usr_role' => $user->getRoles(),
+                'usr_role' => $user->getRole(),
             );
             
             // Update user previously register on system.
-            if ($user->getId()) {
+            if ($user->getId() !== -1) {
                 // The user has already been saved : update it
                 $this->getDb()->update('mc_users', $userData, array('usr_id' => $user->getId()));
             } else {
@@ -66,10 +65,32 @@
         }
     
         /**
+         * Get user by id.
+         *
+         * @param $id
+         *  Identifier of the user at search.
+         * @return \MediaClient\User\User|mixed
+         *  Return the User corresponding to the id.
+         * @throws \Exception
+         *  It throw when user not found with specific id.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function find($id) {
+            $sql = "SELECT * FROM mc_users WHERE usr_id = ?";
+            $row = $this->getDb()->fetchAssoc($sql, array($id));
+    
+            if ($row)
+                return $this->buildObject($row);
+            else
+                throw new \Exception("No user matching id " . $id);
+        }
+    
+        /**
          * @inheritdoc
          */
         public function loadUserByUsername($username) {
-            $sql = "SELECT * FROM mc_users WHERE username = ?";
+            $sql = "SELECT * FROM mc_users WHERE usr_name = ?";
             $row = $this->getDb()->fetchAssoc($sql, array($username));
     
             if ($row)
@@ -100,7 +121,13 @@
          * @inheritdoc
          */
         protected function buildObject(array $data) {
-            $user = new User($data);
+            $user = new User();
+            $user->setId($data['usr_id']);
+            $user->setEmail($data['usr_mail']);
+            $user->setUsername($data['usr_name']);
+            $user->setPassword($data['usr_password']);
+            $user->setSalt($data['usr_salt']);
+            $user->setRole($data['usr_role']);
             return $user;
         }
     }
