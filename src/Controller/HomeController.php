@@ -408,16 +408,11 @@
             $search = new SearchEntity();
             $search_form = $app['form.factory']->create(SearchType::class, $search);
             $search_form_view = $search_form->createView();
-    
-            $login = new User();
-            $login_form = $app['form.factory']->create(LoginType::class, $login);
-            $login_form_view = $login_form->createView();
             
             return $app['twig']->render('login.html.twig', array(
                 'error'         => $app['security.last_error']($request),
                 'last_username' => $app['session']->get('_security.last_username'),
                 'search_form' => $search_form_view,
-                'login_form' => $login_form_view,
             ));
         }
     }
