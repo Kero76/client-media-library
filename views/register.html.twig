@@ -1,5 +1,8 @@
 {% extends "layout.html.twig" %}
 
+{# Bootstrap theme. #}
+{% form_theme register_form 'bootstrap_3_horizontal_layout.html.twig' %}
+
 {# Keywords from meta 'keyword' #}
 {% block keywords %}register, media, client, rest-client{% endblock %}
 
@@ -19,69 +22,29 @@
         <div class="well">
             {{ form_start(register_form, {
                     'attr' : {
-                        'class' : 'form-signin form-horizontal',
                         'role' : 'form',
-                        'method' : 'post',
                     }
                 })
             }}
-            <div class="form-group">
-                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2">Username :</label>
-                <div class="col-sm-6 col-md-4">
-                    {{ form_widget(register_form.username, {
-                            'attr' : {
-                                'class' : 'form-control',
-                                'placeholder' : 'Enter your username',
-                            }
-                        })
-                    }}
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2">Password :</label>
-                <div class="col-sm-6 col-md-4">
-                    {{ form_widget(register_form.password.first, {
-                            'attr' : {
-                                'class' : 'form-control',
-                                'placeholder' : 'Enter your password',
-                            }
-                        })
-                    }}
-                </div>
-            </div>
+            {{ form_row(register_form.username) }}
+            {{ form_widget(register_form.username) }}
 
-            <div class="form-group">
-                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2">Repeat Password :</label>
-                <div class="col-sm-6 col-md-4">
-                    {{ form_widget(register_form.password.second, {
-                            'attr' : {
-                                'class' : 'form-control',
-                                'placeholder' : 'Repeat your password',
-                            }
-                        })
-                    }}
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2 col-sm-offset-1 col-md-3 col-md-offset-1 col-xs-4 col-xs-offset-2">Email :</label>
-                <div class="col-sm-6 col-md-4">
-                    {{ form_widget(register_form.email, {
-                            'attr' : {
-                                'class' : 'form-control',
-                                'placeholder' : 'Enter your email',
-                            }
-                        })
-                    }}
-                </div>
-            </div>
+            {{ form_row(register_form.password.first) }}
+            {{ form_widget(register_form.password.first) }}
+
+            {{ form_row(register_form.password.second) }}
+            {{ form_widget(register_form.password.second) }}
+
+            {{ form_row(register_form.email) }}
+            {{ form_widget(register_form.email) }}
 
             {# Submit #}
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Inscription</button>
-                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Erase data</button>
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Registration</button>
+                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clean form</button>
                 </div>
             </div>
             {{ form_end(register_form) }}
