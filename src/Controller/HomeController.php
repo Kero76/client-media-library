@@ -380,6 +380,7 @@
                     
                 // Save on
                 $app['dao.user']->save($user);
+                return $app->redirect($app['url_generator']->generate('home'));
             }
             
             $register_form_view = $register_form->createView();
