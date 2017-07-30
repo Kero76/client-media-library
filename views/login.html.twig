@@ -30,9 +30,9 @@
                     <div class="col-sm-6 col-md-4">
                         {{ form_widget(login_form.username, {
                                 'attr' : {
-                                    'name' : '_username',
                                     'class' : 'form-control',
                                     'placeholder' : 'Enter your username',
+                                    'value' : last_username,
                                 }
                             })
                         }}
@@ -44,7 +44,6 @@
                     <div class="col-sm-6 col-md-4">
                         {{ form_widget(login_form.password, {
                             'attr' : {
-                                'name' : '_password',
                                 'class' : 'form-control',
                                 'placeholder' : 'Enter your password',
                             }
