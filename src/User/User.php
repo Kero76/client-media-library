@@ -151,7 +151,7 @@
          * @inheritdoc
          */
         public function getRoles() {
-            return array($this->getRoles());
+            return array($this->getRole());
         }
     
         /**

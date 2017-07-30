@@ -409,7 +409,7 @@
             $search_form = $app['form.factory']->create(SearchType::class, $search);
             $search_form_view = $search_form->createView();
     
-            $login = new LoginEntity();
+            $login = new User();
             $login_form = $app['form.factory']->create(LoginType::class, $login);
             $login_form_view = $login_form->createView();
             
