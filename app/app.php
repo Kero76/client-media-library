@@ -35,6 +35,7 @@
     
     // Form service providers.
     $app->register(new Silex\Provider\FormServiceProvider());
+    $app->register(new Silex\Provider\ValidatorServiceProvider());
     
     // I18N / Globalization services providers.
     $app->register(new Silex\Provider\LocaleServiceProvider());
@@ -57,12 +58,18 @@
                 },
             ),
         ),
+        'security.role_hierarchy' => array(
+            'ROLE_ADMIN' => array('ROLE_USER'),
+        ),
+        'security.access_rules' => array(
+            array('^/admin', 'ROLE_ADMIN'),
+        ),
     ));
     
     // Extends Twig with some services.
-    $app->extend('twig', function($twig, $app) {
+    $app->extend('twig', function(Twig_Environment $twig, $app) {
         $twig->addExtension(new Twig_Extensions_Extension_Intl());
-        
+        $twig->addExtension(new Twig_Extensions_Extension_Text());
         return $twig;
     });
     

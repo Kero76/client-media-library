@@ -25,6 +25,9 @@
     use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
+    use Symfony\Component\Validator\Constraints\Email;
+    use Symfony\Component\Validator\Constraints\Length;
+    use Symfony\Component\Validator\Constraints\NotBlank;
 
     /**
      * Class RegistrationType
@@ -48,13 +51,35 @@
          */
         public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder
-                ->add('username', TextType::class)
+                ->add('username', TextType::class, array(
+                    'required' => true,
+                    'constraints' => array(
+                        new NotBlank(),
+                        new Length(array(
+                            'min' => 5,
+                            'max' => 50,
+                        )),
+                    ),
+                ))
                 ->add('password', RepeatedType::class, array(
                     'type' => PasswordType::class,
                     'first_options'  => array('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
+                    'required' => true,
+                    'constraints' => array(
+                        new Length(array(
+                            'min' => 5,
+                            'max' => 255,
+                        )),
+                    ),
                 ))
-                ->add('email', EmailType::class);
+                ->add('email', EmailType::class, array(
+                    'required' => true,
+                    'constraints' => array(
+                        new NotBlank(),
+                        new Email(),
+                    ),
+                ));
         }
     
         /**
