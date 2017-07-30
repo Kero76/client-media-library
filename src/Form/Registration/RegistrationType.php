@@ -77,7 +77,10 @@
                     'required' => true,
                     'constraints' => array(
                         new NotBlank(),
-                        new Email(),
+                        new Email(array(
+                            'checkMX' => true,
+                            'checkHost' => true,
+                        )),
                     ),
                 ));
         }
