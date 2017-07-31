@@ -34,3 +34,15 @@
     
     // Login page : "/login/".
     $app->match('/login/', 'MediaClient\Controller\HomeController::loginAction')->bind('login');
+    
+    // Admin page : "/admin/".
+    $app->get('/admin/', 'MediaClient\Controller\AdminController::homeAction')->bind('admin');
+    
+    // Admin page : "/admin/".
+    $app->get('/admin/', 'MediaClient\Controller\AdminController::addMediaAction')->bind('add-media');
+    
+    // Admin page : "/admin/".
+    $app->get('/admin/', 'MediaClient\Controller\AdminController::updateMediaAction')->bind('edit-media');
+    
+    // Admin page : "/admin/".
+    $app->get('/admin/', 'MediaClient\Controller\AdminController::deleteMediaAction')->bind('remove-media');
