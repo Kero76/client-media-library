@@ -52,7 +52,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No cartoons found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Cartoon
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No cartoon found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -85,7 +96,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No movies found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Movie
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No movie found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -122,7 +144,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No animes found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Anime
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No anime found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -159,7 +192,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No series found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Serie
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No serie found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -192,7 +236,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No books found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Book
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No book found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -225,7 +280,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No comics found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Comic
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No comic found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -258,7 +324,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No albums found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Music
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No music found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
 
@@ -291,7 +368,18 @@
                         {% endfor %}
                     </table>
                 {% else %}
-                    <p>No video games found.</p>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <a href="{{ path('add-media') }}">
+                                    <button role="link" class="btn-link">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Video Game
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><td>No video game found.</td></tr>
+                    </table>
                 {% endif %}
             </section>
         </div>
