@@ -54,6 +54,9 @@
                                     <li><a href="{{ path('media-list', { 'media' : 'video-games', 'pagination' : 0}) }}">Video Games</a></li>
                                 </ul>
                             </li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
+                            {% endif %}
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -62,7 +65,6 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.user.username }} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
                                         <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                                     </ul>
                                 </li>
@@ -71,8 +73,8 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
                                         <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+                                        <li><a href="{{ path('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
                                     </ul>
                                 </li>
                             {% endif %}
