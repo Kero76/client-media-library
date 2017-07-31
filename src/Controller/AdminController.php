@@ -148,7 +148,7 @@
         }
         
         
-        public function addMediaAction(Application $app, Request $request, int $id, string $media) {
+        public function addMediaAction(Application $app, Request $request, string $media) {
             // Form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();

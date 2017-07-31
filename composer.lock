@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e68d96c81d17fc841a0a1322bbfcdab7",
-    "content-hash": "1ffa4a253cb1f941c90c5d0c607a8704",
+    "hash": "31331de7e2d219f96a5ec2c65f0f2dbe",
+    "content-hash": "99de7f6348aef67e267c883aa73f6790",
     "packages": [
         {
             "name": "components/flag-icon-css",
