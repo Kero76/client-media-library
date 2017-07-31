@@ -29,6 +29,7 @@
     use MediaClient\Model\Video\Movie;
     use MediaClient\Model\Video\Series;
     use Silex\Application;
+    use Symfony\Component\HttpFoundation\Request;
 
     /**
      * Class AdminController
@@ -147,15 +148,36 @@
         }
         
         
-        public function addMediaAction(Application $app) {
+        public function addMediaAction(Application $app, Request $request, int $id, string $media) {
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form_view = $search_form->createView();
             
+            // Return all medias.
+            return $app['twig']->render('admin/home.html.twig', array(
+                'search_form' => $search_form_view,
+            ));
         }
         
-        public function updateMediaAction(Application $app) {
+        public function updateMediaAction(Application $app, Request $request, int $id, string $media) {
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form_view = $search_form->createView();
             
+            // Return all medias.
+            return $app['twig']->render('admin/home.html.twig', array(
+                'search_form' => $search_form_view,
+            ));
         }
         
-        public function deleteMediaAction(Application $app) {
-            
+        public function deleteMediaAction(Application $app, int $id, string $media) {
+            // Form builder.
+            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
+            $search_form_view = $search_form->createView();
+    
+            // Return all medias.
+            return $app['twig']->render('admin/home.html.twig', array(
+                'search_form' => $search_form_view,
+            ));
         }
     }

@@ -29,7 +29,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'cartoons'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Cartoon
                                     </button>
@@ -40,11 +40,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : c.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'cartoons' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : c.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -55,7 +55,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'cartoons'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Cartoon
                                     </button>
@@ -73,7 +73,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'movies'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Movie
                                     </button>
@@ -84,11 +84,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : m.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'movies' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : m.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'movies' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -99,7 +99,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'movies'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Movie
                                     </button>
@@ -117,7 +117,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'animes'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Anime
                                     </button>
@@ -132,11 +132,11 @@
                                     <td class="col-md-8 col-sm-8 col-xs-8">{{ a.title }} - Season {{ a.currentSeason }}</td>
                                 {% endif %}
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : a.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : a.id, 'media' : 'animes' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : a.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : a.id, 'media' : 'animes' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -147,7 +147,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'animes'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Anime
                                     </button>
@@ -165,7 +165,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'series'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Serie
                                     </button>
@@ -180,11 +180,11 @@
                                     <td class="col-md-8 col-sm-8 col-xs-8">{{ s.title }} - Season {{ s.currentSeason }}</td>
                                 {% endif %}
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : s.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : s.id, 'media' : 'series' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : s.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : s.id, 'media' : 'series' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -195,7 +195,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'series'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Serie
                                     </button>
@@ -213,7 +213,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'books'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Book
                                     </button>
@@ -224,11 +224,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ b.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : b.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : b.id, 'media' : 'books' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : b.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : b.id, 'media' : 'books' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -239,7 +239,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'books'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Book
                                     </button>
@@ -257,7 +257,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'comics'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Comic
                                     </button>
@@ -268,11 +268,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : c.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'comics' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : c.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'comics' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -283,7 +283,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'comics'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Comic
                                     </button>
@@ -301,7 +301,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'musics'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Music
                                     </button>
@@ -312,11 +312,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : m.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'musics' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : m.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'musics' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -327,7 +327,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'musics'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Music
                                     </button>
@@ -345,7 +345,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td colspan="2">
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'video-games'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Video Game
                                     </button>
@@ -356,11 +356,11 @@
                             <tr>
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ v.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : v.id }) }}">
+                                    <a href="{{ path('edit-media', {'id' : v.id, 'media' : 'video-games' }) }}">
                                         <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : v.id }) }}">
+                                    <a href="{{ path('remove-media', {'id' : v.id, 'media' : 'video-games' }) }}">
                                         <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                                     </a>
                                 </td>
@@ -371,7 +371,7 @@
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
-                                <a href="{{ path('add-media') }}">
+                                <a href="{{ path('add-media', {'media' : 'video-games'}) }}">
                                     <button role="link" class="btn-link">
                                         <span class="glyphicon glyphicon-plus"></span> Add Video Game
                                     </button>
