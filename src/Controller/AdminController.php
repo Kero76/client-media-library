@@ -169,15 +169,23 @@
                 'search_form' => $search_form_view,
             ));
         }
-        
-        public function deleteMediaAction(Application $app, int $id, string $media) {
-            // Form builder.
-            $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
-            $search_form_view = $search_form->createView();
     
-            // Return all medias.
-            return $app['twig']->render('admin/home.html.twig', array(
-                'search_form' => $search_form_view,
-            ));
+        /**
+         * Delete a precise media.
+         *
+         * @param \Silex\Application $app
+         *  Silex app.
+         * @param int $id
+         *  Identifier of media at delete.
+         * @param string $media
+         *  Media at delete.
+         * @return string
+         *  Redirect the user into home admin.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function deleteMediaAction(Application $app, int $id, string $media) {
+            $app['rest']->delete($media . '/' . $id);
+            return $app->redirect($app['url_generator']->generate('admin'));
         }
     }

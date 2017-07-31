@@ -350,6 +350,8 @@
          *  Silex Application.
          * @param \Symfony\Component\HttpFoundation\Request $request
          *  Interface used to encode password.
+         * @return string
+         *  The template render.
          * @since 1.0
          * @version 1.0
          */
