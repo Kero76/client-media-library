@@ -256,9 +256,17 @@
         
         /**
          * List of authors who writing book.
+         *
          * @var array
          */
         private $_authors = array();
+        
+        /**
+         * List of illustrators who illustrate comics.
+         *
+         * @var array
+         */
+        private $_illustrators = array();
     
         /**
          * Media constructor.
@@ -991,6 +999,30 @@
          */
         public function setAuthors(array $authors) {
             $this->_authors = $authors;
+        }
+    
+        /**
+         * Get the list of all illustrators of the book.
+         *
+         * @return array
+         *  An array with all illustrators of the book.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getIllustrators(): array {
+            return $this->_illustrators;
+        }
+    
+        /**
+         * Set the illustrators of the book.
+         *
+         * @param array $illustrators
+         *  New array of illustrators for the book.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setIllustrators(array $illustrators) {
+            $this->_illustrators = $illustrators;
         }
     
         /**

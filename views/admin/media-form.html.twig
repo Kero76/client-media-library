@@ -22,104 +22,183 @@
                 })
             }}
 
-            {{ form_row(media_form.title) }}
-            {{ form_widget(media_form.title) }}
+            {# Main information block. #}
+            <fieldset>
+                <legend>Main Information</legend>
+                {{ form_row(media_form.title) }}
+                {{ form_widget(media_form.title) }}
 
-            {{ form_row(media_form.originalTitle) }}
-            {{ form_widget(media_form.originalTitle) }}
+                {% if media != 'musics'%}
+                    {{ form_row(media_form.originalTitle) }}
+                    {{ form_widget(media_form.originalTitle) }}
+                {% endif %}
 
-            {{ form_row(media_form.releaseDate) }}
-            {{ form_widget(media_form.releaseDate) }}
+                {{ form_row(media_form.synopsis) }}
+                {{ form_widget(media_form.synopsis) }}
+            </fieldset>
 
-            {{ form_row(media_form.endDate) }}
-            {{ form_widget(media_form.endDate) }}
 
-            {{ form_row(media_form.runtime) }}
-            {{ form_widget(media_form.runtime) }}
 
-            {{ form_row(media_form.numberOfSeasons) }}
-            {{ form_widget(media_form.numberOfSeasons) }}
+            {# Date block. #}
+            <fieldset>
+                <legend>Date</legend>
+                {{ form_row(media_form.releaseDate) }}
+                {{ form_widget(media_form.releaseDate) }}
 
-            {{ form_row(media_form.currentSeason) }}
-            {{ form_widget(media_form.currentSeason) }}
+                {% if media == 'animes' or media == 'series' %}
+                    {{ form_row(media_form.endDate) }}
+                    {{ form_widget(media_form.endDate) }}
+                {% endif %}
+            </fieldset>
 
-            {{ form_row(media_form.averageEpisodeRuntime) }}
-            {{ form_widget(media_form.averageEpisodeRuntime) }}
 
-            {{ form_row(media_form.numberOfEpisode) }}
-            {{ form_widget(media_form.numberOfEpisode) }}
+            {# Languages block. #}
+            {% if media == 'animes' or media == 'cartoons' or media == 'movies' or media == 'series' %}
+                <fieldset>
+                    <legend>Languages</legend>
+                    {{ form_row(media_form.languagesSpoken) }}
+                    {{ form_widget(media_form.languagesSpoken) }}
 
-            {{ form_row(media_form.maxEpisodes) }}
-            {{ form_widget(media_form.maxEpisodes) }}
+                    {{ form_row(media_form.subtitles) }}
+                    {{ form_widget(media_form.subtitles) }}
+                </fieldset>
+            {% endif %}
 
-            {{ form_row(media_form.languagesSpoken) }}
-            {{ form_widget(media_form.languagesSpoken) }}
 
-            {{ form_row(media_form.subtitles) }}
-            {{ form_widget(media_form.subtitles) }}
 
-            {{ form_row(media_form.supports) }}
-            {{ form_widget(media_form.supports) }}
+            {# Specific information from each media type. #}
+            <fieldset>
+                {% if media == 'animes' or media == 'series' %}
+                    <legend>Anime / Series information</legend>
+                    {{ form_row(media_form.endDate) }}
+                    {{ form_widget(media_form.endDate) }}
 
-            {{ form_row(media_form.nbTracks) }}
-            {{ form_widget(media_form.nbTracks) }}
+                    {{ form_row(media_form.numberOfSeasons) }}
+                    {{ form_widget(media_form.numberOfSeasons) }}
 
-            {{ form_row(media_form.length) }}
-            {{ form_widget(media_form.length) }}
+                    {{ form_row(media_form.currentSeason) }}
+                    {{ form_widget(media_form.currentSeason) }}
 
-            {{ form_row(media_form.isbn) }}
-            {{ form_widget(media_form.isbn) }}
+                    {{ form_row(media_form.averageEpisodeRuntime) }}
+                    {{ form_widget(media_form.averageEpisodeRuntime) }}
 
-            {{ form_row(media_form.nbPages) }}
-            {{ form_widget(media_form.nbPages) }}
+                    {{ form_row(media_form.numberOfEpisode) }}
+                    {{ form_widget(media_form.numberOfEpisode) }}
 
-            {{ form_row(media_form.format) }}
-            {{ form_widget(media_form.format) }}
+                    {{ form_row(media_form.maxEpisodes) }}
+                    {{ form_widget(media_form.maxEpisodes) }}
+                {% endif %}
 
-            {{ form_row(media_form.volumes) }}
-            {{ form_widget(media_form.volumes) }}
+                {% if media == 'cartoons' or media == 'movies' %}
+                    <legend>Cartoon / Movie information</legend>
+                    {{ form_row(media_form.runtime) }}
+                    {{ form_widget(media_form.runtime) }}
+                {% endif %}
 
-            {{ form_row(media_form.currentVolume) }}
-            {{ form_widget(media_form.currentVolume) }}
+                {% if media == 'books' or media == 'comics' %}
+                    <legend>Books / Comics</legend>
+                    {{ form_row(media_form.isbn) }}
+                    {{ form_widget(media_form.isbn) }}
 
-            {{ form_row(media_form.multiplayers) }}
-            {{ form_widget(media_form.multiplayers) }}
+                    {{ form_row(media_form.nbPages) }}
+                    {{ form_widget(media_form.nbPages) }}
 
-            {{ form_row(media_form.platforms) }}
-            {{ form_widget(media_form.platforms) }}
+                    {% if media == 'comics' %}
+                        {{ form_row(media_form.currentVolume) }}
+                        {{ form_widget(media_form.currentVolume) }}
 
-            {{ form_row(media_form.synopsis) }}
-            {{ form_widget(media_form.synopsis) }}
+                        {{ form_row(media_form.volumes) }}
+                        {{ form_widget(media_form.volumes) }}
+                    {% endif %}
+                {% endif %}
 
-            {{ form_row(media_form.mainActors) }}
-            {{ form_widget(media_form.mainActors) }}
+                {%  if media == 'musics' %}
+                    <legend>Musics information</legend>
+                    {{ form_row(media_form.nbTracks) }}
+                    {{ form_widget(media_form.nbTracks) }}
 
-            {{ form_row(media_form.producers) }}
-            {{ form_widget(media_form.producers) }}
+                    {{ form_row(media_form.length) }}
+                    {{ form_widget(media_form.length) }}
+                {% endif %}
 
-            {{ form_row(media_form.directors) }}
-            {{ form_widget(media_form.directors) }}
+                {% if media == 'video-games' %}
+                    <legend>Video Games information</legend>
+                    {{ form_row(media_form.multiplayers) }}
+                    {{ form_widget(media_form.multiplayers) }}
+                {% endif %}
+            </fieldset>
 
-            {{ form_row(media_form.labelRecords) }}
-            {{ form_widget(media_form.labelRecords) }}
+            {# Persons block. #}
+            <fieldset>
+                <legend>Information about persons / companies</legend>
+                {% if media == 'movies' or media =='series' %}
+                    {{ form_row(media_form.mainActors) }}
+                    {{ form_widget(media_form.mainActors) }}
+                {% endif %}
 
-            {{ form_row(media_form.singers) }}
-            {{ form_widget(media_form.singers) }}
+                {% if media == 'animes' or media == 'cartoons' or media == 'movies' or media == 'series' %}
+                    {{ form_row(media_form.producers) }}
+                    {{ form_widget(media_form.producers) }}
 
-            {{ form_row(media_form.publishers) }}
-            {{ form_widget(media_form.publishers) }}
+                    {{ form_row(media_form.directors) }}
+                    {{ form_widget(media_form.directors) }}
+                {% endif %}
 
-            {{ form_row(media_form.developers) }}
-            {{ form_widget(media_form.developers) }}
+                {% if media == 'books' or media == 'comics' %}
+                    {{ form_row(media_form.authors) }}
+                    {{ form_widget(media_form.authors) }}
+                {% endif %}
 
-            {{ form_row(media_form.authors) }}
-            {{ form_widget(media_form.authors) }}
+                {% if media == 'comics' %}
+                    {{ form_row(media_form.illustrators) }}
+                    {{ form_widget(media_form.illustrators) }}
+                {% endif %}
+
+                {% if media == 'books' or media == 'comics' or media == 'video-games' %}
+                    {{ form_row(media_form.publishers) }}
+                    {{ form_widget(media_form.publishers) }}
+                {% endif %}
+
+                {% if media == 'musics' %}
+                    {{ form_row(media_form.labelRecords) }}
+                    {{ form_widget(media_form.labelRecords) }}
+
+                    {{ form_row(media_form.singers) }}
+                    {{ form_widget(media_form.singers) }}
+                {% endif %}
+
+                {% if media == 'video-games' %}
+                    {{ form_row(media_form.developers) }}
+                    {{ form_widget(media_form.developers) }}
+                {% endif %}
+            </fieldset>
+
+            {# Genres / Supports / Formats / .. block. #}
+            <fieldset>
+                <legend>Genres and supports information</legend>
+                {{ form_row(media_form.genres) }}
+                {{ form_widget(media_form.genres) }}
+
+                {{ form_row(media_form.supports) }}
+                {{ form_widget(media_form.supports) }}
+
+                {% if media == 'books' or media == 'comics' %}
+                    {{ form_row(media_form.format) }}
+                    {{ form_widget(media_form.format) }}
+                {% endif %}
+
+                {% if media == 'video-games' %}
+                    {{ form_row(media_form.platforms) }}
+                    {{ form_widget(media_form.platforms) }}
+                {% endif %}
+            </fieldset>
+
 
             {# Submit #}
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Registration</button>
-                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clean form</button>
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-save"></span> Save new {{ media }}</button>
+                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clear form</button>
                 </div>
             </div>
             {{ form_end(media_form) }}

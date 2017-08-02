@@ -145,6 +145,9 @@
                         ))
                     ),
                 ))
+                ->add('genres', TextType::class, array(
+                    'required' => true,
+                ))
                 ->add('nbTracks', NumberType::class, array(
                     'required' => true,
                     'constraints' => array(
@@ -210,8 +213,11 @@
                 ->add('singers', TextareaType::class)
                 ->add('publishers', TextareaType::class)
                 ->add('developers', TextareaType::class)
-                ->add('authors', TextareaType::class);
+                ->add('authors', TextareaType::class)
+                ->add('illustrators', TextareaType::class);
     
+            $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('mainActors')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('producers')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('directors')->addModelTransformer(new StringToArrayTransformer());
@@ -220,6 +226,7 @@
             $builder->get('publishers')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('developers')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('authors')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('illustrators')->addModelTransformer(new StringToArrayTransformer());
         }
     
         /**
