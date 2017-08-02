@@ -28,16 +28,16 @@
                 {{ form_row(media_form.title) }}
                 {{ form_widget(media_form.title) }}
 
-                {% if media != 'musics'%}
+                {% if media != 'musics' %}
                     {{ form_row(media_form.originalTitle) }}
                     {{ form_widget(media_form.originalTitle) }}
+                {% else %}
+                    {{ form_widget(media_form.originalTitle, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {{ form_row(media_form.synopsis) }}
                 {{ form_widget(media_form.synopsis) }}
             </fieldset>
-
-
 
             {# Date block. #}
             <fieldset>
@@ -48,6 +48,8 @@
                 {% if media == 'animes' or media == 'series' %}
                     {{ form_row(media_form.endDate) }}
                     {{ form_widget(media_form.endDate) }}
+                {% else %}
+                    {{ form_widget(media_form.endDate, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
             </fieldset>
 
@@ -62,9 +64,10 @@
                     {{ form_row(media_form.subtitles) }}
                     {{ form_widget(media_form.subtitles) }}
                 </fieldset>
+            {% else %}
+                {{ form_widget(media_form.languagesSpoken, {'attr' : {'class' : 'hidden'}}) }}
+                {{ form_widget(media_form.subtitles, {'attr' : {'class' : 'hidden'}}) }}
             {% endif %}
-
-
 
             {# Specific information from each media type. #}
             <fieldset>
@@ -87,12 +90,21 @@
 
                     {{ form_row(media_form.maxEpisodes) }}
                     {{ form_widget(media_form.maxEpisodes) }}
+                {% else %}
+                    {{ form_widget(media_form.endDate, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.numberOfSeasons, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.currentSeason, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.averageEpisodeRuntime, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.numberOfEpisode, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.maxEpisodes, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'cartoons' or media == 'movies' %}
                     <legend>Cartoon / Movie information</legend>
                     {{ form_row(media_form.runtime) }}
                     {{ form_widget(media_form.runtime) }}
+                {% else %}
+                    {{ form_widget(media_form.runtime, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'books' or media == 'comics' %}
@@ -109,7 +121,15 @@
 
                         {{ form_row(media_form.volumes) }}
                         {{ form_widget(media_form.volumes) }}
+                    {% else %}
+                        {{ form_widget(media_form.currentVolume, {'attr' : {'class' : 'hidden'}}) }}
+                        {{ form_widget(media_form.volumes, {'attr' : {'class' : 'hidden'}}) }}
                     {% endif %}
+                {% else %}
+                    {{ form_widget(media_form.isbn, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.nbPages, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.currentVolume, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.volumes, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {%  if media == 'musics' %}
@@ -119,12 +139,17 @@
 
                     {{ form_row(media_form.length) }}
                     {{ form_widget(media_form.length) }}
+                {% else %}
+                    {{ form_widget(media_form.nbTracks, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.length, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'video-games' %}
                     <legend>Video Games information</legend>
                     {{ form_row(media_form.multiplayers) }}
                     {{ form_widget(media_form.multiplayers) }}
+                {% else %}
+                    {{ form_widget(media_form.multiplayers, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
             </fieldset>
 
@@ -134,6 +159,8 @@
                 {% if media == 'movies' or media =='series' %}
                     {{ form_row(media_form.mainActors) }}
                     {{ form_widget(media_form.mainActors) }}
+                {% else %}
+                    {{ form_widget(media_form.mainActors, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'animes' or media == 'cartoons' or media == 'movies' or media == 'series' %}
@@ -142,21 +169,30 @@
 
                     {{ form_row(media_form.directors) }}
                     {{ form_widget(media_form.directors) }}
+                {% else %}
+                    {{ form_widget(media_form.producers, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.directors, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'books' or media == 'comics' %}
                     {{ form_row(media_form.authors) }}
                     {{ form_widget(media_form.authors) }}
+                {% else %}
+                    {{ form_widget(media_form.authors, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'comics' %}
                     {{ form_row(media_form.illustrators) }}
                     {{ form_widget(media_form.illustrators) }}
+                {% else %}
+                    {{ form_widget(media_form.illustrators, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'books' or media == 'comics' or media == 'video-games' %}
                     {{ form_row(media_form.publishers) }}
                     {{ form_widget(media_form.publishers) }}
+                {% else %}
+                    {{ form_widget(media_form.publishers, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'musics' %}
@@ -165,11 +201,16 @@
 
                     {{ form_row(media_form.singers) }}
                     {{ form_widget(media_form.singers) }}
+                {% else %}
+                    {{ form_widget(media_form.labelRecords, {'attr' : {'class' : 'hidden'}}) }}
+                    {{ form_widget(media_form.singers, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'video-games' %}
                     {{ form_row(media_form.developers) }}
                     {{ form_widget(media_form.developers) }}
+                {% else %}
+                    {{ form_widget(media_form.developers, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
             </fieldset>
 
@@ -185,11 +226,15 @@
                 {% if media == 'books' or media == 'comics' %}
                     {{ form_row(media_form.format) }}
                     {{ form_widget(media_form.format) }}
+                {% else %}
+                    {{ form_widget(media_form.format, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
 
                 {% if media == 'video-games' %}
                     {{ form_row(media_form.platforms) }}
                     {{ form_widget(media_form.platforms) }}
+                {% else %}
+                    {{ form_widget(media_form.platforms, {'attr' : {'class' : 'hidden'}}) }}
                 {% endif %}
             </fieldset>
 
