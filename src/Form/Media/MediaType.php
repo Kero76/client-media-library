@@ -19,6 +19,7 @@
     
     namespace MediaClient\Form\Media;
     
+    use MediaClient\Form\DataTransformer\StringToArrayTransformer;
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -210,6 +211,15 @@
                 ->add('publishers', TextareaType::class)
                 ->add('developers', TextareaType::class)
                 ->add('authors', TextareaType::class);
+    
+            $builder->get('mainActors')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('producers')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('directors')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('labelRecords')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('singers')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('publishers')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('developers')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('authors')->addModelTransformer(new StringToArrayTransformer());
         }
     
         /**

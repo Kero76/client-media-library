@@ -7,7 +7,7 @@
 {% block keywords %}register, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Register{% endblock %}
+{% block title %}Add {{ media }}{% endblock %}
 
 {# Body of the page #}
 {% block content %}
@@ -122,7 +122,7 @@
                     <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clean form</button>
                 </div>
             </div>
-            {{ form_end(register_form) }}
+            {{ form_end(media_form) }}
         </div>
     </section>
 {% endblock %}
