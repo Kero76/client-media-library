@@ -67,10 +67,12 @@
                     ),
                 ))
                 ->add('releaseDate', DateType::class, array(
-                    'required' => true
+                    'required' => true,
+                    'widget' => 'single_text',
                 ))
                 ->add('endDate', DateType::class, array(
-                    'required' => true
+                    'required' => true,
+                    'widget' => 'single_text',
                 ))
                 ->add('runtime', NumberType::class, array(
                     'required' => true,
