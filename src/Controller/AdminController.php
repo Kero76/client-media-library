@@ -20,14 +20,7 @@
     namespace MediaClient\Controller;
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
-    use MediaClient\Model\Book\Book;
-    use MediaClient\Model\Book\Comic;
-    use MediaClient\Model\Game\VideoGame;
-    use MediaClient\Model\Music\Album;
-    use MediaClient\Model\Video\Anime;
-    use MediaClient\Model\Video\Cartoon;
-    use MediaClient\Model\Video\Movie;
-    use MediaClient\Model\Video\Series;
+    use MediaClient\Model\Media;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -74,56 +67,56 @@
                     case 0 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $animes[$id] = new Anime($k);
+                            $animes[$id] = new Media($k);
                         }
                         break;
                     // Cartoons
                     case 1 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $cartoons[$id] = new Cartoon($k);
+                            $cartoons[$id] = new Media($k);
                         }
                         break;
                     // Movie
                     case 2 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $movies[$id] = new Movie($k);
+                            $movies[$id] = new Media($k);
                         }
                         break;
                     // Series
                     case 3 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $series[$id] = new Series($k);
+                            $series[$id] = new Media($k);
                         }
                         break;
                     // Music
                     case 4 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $musics[$id] = new Album($k);
+                            $musics[$id] = new Media($k);
                         }
                         break;
                     // Book
                     case 5 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $books[$id] = new Book($k);
+                            $books[$id] = new Media($k);
                         }
                         break;
                     // Comic
                     case 6 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $comics[$id] = new Comic($k);
+                            $comics[$id] = new Media($k);
                         }
                         break;
                     // VideoGame
                     case 7 :
                         foreach ($media_request as $k) {
                             $id = $k['id'];
-                            $video_games[$id] = new VideoGame($k);
+                            $video_games[$id] = new Media($k);
                         }
                         break;
                 }
