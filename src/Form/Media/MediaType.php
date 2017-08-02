@@ -185,7 +185,7 @@
                         )),
                     ),
                 ))
-                ->add('currentVolumes', NumberType::class, array(
+                ->add('currentVolume', NumberType::class, array(
                     'constraints' => array(
                         new Range(array(
                             'min' => 0,

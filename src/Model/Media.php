@@ -18,6 +18,7 @@
     declare(strict_types=1);
     
     namespace MediaClient\Model;
+    use DateTime;
 
     /**
      * Representation of all Media present on the service.
@@ -34,230 +35,230 @@
          *
          * @var int
          */
-        private $_id;
+        private $_id = -1;
     
         /**
          * Title of the media.
          *
          * @var string
          */
-        private $_title;
+        private $_title = '';
     
         /**
          * Original title of the media.
          *
          * @var string
          */
-        private $_original_title;
+        private $_original_title = '';
         
         /**
          * Synopsis of the media.
          *
          * @var string
          */
-        private $_synopsis;
+        private $_synopsis = '';
     
         /**
          * Release date of the media.
          *
-         * @var mixed
+         * @var \DateTime
          */
-        private $_releaseDate;
+        private $_releaseDate = null;
         
         /**
          * Date of last release of the anime.
          *
-         * @var mixed
+         * @var \DateTime
          */
-        private $_endDate;
+        private $_endDate = null;
     
         /**
          * List of all genres of the media.
          *
          * @var array
          */
-        private $_genres;
+        private $_genres = array();
     
         /**
          * List of all supports of the media.
          *
          * @var array
          */
-        private $_supports;
+        private $_supports = array();
         
         /**
          * An array with all languages available on the media.
          *
          * @var array
          */
-        private $_languages_spoken;
+        private $_languages_spoken = array();
     
         /**
          * An array with all subtitles of the media.
          *
          * @var array
          */
-        private $_subtitles;
+        private $_subtitles = array();
     
         /**
          * Number of seasons for the anime.
          *
          * @var integer
          */
-        private $_numberOfSeasons;
+        private $_numberOfSeasons = -1;
     
         /**
          * Current season of the anime.
          *
          * @var integer
          */
-        private $_currentSeason;
+        private $_currentSeason = -1;
     
         /**
          * Average runtime of an episode of the media.
          *
          * @var integer
          */
-        private $_averageEpisodeRuntime;
+        private $_averageEpisodeRuntime = -1;
     
         /**
          * Number of episodes present on the current season.
          *
          * @var integer
          */
-        private $_numberOfEpisode;
+        private $_numberOfEpisode = -1;
     
         /**
          * Max number of episodes present on the anime.
          *
          * @var integer
          */
-        private $_maxEpisodes;
+        private $_maxEpisodes = -1;
     
         /**
          * Runtime of the cartoon.
          *
          * @var integer
          */
-        private $_runtime;
+        private $_runtime = -1;
         
         /**
          * Number of tracks present on the album.
          *
          * @var integer
          */
-        private $_nbTracks;
+        private $_nbTracks = -1;
     
         /**
          * Length of the album on minutes and seconds.
          *
          * @var float
          */
-        private $_length;
+        private $_length = 0.0;
     
         /**
          * Indicate if the video game is multiplayable or not.
          *
          * @var bool
          */
-        private $_multiplayers;
+        private $_multiplayers = false;
     
         /**
          * Platforms for the video game (video game console).
          *
          * @var array
          */
-        private $_platforms;
+        private $_platforms = array();
     
         /**
          * ISBN of the book.
          *
          * @var string
          */
-        private $_isbn;
+        private $_isbn = '';
     
         /**
          * Number of pages present on the book.
          *
          * @var int
          */
-        private $_nbPages;
+        private $_nbPages = -1;
     
         /**
          * Format of the book.
          *
          * @var string
          */
-        private $_format;
+        private $_format = '';
     
         /**
          * The volumes present on the comic.
          *
          * @var int
          */
-        private $_volumes;
+        private $_volumes = -1;
     
         /**
          * The current volume of the book.
          *
          * @var int
          */
-        private $_currentVolume;
+        private $_currentVolume = -1;
     
         /**
          * An array with all producers present on the media.
          *
          * @var array
          */
-        private $_producers;
+        private $_producers = array();
     
         /**
          * An array with all directors present on the media.
          *
          * @var array
          */
-        private $_directors;
+        private $_directors = array();
     
         /**
          * List of all actors present on Movie.
          *
          * @var array
          */
-        private $_mainActors;
+        private $_mainActors = array();
     
         /**
          * List of all label records for the album.
          *
          * @var array
          */
-        private $_labelRecords;
+        private $_labelRecords = array();
     
         /**
          * List of the singer(s) or group(s) for the album.
          *
          * @var array
          */
-        private $_singers;
+        private $_singers = array();
     
         /**
          * List of all developers.
          *
          * @var array
          */
-        private $_developers;
+        private $_developers = array();
     
         /**
          * List of publishers.
          *
          * @var array
          */
-        private $_publishers;
+        private $_publishers = array();
         
         /**
          * List of authors who writing book.
          * @var array
          */
-        private $_authors;
+        private $_authors = array();
     
         /**
          * Media constructor.

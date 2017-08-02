@@ -18,6 +18,7 @@
     declare(strict_types=1);
     
     namespace MediaClient\Controller;
+    use MediaClient\Form\Media\MediaType;
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
@@ -87,24 +88,48 @@
         
         
         public function addMediaAction(Application $app, Request $request, string $media) {
-            // Form builder.
+            $media_form = $app['form.factory']->create(MediaType::class, new Media(array()));
+    
+            $media_form->handleRequest($request);
+            if ($media_form->isSubmitted() && $media_form->isValid()) {
+        
+                // Redirect admin into admin/home
+                return $app->redirect($app['url_generator']->generate('admin'));
+            }
+            $media_form_view = $media_form->createView();
+    
+            // Search form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
-            
+    
             // Return all medias.
-            return $app['twig']->render('admin/home.html.twig', array(
+            return $app['twig']->render('admin/media-form.html.twig', array(
                 'search_form' => $search_form_view,
+                'media_form' => $media_form_view,
+                'media' => $media,
             ));
         }
         
         public function updateMediaAction(Application $app, Request $request, int $id, string $media) {
-            // Form builder.
+            $media_form = $app['form.factory']->create(MediaType::class, new Media(array()));
+    
+            $media_form->handleRequest($request);
+            if ($media_form->isSubmitted() && $media_form->isValid()) {
+    
+                // Redirect admin into admin/home
+                return $app->redirect($app['url_generator']->generate('admin'));
+            }
+            $media_form_view = $media_form->createView();
+    
+            // Search form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
             
             // Return all medias.
-            return $app['twig']->render('admin/home.html.twig', array(
+            return $app['twig']->render('admin/media-form.html.twig', array(
                 'search_form' => $search_form_view,
+                'media_form' => $media_form_view,
+                'media' => $media,
             ));
         }
     
