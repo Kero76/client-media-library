@@ -30,6 +30,8 @@
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
+    use MediaClient\Json\MediaJsonGenerator;
+    use MediaClient\Json\ObjectToJson;
     use MediaClient\Model\Media;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
@@ -145,9 +147,11 @@
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
 //                $app['rest']->post($media . '/', \GuzzleHttp\json_encode($media_object));
+                $json = new MediaJsonGenerator($media_object);
+                echo $json;
         
                 // Redirect admin into admin/home
-                return $app->redirect($app['url_generator']->generate('admin'));
+//                return $app->redirect($app['url_generator']->generate('admin'));
             }
             $media_form_view = $media_form->createView();
     
