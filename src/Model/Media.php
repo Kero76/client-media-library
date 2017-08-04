@@ -276,7 +276,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function __construct(array $data) {
+        public function __construct(array $data = array()) {
             $this->hydrate($data);
         }
     

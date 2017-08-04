@@ -19,6 +19,14 @@
     
     namespace MediaClient\Controller;
     use MediaClient\Form\Media\MediaType;
+    use MediaClient\Form\Media\Type\AnimeType;
+    use MediaClient\Form\Media\Type\BookType;
+    use MediaClient\Form\Media\Type\CartoonType;
+    use MediaClient\Form\Media\Type\ComicType;
+    use MediaClient\Form\Media\Type\MovieType;
+    use MediaClient\Form\Media\Type\MusicType;
+    use MediaClient\Form\Media\Type\SeriesType;
+    use MediaClient\Form\Media\Type\VideoGameType;
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
@@ -88,10 +96,55 @@
         
         
         public function addMediaAction(Application $app, Request $request, string $media) {
-            $media_form = $app['form.factory']->create(MediaType::class, new Media(array()));
+            $media_object = new Media();
+            
+            $template_name = '';
+            $media_form = '';
+            switch ($media) {
+                case 'animes' :
+                    $media_form = $app['form.factory']->create(AnimeType::class, $media_object);
+                    $template_name = 'admin/form/anime-form.html.twig';
+                    break;
+        
+                case 'cartoons' :
+                    $media_form = $app['form.factory']->create(CartoonType::class, $media_object);
+                    $template_name = 'admin/form/cartoon-form.html.twig';
+                    break;
+        
+                case 'movies' :
+                    $media_form = $app['form.factory']->create(MovieType::class, $media_object);
+                    $template_name = 'admin/form/movie-form.html.twig';
+                    break;
+        
+                case 'series' :
+                    $media_form = $app['form.factory']->create(SeriesType::class, $media_object);
+                    $template_name = 'admin/form/series-form.html.twig';
+                    break;
+        
+                case 'books' :
+                    $media_form = $app['form.factory']->create(BookType::class, $media_object);
+                    $template_name = 'admin/form/book-form.html.twig';
+                    break;
+        
+                case 'comics' :
+                    $media_form = $app['form.factory']->create(ComicType::class, $media_object);
+                    $template_name = 'admin/form/comic-form.html.twig';
+                    break;
+        
+                case 'musics' :
+                    $media_form = $app['form.factory']->create(MusicType::class, $media_object);
+                    $template_name = 'admin/form/music-form.html.twig';
+                    break;
+        
+                case 'video-games' :
+                    $media_form = $app['form.factory']->create(VideoGameType::class, $media_object);
+                    $template_name = 'admin/form/video-game-form.html.twig';
+                    break;
+            }
     
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
+//                $app['rest']->post($media . '/', \GuzzleHttp\json_encode($media_object));
         
                 // Redirect admin into admin/home
                 return $app->redirect($app['url_generator']->generate('admin'));
@@ -101,9 +154,9 @@
             // Search form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
-    
+            
             // Return all medias.
-            return $app['twig']->render('admin/media-form.html.twig', array(
+            return $app['twig']->render($template_name, array(
                 'search_form' => $search_form_view,
                 'media_form' => $media_form_view,
                 'media' => $media,
@@ -111,11 +164,13 @@
         }
         
         public function updateMediaAction(Application $app, Request $request, int $id, string $media) {
-            $media_form = $app['form.factory']->create(MediaType::class, new Media(array()));
+            $media_object = $app['rest']->get($media . '/search/id/' . $id);
+            $media_form = $app['form.factory']->create(MediaType::class, $media_object);
     
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
-    
+//                $app['rest']->put($media . '/', \GuzzleHttp\json_encode($media_object));
+                
                 // Redirect admin into admin/home
                 return $app->redirect($app['url_generator']->generate('admin'));
             }

@@ -39,10 +39,10 @@
     $app->get('/admin/', 'MediaClient\Controller\AdminController::homeAction')->bind('admin');
     
     // Admin page : "/admin/add-media/{media}/".
-    $app->get('/admin/add-media/{media}/', 'MediaClient\Controller\AdminController::addMediaAction')->bind('add-media');
+    $app->match('/admin/add-media/{media}/', 'MediaClient\Controller\AdminController::addMediaAction')->bind('add-media');
+    
+    // Admin page : "/admin/edit-media/{media}/{id}".
+    $app->match('/admin/edit-media/{media}/{id}/', 'MediaClient\Controller\AdminController::updateMediaAction')->bind('edit-media');
     
     // Admin page : "/admin/".
-    $app->get('/admin/edit-media/{media}/{id}', 'MediaClient\Controller\AdminController::updateMediaAction')->bind('edit-media');
-    
-    // Admin page : "/admin/".
-    $app->get('/admin/delete-media/{media}/{id}', 'MediaClient\Controller\AdminController::deleteMediaAction')->bind('remove-media');
+    $app->get('/admin/delete-media/{media}/{id}/', 'MediaClient\Controller\AdminController::deleteMediaAction')->bind('remove-media');
