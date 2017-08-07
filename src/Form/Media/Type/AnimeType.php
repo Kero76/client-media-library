@@ -106,27 +106,12 @@
                 ))
                 ->add('languagesSpoken', TextType::class, array(
                     'required' => true,
-                    'constraints' => array(
-                        new Regex(array(
-                            'pattern' => '/(([a-z]){2},).*[a-z]{2}$/',
-                        )),
-                    ),
                 ))
                 ->add('subtitles', TextType::class, array(
                     'required' => true,
-                    'constraints' => array(
-                        new Regex(array(
-                            'pattern' => '/(^[A-Za-z][a-z]*,.*)*[a-zA-Z]$/',
-                        ))
-                    ),
                 ))
                 ->add('supports', TextType::class, array(
                     'required' => true,
-                    'constraints' => array(
-                        new Regex(array(
-                            'pattern' => '/(((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital),.*)((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital)$/',
-                        ))
-                    ),
                 ))
                 ->add('genres', TextType::class, array(
                     'required' => true,
@@ -137,6 +122,8 @@
     
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('languagesSpoken')->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('subtitles')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('producers')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('directors')->addModelTransformer(new StringToArrayTransformer());
         }
