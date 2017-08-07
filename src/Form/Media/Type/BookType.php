@@ -63,11 +63,6 @@
                 ))
                 ->add('supports', TextType::class, array(
                     'required' => true,
-                    'constraints' => array(
-                        new Regex(array(
-                            'pattern' => '/(((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital),.*)((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital)$/',
-                        ))
-                    ),
                 ))
                 ->add('genres', TextType::class, array(
                     'required' => true,
@@ -87,7 +82,7 @@
                 ->add('format', TextType::class, array(
                     'constraints' => array(
                         new Regex(array(
-                            'pattern' => '/((Classical|Pocket|Unspecified),.*)(Classical|Pocket|Unspecified)$/',
+                            'pattern' => '/((Classical|Pocket|Unspecified),.*)*(Classical|Pocket|Unspecified)$/',
                         )),
                     ),
                 ))
