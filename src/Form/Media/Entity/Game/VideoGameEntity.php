@@ -252,7 +252,7 @@
                 'originalTitle' => $this->getOriginalTitle(),
                 'synopsis' => $this->getSynopsis(),
                 'multiplayers' => $this->isMultiplayers(),
-                'releaseDate' => $this->getReleaseDate()->getTimestamp(),
+                'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'genres' => $this->getGenres(),
                 'supports' => $this->getSupports(),
                 'languagesSpoken' => $this->getLanguagesSpoken(),

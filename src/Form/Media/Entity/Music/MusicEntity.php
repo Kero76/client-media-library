@@ -193,7 +193,7 @@
                 'id' => $this->getId(),
                 'title' => $this->getTitle(),
                 'synopsis' => $this->getSynopsis(),
-                'releaseDate' => $this->getReleaseDate()->getTimestamp(),
+                'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'genres' => $this->getGenres(),
                 'supports' => $this->getSupports(),
                 'nbTracks' => $this->getNbTracks(),

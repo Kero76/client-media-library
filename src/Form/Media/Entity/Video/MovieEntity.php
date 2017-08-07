@@ -102,7 +102,7 @@
                 'title' => $this->getTitle(),
                 'originalTitle' => $this->getOriginalTitle(),
                 'synopsis' => $this->getSynopsis(),
-                'releaseDate' => $this->getReleaseDate()->getTimestamp(),
+                'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'languagesSpoken' => $this->getLanguagesSpoken(),
                 'subtitles' => $this->getSubtitles(),
                 'runtime' => $this->getRuntime(),
