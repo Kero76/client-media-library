@@ -42,6 +42,13 @@
                 {{ form_widget(media_form.releaseDate) }}
             </fieldset>
 
+            {# Languages block. #}
+            <fieldset>
+                <legend>Languages</legend>
+                {{ form_row(media_form.languagesSpoken) }}
+                {{ form_widget(media_form.languagesSpoken) }}
+            </fieldset>
+
             {# Specific information from each media type. #}
             <fieldset>
                 <legend>Video Games information</legend>

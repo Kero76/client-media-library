@@ -44,6 +44,35 @@
         private $_lastName;
     
         /**
+         * Person constructor.
+         *
+         * @param string $person
+         *  Complete name of the person.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function __construct(string $person) {
+            $personName = explode(' ', $person);
+            
+            // Count string length to cut name correctly.
+            if (count($personName) === 2) {
+                $this->_firstName = $personName[0];
+                $this->_lastName  = $personName[1];
+            } elseif (count($personName) === 1) {
+                $this->_firstName = $personName[0];
+                $this->_lastName  = "";
+            } else {
+                if (preg_match('/^[A-Za-z]\\./', $personName[1]) === 1) {
+                    $this->_firstName = $personName[0];
+                    $this->_lastName  = $personName[1] . ' ' . $personName[2];
+                } else {
+                    $this->_firstName = $personName[0] . ' ' . $personName[1];
+                    $this->_lastName  = $personName[2];
+                }
+            }
+        }
+    
+        /**
          * Get the first name of the person.
          *
          * @return string

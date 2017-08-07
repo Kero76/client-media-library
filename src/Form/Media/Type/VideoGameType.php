@@ -66,7 +66,10 @@
                     )
                 ))
                 ->add('platforms', TextType::class, array(
-        
+                    'required' => true,
+                ))
+                ->add('languagesSpoken', TextType::class, array(
+                    'required' => true,
                 ))
                 ->add('genres', TextType::class, array(
                     'required' => true,
@@ -78,6 +81,7 @@
                 ->add('publishers', TextareaType::class)
                 ->add('developers', TextareaType::class);
     
+            $builder->get('languagesSpoken')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('platforms')->addModelTransformer(new StringToArrayTransformer());

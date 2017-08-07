@@ -35,7 +35,19 @@
          * @var string
          */
         private $_name;
-        
+    
+        /**
+         * Company constructor.
+         *
+         * @param string $company
+         *  Name of the company.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function __construct(string $company) {
+            $this->_name = $company;
+        }
+    
         /**
          * Return the name of the company.
          *
