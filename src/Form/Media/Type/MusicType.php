@@ -50,23 +50,12 @@
                         new NotBlank(),
                     ),
                 ))
-                ->add('originalTitle', TextType::class, array(
-                    'required' => true,
-                    'constraints' => array(
-                        new NotBlank(),
-                    ),
-                ))
                 ->add('releaseDate', DateType::class, array(
                     'required' => true,
                     'widget' => 'single_text',
                 ))
                 ->add('supports', TextType::class, array(
                     'required' => true,
-                    'constraints' => array(
-                        new Regex(array(
-                            'pattern' => '/(((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital),.*)((Audio|Video) Tape|DVD|Blu Ray|Paper|Vynil|CD|Digital)$/',
-                        ))
-                    ),
                 ))
                 ->add('genres', TextType::class, array(
                     'required' => true,
