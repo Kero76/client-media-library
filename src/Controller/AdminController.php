@@ -18,6 +18,14 @@
     declare(strict_types=1);
     
     namespace MediaClient\Controller;
+    use MediaClient\Form\Media\Entity\Book\BookEntity;
+    use MediaClient\Form\Media\Entity\Book\ComicEntity;
+    use MediaClient\Form\Media\Entity\Game\VideoGameEntity;
+    use MediaClient\Form\Media\Entity\Music\MusicEntity;
+    use MediaClient\Form\Media\Entity\Video\AnimeEntity;
+    use MediaClient\Form\Media\Entity\Video\CartoonEntity;
+    use MediaClient\Form\Media\Entity\Video\MovieEntity;
+    use MediaClient\Form\Media\Entity\Video\SeriesEntity;
     use MediaClient\Form\Media\MediaType;
     use MediaClient\Form\Media\Type\AnimeType;
     use MediaClient\Form\Media\Type\BookType;
@@ -98,47 +106,55 @@
         
         
         public function addMediaAction(Application $app, Request $request, string $media) {
-            $media_object = new Media();
             
             $template_name = '';
             $media_form = '';
+            $media_object = null;
             switch ($media) {
                 case 'animes' :
+                    $media_object = new AnimeEntity();
                     $media_form = $app['form.factory']->create(AnimeType::class, $media_object);
                     $template_name = 'admin/form/anime-form.html.twig';
                     break;
         
                 case 'cartoons' :
+                    $media_object = new CartoonEntity();
                     $media_form = $app['form.factory']->create(CartoonType::class, $media_object);
                     $template_name = 'admin/form/cartoon-form.html.twig';
                     break;
         
                 case 'movies' :
+                    $media_object = new MovieEntity();
                     $media_form = $app['form.factory']->create(MovieType::class, $media_object);
                     $template_name = 'admin/form/movie-form.html.twig';
                     break;
         
                 case 'series' :
+                    $media_object = new SeriesEntity();
                     $media_form = $app['form.factory']->create(SeriesType::class, $media_object);
                     $template_name = 'admin/form/series-form.html.twig';
                     break;
         
                 case 'books' :
+                    $media_object = new BookEntity();
                     $media_form = $app['form.factory']->create(BookType::class, $media_object);
                     $template_name = 'admin/form/book-form.html.twig';
                     break;
         
                 case 'comics' :
+                    $media_object = new ComicEntity();
                     $media_form = $app['form.factory']->create(ComicType::class, $media_object);
                     $template_name = 'admin/form/comic-form.html.twig';
                     break;
         
                 case 'musics' :
+                    $media_object = new MusicEntity();
                     $media_form = $app['form.factory']->create(MusicType::class, $media_object);
                     $template_name = 'admin/form/music-form.html.twig';
                     break;
         
                 case 'video-games' :
+                    $media_object = new VideoGameEntity();
                     $media_form = $app['form.factory']->create(VideoGameType::class, $media_object);
                     $template_name = 'admin/form/video-game-form.html.twig';
                     break;
@@ -146,12 +162,10 @@
     
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
-//                $app['rest']->post($media . '/', \GuzzleHttp\json_encode($media_object));
-                $json = new MediaJsonGenerator($media_object);
-                echo $json;
-        
+                $app['rest']->post($media . '/', $media_object->getJson());
+                
                 // Redirect admin into admin/home
-//                return $app->redirect($app['url_generator']->generate('admin'));
+                return $app->redirect($app['url_generator']->generate('admin'));
             }
             $media_form_view = $media_form->createView();
     

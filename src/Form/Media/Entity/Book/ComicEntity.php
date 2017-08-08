@@ -169,6 +169,7 @@
                 'isbn' => $this->getIsbn(),
                 'nbPages' => $this->getNbPages(),
                 'format' => strtoupper($this->getFormat()),
+                'authors' => $authors,
                 'publishers' => $publishers,
                 'illustrators' => $illustrators,
             );

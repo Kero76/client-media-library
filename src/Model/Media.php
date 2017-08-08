@@ -18,7 +18,6 @@
     declare(strict_types=1);
     
     namespace MediaClient\Model;
-    use DateTime;
 
     /**
      * Representation of all Media present on the service.
