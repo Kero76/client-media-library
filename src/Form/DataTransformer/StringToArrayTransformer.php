@@ -42,11 +42,35 @@
          * @version 1.0
          */
         public function transform($array) {
-            if (empty($array)) {
+            if (empty($array) or is_null($array)) {
                 return '';
             }
+    
+            $str_return = '';
+            // Loop on main array composed all data present as array.
+            foreach ($array as $item) {
+                // If the item is an array, the item is composed by some another data (see Person / Company).
+                if (is_array($item) === true) {
+                    // Loop on each attributes of companies or persons.
+                    foreach($item as $key => $value) {
+                        // If key equals name of last name, concat it with current string return value.
+                        if ($key === 'name' || $key === 'lastName') {
+                            $str_return .= $item[$key] . ', ';
+                        }
+        
+                        // If key equals first name, it must be concat with last name before add comma.
+                        if ($key == 'firstName') {
+                            $str_return .= $item[$key] . ' ';
+                        }
+                    }
+                } else {
+                    // Implode simple data like platform, languages, subtitles, ...
+                    return implode($this->_delimiter, $array);
+                }
+            }
             
-            return implode($this->_delimiter, $array);
+            // Cut the 2 last character from the string to remove ', ' and display result.
+            return substr($str_return, 0, -2);
         }
     
         /**

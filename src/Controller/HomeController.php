@@ -62,7 +62,7 @@
                 if (isset($media_request['code_error']) && $media_request['code_error'] == HttpCodeStatus::NO_CONTENT()->getValue()) {
                     $medias[$i] = array();
                 } else {
-                    // Loop on each media and place it on
+                    // Loop on each media and place it on main array.
                     foreach ($media_request as $k) {
                         $id = $k['id'];
                         $medias[$i][$id] = new Media($k);
@@ -151,8 +151,9 @@
             // Problem with timestamp who contains 13 instead of 10 chars.
             // So divide it by 1000 and the timestamp become correct.
             $media['releaseDate'] = $media['releaseDate'] / 1000;
-    
-            if (isset($media['endDate'])) {
+            
+            // Same function for endDate, with check existence before process.
+            if (isset($media['endDate']) === true) {
                 $media['endDate'] = $media['endDate'] / 1000;
             }
             

@@ -38,11 +38,10 @@
     use MediaClient\Form\Search\SearchEntity;
     use MediaClient\Form\Search\SearchType;
     use MediaClient\Http\HttpCodeStatus;
-    use MediaClient\Json\MediaJsonGenerator;
-    use MediaClient\Json\ObjectToJson;
     use MediaClient\Model\Media;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\Validator\Constraints\DateTime;
 
     /**
      * Class AdminController
@@ -103,13 +102,26 @@
                 'search_form' => $search_form_view,
             ));
         }
-        
-        
+    
+        /**
+         * Get form to add media.
+         *
+         * @param \Silex\Application $app
+         *  Silex App.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains Media at insert.
+         * @param string $media
+         *  Current media at add on Media Library.
+         * @return \Symfony\Component\HttpFoundation\RedirectResponse
+         *  Twig render flux.
+         * @since 1.0
+         * @version 1.0
+         */
         public function addMediaAction(Application $app, Request $request, string $media) {
-            
             $template_name = '';
             $media_form = '';
             $media_object = null;
+            
             switch ($media) {
                 case 'animes' :
                     $media_object = new AnimeEntity();
@@ -180,15 +192,84 @@
                 'media' => $media,
             ));
         }
-        
-        public function updateMediaAction(Application $app, Request $request, int $id, string $media) {
-            $media_object = $app['rest']->get($media . '/search/id/' . $id);
-            $media_form = $app['form.factory']->create(MediaType::class, $media_object);
     
+        /**
+         * Get form to update media.
+         *
+         * @param \Silex\Application $app
+         *  Silex App.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains Media at insert.
+         * @param integer $id
+         *  Identifier of the media at update use to get media from service.
+         * @param string $media
+         *  Current media at add on Media Library.
+         * @return \Symfony\Component\HttpFoundation\RedirectResponse
+         *  Twig render flux.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function updateMediaAction(Application $app, Request $request, int $id, string $media) {
+            $template_name = '';
+            $media_form = '';
+            $media_object = $app['rest']->get($media . '/search/id/' . $id);
+    
+            // Update date with right format and type.
+            $timestamp = $media_object['releaseDate'] / 1000;
+            $media_object['releaseDate'] = new \DateTime(date('d-m-Y', $timestamp));
+    
+            // Same process for endDate, if exist.
+            if (isset($media_object['endDate']) === true) {
+                $timestamp = $media_object['endDate'] / 1000;
+                $media_object['endDate'] = new \DateTime(date('d-m-Y', $timestamp));
+            }
+            
+            switch ($media) {
+                case 'animes' :
+                    $media_form = $app['form.factory']->create(AnimeType::class, $media_object);
+                    $template_name = 'admin/form/anime-form.html.twig';
+                    break;
+        
+                case 'cartoons' :
+                    $media_form = $app['form.factory']->create(CartoonType::class, $media_object);
+                    $template_name = 'admin/form/cartoon-form.html.twig';
+                    break;
+        
+                case 'movies' :
+                    $media_form = $app['form.factory']->create(MovieType::class, $media_object);
+                    $template_name = 'admin/form/movie-form.html.twig';
+                    break;
+        
+                case 'series' :
+                    $media_form = $app['form.factory']->create(SeriesType::class, $media_object);
+                    $template_name = 'admin/form/series-form.html.twig';
+                    break;
+        
+                case 'books' :
+                    $media_form = $app['form.factory']->create(BookType::class, $media_object);
+                    $template_name = 'admin/form/book-form.html.twig';
+                    break;
+        
+                case 'comics' :
+                    $media_form = $app['form.factory']->create(ComicType::class, $media_object);
+                    $template_name = 'admin/form/comic-form.html.twig';
+                    break;
+        
+                case 'musics' :
+                    $media_form = $app['form.factory']->create(MusicType::class, $media_object);
+                    $template_name = 'admin/form/music-form.html.twig';
+                    break;
+        
+                case 'video-games' :
+                    $media_form = $app['form.factory']->create(VideoGameType::class, $media_object);
+                    $template_name = 'admin/form/video-game-form.html.twig';
+                    break;
+            }
+            
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
-//                $app['rest']->put($media . '/', \GuzzleHttp\json_encode($media_object));
-                
+                $app['rest']->put($media . '/', $media_object->getJson());
+        
                 // Redirect admin into admin/home
                 return $app->redirect($app['url_generator']->generate('admin'));
             }
@@ -197,9 +278,9 @@
             // Search form builder.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
-            
+    
             // Return all medias.
-            return $app['twig']->render('admin/media-form.html.twig', array(
+            return $app['twig']->render($template_name, array(
                 'search_form' => $search_form_view,
                 'media_form' => $media_form_view,
                 'media' => $media,

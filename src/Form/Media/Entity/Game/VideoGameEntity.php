@@ -49,7 +49,7 @@
         /**
          * @var array
          */
-        private $_languagesSpoken = array();
+        private $_languages = array();
         
         /**
          * List of all developers.
@@ -71,7 +71,7 @@
          * @var array
          */
         private $_platforms = array();
-        
+    
         /**
          * Get the original title of the video game.
          *
@@ -128,20 +128,20 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getLanguagesSpoken(): array {
-            return $this->_languagesSpoken;
+        public function getLanguages(): array {
+            return $this->_languages;
         }
         
         /**
          * Set the list of language spoken on format ISO-639-1.
          *
-         * @param array $languagesSpoken
+         * @param array $languages
          *  New list of languages spoken.
          * @since 1.0
          * @version 1.0
          */
-        public function setLanguagesSpoken(array $languagesSpoken) {
-            $this->_languagesSpoken = $languagesSpoken;
+        public function setLanguages(array $languages) {
+            $this->_languages = $languages;
         }
         
         /**
@@ -255,7 +255,7 @@
                 'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'genres' => $this->getGenres(),
                 'supports' => $this->getSupports(),
-                'languagesSpoken' => $this->getLanguagesSpoken(),
+                'languages' => $this->getLanguages(),
                 'publishers' => $publishers,
                 'developers' => $developers,
                 'platforms' => $this->getPlatforms(),
