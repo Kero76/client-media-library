@@ -80,6 +80,14 @@
                         </li>
                     {% endif %}
 
+                    {% if media.languages is defined %}
+                        <li>Languages available :
+                            {% for l in media.languages %}
+                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+
                     {% if media.subtitles is defined and media.subtitles|length > 0 %}
                         <li>Subtitles :
                             {% for s in media.subtitles %}

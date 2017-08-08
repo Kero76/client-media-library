@@ -163,6 +163,13 @@
         private $_multiplayers = false;
     
         /**
+         * Languages present on video game.
+         *
+         * @var array
+         */
+        private $_languages = array();
+        
+        /**
          * Platforms for the video game (video game console).
          *
          * @var array
@@ -927,6 +934,29 @@
             $this->_platforms = $platforms;
         }
     
+        /**
+         * Get languages present on video games.
+         *
+         * @return array
+         *  An array with all language code.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getLanguages(): array {
+            return $this->_languages;
+        }
+    
+        /**
+         * Set languages present on video game.
+         *
+         * @param array $languages
+         *  New list of languages present on video game.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setLanguages(array $languages) {
+            $this->_languages = $languages;
+        }
     
         /**
          * Get the ISBN.
