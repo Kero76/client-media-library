@@ -111,18 +111,29 @@
                 $medias = array();
             }
     
-            // Form builder.
+            // Build search form.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
+            
+            // Media at display.
+            $media_list = array_slice($medias, $pagination * 10, 10);
+            
+            // Compute start/end/size of the pagination.
+            $pagination_start = floor($pagination / 10) * 10;
+            $pagination_end = $pagination_start + 9;
+            $pagination_size = floor(count($medias) / 10);
     
+            // Return view render by Twig.
             return $app['twig']->render('media-list.html.twig', array(
-                'medias' => array_slice($medias, $pagination * 10, 10),
+                'medias' => $media_list,
                 'media_type' => $media,
-                'search_form' => $search_form_view,
                 'pagination' => array(
                     'active' => $pagination,
-                    'size' => floor(count($medias) / 10),
+                    'size' => $pagination_size,
+                    'start' => $pagination_start,
+                    'end' => $pagination_end,
                 ),
+                'search_form' => $search_form_view,
             ));
         }
     
