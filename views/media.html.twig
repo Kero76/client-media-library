@@ -49,7 +49,7 @@
                     {% endif %}
 
                     {% if media.nbTracks is defined %}
-                        <li>Number of Tracks : {{ media.nbTracks }} tracks</li>
+                        <li>Number of Tracks : {{ media.nbTracks }} Tracks</li>
                     {% endif %}
 
                     {% if media.length is defined %}
@@ -57,11 +57,11 @@
                     {% endif %}
 
                     {% if media.runtime is defined %}
-                        <li>Runtime : {{ media.runtime }} minutes</li>
+                        <li>Runtime : {{ media.runtime }} Minutes</li>
                     {% endif %}
 
                     {% if media.averageEpisodeRuntime is defined %}
-                        <li>Running time : {{ media.averageEpisodeRuntime }} minutes</li>
+                        <li>Running time : {{ media.averageEpisodeRuntime }} Minutes</li>
                     {% endif %}
 
                     {% if media.numberOfEpisode is defined and media.maxEpisodes is defined %}
@@ -75,7 +75,13 @@
                     {% if media.languagesSpoken is defined %}
                         <li>Languages Spoken :
                             {% for l in media.languagesSpoken %}
-                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
+                                {% if l == 'en' %}
+                                    <span class="flag-icon flag-icon-gb"></span>
+                                {% elseif l == 'ja' %}
+                                    <span class="flag-icon flag-icon-jp"></span>
+                                {% else %}
+                                    <span class="flag-icon flag-icon-{{ l|lower }}"></span>
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -83,7 +89,13 @@
                     {% if media.languages is defined %}
                         <li>Languages available :
                             {% for l in media.languages %}
-                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
+                                {% if l == 'en' %}
+                                    <span class="flag-icon flag-icon-gb"></span>
+                                {% elseif l == 'ja' %}
+                                    <span class="flag-icon flag-icon-jp"></span>
+                                {% else %}
+                                    <span class="flag-icon flag-icon-{{ l|lower }}"></span>
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -91,7 +103,13 @@
                     {% if media.subtitles is defined and media.subtitles|length > 0 %}
                         <li>Subtitles :
                             {% for s in media.subtitles %}
-                                <span class="flag-icon flag-icon-{{ s|lower }}"></span>
+                                {% if s == 'en' %}
+                                    <span class="flag-icon flag-icon-gb"></span>
+                                {% elseif s == 'ja' %}
+                                    <span class="flag-icon flag-icon-jp"></span>
+                                {% else %}
+                                    <span class="flag-icon flag-icon-{{ s|lower }}"></span>
+                                {% endif %}
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -102,7 +120,7 @@
                                 {% if loop.last %}
                                     {{ g|lower|capitalize|replace({'_' : ' '}) }}
                                 {% else %}
-                                    {{ g|lower|capitalize }},
+                                    {{ g|lower|capitalize|replace({'_' : ' '}) }},
                                 {% endif %}
                             {% endfor %}
                         </li>
@@ -112,9 +130,9 @@
                         <li>Supports :
                             {% for s in media.supports %}
                                 {% if loop.last %}
-                                    {{ s|lower|capitalize }}
+                                    {{ s|lower|capitalize|replace({'_' : ' '}) }}
                                 {% else %}
-                                    {{ s|lower|capitalize }},
+                                    {{ s|lower|capitalize|replace({'_' : ' '}) }},
                                 {% endif %}
                             {% endfor %}
                         </li>
@@ -128,9 +146,9 @@
                         <li>Platforms :
                             {% for p in media.platforms %}
                                 {% if loop.last %}
-                                    {{ p|lower|capitalize }}
+                                    {{ p|lower|capitalize|replace({'_' : ' '}) }}
                                 {% else %}
-                                    {{ p|lower|capitalize }},
+                                    {{ p|lower|capitalize|replace({'_' : ' '}) }},
                                 {% endif %}
                             {% endfor %}
                         </li>
