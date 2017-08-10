@@ -231,18 +231,31 @@
                 }
             }
     
+            // If search found something, this variable became true and it use to indicate the result in view.
+            $media_found = false;
+            foreach ($medias as $array) {
+                if (!empty($array)) {
+                    $media_found = true;
+                }
+            }
+    
             // Return all medias found.
             return $app['twig']->render('search-result.html.twig', array(
-                'animes'   => $medias[0],
-                'cartoons' => $medias[1],
-                'movies'   => $medias[2],
-                'series'   => $medias[3],
-                'musics'   => $medias[4],
-                'books'    => $medias[5],
-                'comics'   => $medias[6],
-                'video_games' => $medias[7],
+                'media_result' => array(
+                    'animes'   => $medias[0],
+                    'cartoons' => $medias[1],
+                    'movies'   => $medias[2],
+                    'series'   => $medias[3],
+                    'musics'   => $medias[4],
+                    'books'    => $medias[5],
+                    'comics'   => $medias[6],
+                    'video-games' => $medias[7],
+                ),
                 'search_form' => $search_form_view,
-                'result_search' => $search->getSearch(),
+                'result_search' => array(
+                    'subject_search' => $search->getSearch(),
+                    'subject_found' => $media_found,
+                ),
             ));
         }
     
