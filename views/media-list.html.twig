@@ -27,76 +27,80 @@
                 {% endfor %}
             </table>
 
-            <ul class="pagination">
-                 {#Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
-                {% if pagination.active > 0 %}
-                    <li>
-                        {% if pagination.active > 0 and pagination.active < 10 %}
-                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : 0}) }}">
-                                <span class="fa fa-angle-double-left"></span>
-                            </a>
+            <div class="row">
+                <aside class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                    <ul class="pagination">
+                        {#Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
+                        {% if pagination.active > 0 %}
+                            <li>
+                                {% if pagination.active > 0 and pagination.active < 10 %}
+                                    <a href="{{ path('media-list', {'media' : media_type, 'pagination' : 0}) }}">
+                                        <span class="fa fa-angle-double-left"></span>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 10}) }}">
+                                        <span class="fa fa-angle-double-left"></span>
+                                    </a>
+                                {% endif %}
+                            </li>
                         {% else %}
-                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 10}) }}">
-                                <span class="fa fa-angle-double-left"></span>
-                            </a>
+                            <li><span class="fa fa-angle-double-left"></span></li>
                         {% endif %}
-                    </li>
-                {% else %}
-                    <li><span class="fa fa-angle-double-left"></span></li>
-                {% endif %}
 
-                {# Activate simple pagination to reduce 1 by 1. #}
-                {% if pagination.active == 0 %}
-                    <li><span class="fa fa-angle-left"></span></li>
-                {% else %}
-                    <li>
-                        <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 1}) }}">
-                            <span class="fa fa-angle-left"></span>
-                        </a>
-                    </li>
-                {% endif %}
+                        {# Activate simple pagination to reduce 1 by 1. #}
+                        {% if pagination.active == 0 %}
+                            <li><span class="fa fa-angle-left"></span></li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 1}) }}">
+                                    <span class="fa fa-angle-left"></span>
+                                </a>
+                            </li>
+                        {% endif %}
 
-                {# Loop on each object of the pagination. #}
-                {% for p in pagination.start .. pagination.end %}
-                    {% if pagination.active == p %}
-                        <li class="active">
+                        {# Loop on each object of the pagination. #}
+                        {% for p in pagination.start .. pagination.end %}
+                            {% if pagination.active == p %}
+                                <li class="active">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : p}) }}">{{ p + 1 }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {# Activate simple pagination to reduce 1 by 1. #}
+                        {% if pagination.active == pagination.size %}
+                            <li><span class="fa fa-angle-right"></span></li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 1}) }}">
+                                    <span class="fa fa-angle-right"></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
+                        {% if pagination.active != pagination.size %}
+                            <li>
+                                {% if pagination.active > pagination.size - 9 %}
+                                    <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.size}) }}">
+                                        <span class="fa fa-angle-double-right"></span>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 10}) }}">
+                                        <span class="fa fa-angle-double-right"></span>
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li><span class="fa fa-angle-double-right"></span></li>
+                        {% endif %}
+                    </ul>
                     {% else %}
-                        <li>
+                        <p>No {{ media_type|capitalize|replace({'-' : ' '}) }} found.</p>
                     {% endif %}
-                        <a href="{{ path('media-list', {'media' : media_type, 'pagination' : p}) }}">{{ p + 1 }}</a>
-                    </li>
-                {% endfor %}
-
-                {# Activate simple pagination to reduce 1 by 1. #}
-                {% if pagination.active == pagination.size %}
-                    <li><span class="fa fa-angle-right"></span></li>
-                {% else %}
-                    <li>
-                        <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 1}) }}">
-                            <span class="fa fa-angle-right"></span>
-                        </a>
-                    </li>
-                {% endif %}
-
-                {# Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
-                {% if pagination.active != pagination.size %}
-                    <li>
-                        {% if pagination.active > pagination.size - 9 %}
-                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.size}) }}">
-                                <span class="fa fa-angle-double-right"></span>
-                            </a>
-                        {% else %}
-                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 10}) }}">
-                                <span class="fa fa-angle-double-right"></span>
-                            </a>
-                        {% endif %}
-                    </li>
-                {% else %}
-                    <li><span class="fa fa-angle-double-right"></span></li>
-                {% endif %}
-            </ul>
-        {% else %}
-            <p>No {{ media_type|capitalize|replace({'-' : ' '}) }} found.</p>
-        {% endif %}
+                </aside>
+            </div>
     </section>
 {% endblock %}
