@@ -36,12 +36,8 @@
                         <li>Pages : {{ media.nbPages}} pages</li>
                     {% endif %}
 
-                    {% if media.currentVolume is defined %}
-                        <li>Current volume : {{ media.currentVolume}}</li>
-                    {% endif %}
-
-                    {% if media.volumes is defined %}
-                        <li>Volumes : {{ media.volumes}}</li>
+                    {% if media.currentVolume is defined and media.volumes is defined %}
+                        <li>Volume : {{ media.currentVolume}} / {{ media.volumes }}</li>
                     {% endif %}
 
                     {% if media.multiplayers is defined %}
@@ -121,15 +117,7 @@
                     {% endif %}
 
                     {% if media.format is defined %}
-                        <li>Format :
-                            {% for f in media.format %}
-                                {% if loop.last %}
-                                    {{ f|lower|capitalize }}
-                                {% else %}
-                                    {{ f|lower|capitalize }},
-                                {% endif %}
-                            {% endfor %}
-                        </li>
+                        <li>Format :{{ media.format|lower|capitalize }}</li>
                     {% endif %}
 
                     {% if media.platforms is defined %}

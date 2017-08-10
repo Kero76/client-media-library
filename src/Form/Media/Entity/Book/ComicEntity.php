@@ -168,6 +168,8 @@
                 'supports' => $this->getSupports(),
                 'isbn' => $this->getIsbn(),
                 'nbPages' => $this->getNbPages(),
+                'volumes' => $this->getVolumes(),
+                'currentVolume' => $this->getCurrentVolume(),
                 'format' => strtoupper($this->getFormat()),
                 'authors' => $authors,
                 'publishers' => $publishers,
