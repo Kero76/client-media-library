@@ -28,23 +28,21 @@
             </table>
 
             <ul class="pagination">
-                 {#Activate double pagination to reduce 10 by 10.#}
-                {% if pagination.size > 10 %}
-                    {% if pagination.active > 0 %}
-                        <li>
-                            {% if pagination.active > 0 and pagination.active < 10 %}
-                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : 0}) }}">
-                                    <span class="fa fa-angle-double-left"></span>
-                                </a>
-                            {% else %}
-                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 10}) }}">
-                                    <span class="fa fa-angle-double-left"></span>
-                                </a>
-                            {% endif %}
-                        </li>
-                    {% else %}
-                        <li><span class="fa fa-angle-double-left"></span></li>
-                    {% endif %}
+                 {#Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
+                {% if pagination.active > 0 %}
+                    <li>
+                        {% if pagination.active > 0 and pagination.active < 10 %}
+                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : 0}) }}">
+                                <span class="fa fa-angle-double-left"></span>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active - 10}) }}">
+                                <span class="fa fa-angle-double-left"></span>
+                            </a>
+                        {% endif %}
+                    </li>
+                {% else %}
+                    <li><span class="fa fa-angle-double-left"></span></li>
                 {% endif %}
 
                 {# Activate simple pagination to reduce 1 by 1. #}
@@ -80,23 +78,21 @@
                     </li>
                 {% endif %}
 
-                {# Activate double pagination to reduce 10 by 10. #}
-                {% if pagination.size > 10 %}
-                    {% if pagination.active != pagination.size %}
-                        <li>
-                            {% if pagination.active > pagination.size - 9 %}
-                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.size}) }}">
-                                    <span class="fa fa-angle-double-right"></span>
-                                </a>
-                            {% else %}
-                                <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 10}) }}">
-                                    <span class="fa fa-angle-double-right"></span>
-                                </a>
-                            {% endif %}
-                        </li>
-                    {% else %}
-                        <li><span class="fa fa-angle-double-right"></span></li>
-                    {% endif %}
+                {# Activate double pagination to reduce 10 by 10 or go at the end of the pagination. #}
+                {% if pagination.active != pagination.size %}
+                    <li>
+                        {% if pagination.active > pagination.size - 9 %}
+                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.size}) }}">
+                                <span class="fa fa-angle-double-right"></span>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('media-list', {'media' : media_type, 'pagination' : pagination.active + 10}) }}">
+                                <span class="fa fa-angle-double-right"></span>
+                            </a>
+                        {% endif %}
+                    </li>
+                {% else %}
+                    <li><span class="fa fa-angle-double-right"></span></li>
                 {% endif %}
             </ul>
         {% else %}

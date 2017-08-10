@@ -126,7 +126,13 @@
             // Update pagination end if necessary.
             if ($pagination_end > $pagination_size) {
                 $pagination_end = $pagination_size;
-                $pagination_start = $pagination_end - 9;
+    
+                // pagination_start could'nt be negative.
+                if ($pagination_end > 10) {
+                    $pagination_start = $pagination_end - 9;
+                } else {
+                    $pagination_start = 0;
+                }
             }
     
             // Return view render by Twig.
