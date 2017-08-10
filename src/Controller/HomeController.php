@@ -122,6 +122,12 @@
             $pagination_start = floor($pagination / 10) * 10;
             $pagination_end = $pagination_start + 9;
             $pagination_size = floor(count($medias) / 10);
+            
+            // Update pagination end if necessary.
+            if ($pagination_end > $pagination_size) {
+                $pagination_end = $pagination_size;
+                $pagination_start = $pagination_end - 9;
+            }
     
             // Return view render by Twig.
             return $app['twig']->render('media-list.html.twig', array(
