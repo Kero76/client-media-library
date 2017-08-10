@@ -1,0 +1,6 @@
+rest:
+  base_uri: 'http://localhost'
+  service_uri: 'media-library/'
+  port: 8080
+  timeout: 5
+  debug: false

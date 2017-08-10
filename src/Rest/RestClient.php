@@ -21,6 +21,7 @@
     
     use GuzzleHttp\Client;
     use MediaClient\Http\HttpCodeStatus;
+    use MediaClient\Utils\YamlReader;
 
     /**
      * Class RestClient used to interact with MediaLibrary restful service.
@@ -33,31 +34,18 @@
     class RestClient {
     
         /**
-         * URI of the restful service.
-         *
          * @var string
-         *  URI of the restful service.
+         *  Path of setting file.
          * @since 1.0
          */
-        public static $_REST_SERVICE_URI = "http://localhost:8080/media-library/";
+        private static $_SETTING_FILE_PATH = '../app/parameters.yml';
     
         /**
-         * Add debug on request.
-         *
          * @var bool
-         *  Indicate if the project is on debug or not.
+         *  Indicate if HTTP requests are on debug mode or not.
          * @since 1.0
          */
-        public static $_DEBUG_MODE = false;
-    
-        /**
-         * Default timeout in seconds.
-         *
-         * @var int
-         *  Indicate the default timeout before the app close the connection.
-         * @since 1.0
-         */
-        public static $_DEFAULT_TIMEOUT = 5;
+        public $_debug;
     
         /**
          * Client object used to interact with the restful service.
@@ -77,9 +65,14 @@
          * @version 1.0
          */
         public function __construct() {
+            $settings = YamlReader::getFileContent(RestClient::$_SETTING_FILE_PATH);
+            $base_uri = $settings['rest']['base_uri'] . ':' . $settings['rest']['port'] . '/' . $settings['rest']['service_uri'];
+            $timeout = $settings['rest']['timeout'];
+            $this->_debug = $settings['rest']['debug'];
+            
             $this->_client = new Client([
-                'base_uri' => RestClient::$_REST_SERVICE_URI,
-                'timeout'  => RestClient::$_DEFAULT_TIMEOUT,
+                'base_uri' => $base_uri,
+                'timeout'  => $timeout,
             ]);
         }
         
@@ -95,7 +88,7 @@
          */
         public function get(string $uri) : array {
             $response = $this->_client->get($uri, array(
-                'debug' => RestClient::$_DEBUG_MODE
+                'debug' => $this->_debug,
             ));
     
             switch ($response->getStatusCode()) {
@@ -108,7 +101,7 @@
                 case HttpCodeStatus::NO_CONTENT()->getValue() :
                     return array(
                         'code_error' => HttpCodeStatus::NO_CONTENT()->getValue(),
-                        'message'    => 'No content found.',
+                        'message' => 'No content found.',
                     );
                     break;
         
@@ -116,7 +109,7 @@
                 case HttpCodeStatus::NOT_FOUND()->getValue() :
                     return array(
                         'code_error' => HttpCodeStatus::NOT_FOUND()->getValue(),
-                        'message'    => 'Not found.',
+                        'message' => 'Not found.',
                     );
                     break;
             }
@@ -142,9 +135,12 @@
          */
         public function post(string $uri, string $media) : bool {
             $response = $this->_client->post($uri, array(
-                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'body'    => $media,
-                'debug'   => RestClient::$_DEBUG_MODE
+                'headers' => array(
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ),
+                'body' => $media,
+                'debug' => $this->_debug,
             ));
             
             return $response->getStatusCode() === HttpCodeStatus::CREATED()->getValue();
@@ -164,9 +160,12 @@
          */
         public function put(string $uri, string $media) : bool {
             $response = $this->_client->put($uri, array(
-                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'body'    => $media,
-                'debug'   => RestClient::$_DEBUG_MODE
+                'headers' => array(
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ),
+                'body' => $media,
+                'debug' => $this->_debug,
             ));
     
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();
@@ -184,8 +183,11 @@
          */
         public function delete(string $uri) : bool {
             $response = $this->_client->delete($uri, array(
-                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'debug'   => RestClient::$_DEBUG_MODE,
+                'headers' => array(
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ),
+                'debug' => $this->_debug,
             ));
             
             return $response->getStatusCode() === HttpCodeStatus::OK()->getValue();

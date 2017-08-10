@@ -25,6 +25,7 @@
     use MediaClient\Http\HttpCodeStatus;
     use MediaClient\Model\Media;
     use MediaClient\User\User;
+    use MediaClient\Utils\YamlReader;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
