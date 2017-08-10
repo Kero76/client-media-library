@@ -94,8 +94,8 @@
                 'languagesSpoken' => $this->getLanguagesSpoken(),
                 'subtitles' => $this->getSubtitles(),
                 'runtime' => $this->getRuntime(),
-                'genres' => $this->getGenres(),
-                'supports' => $this->getSupports(),
+                'genres' => array_map('strtoupper', $this->getGenres()),
+                'supports' => array_map('strtoupper', $this->getSupports()),
                 'directors' => $directors,
                 'producers' => $producers,
             );

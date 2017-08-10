@@ -170,8 +170,10 @@
                     break;
             }
     
+            // Get request object to check if the form is valid and submitted by the user.
             $media_form->handleRequest($request);
             if ($media_form->isSubmitted() && $media_form->isValid()) {
+                // Post object on service.
                 $app['rest']->post($media . '/', $media_object->getJson());
                 
                 // Redirect admin into admin/home
