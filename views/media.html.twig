@@ -75,13 +75,7 @@
                     {% if media.languagesSpoken is defined %}
                         <li>Languages Spoken :
                             {% for l in media.languagesSpoken %}
-                                {% if l == 'en' %}
-                                    <span class="flag-icon flag-icon-gb"></span>
-                                {% elseif l == 'ja' %}
-                                    <span class="flag-icon flag-icon-jp"></span>
-                                {% else %}
-                                    <span class="flag-icon flag-icon-{{ l|lower }}"></span>
-                                {% endif %}
+                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -89,13 +83,7 @@
                     {% if media.languages is defined %}
                         <li>Languages available :
                             {% for l in media.languages %}
-                                {% if l == 'en' %}
-                                    <span class="flag-icon flag-icon-gb"></span>
-                                {% elseif l == 'ja' %}
-                                    <span class="flag-icon flag-icon-jp"></span>
-                                {% else %}
-                                    <span class="flag-icon flag-icon-{{ l|lower }}"></span>
-                                {% endif %}
+                                <span class="flag-icon flag-icon-{{ l|lower }}"></span>
                             {% endfor %}
                         </li>
                     {% endif %}
@@ -103,13 +91,7 @@
                     {% if media.subtitles is defined and media.subtitles|length > 0 %}
                         <li>Subtitles :
                             {% for s in media.subtitles %}
-                                {% if s == 'en' %}
-                                    <span class="flag-icon flag-icon-gb"></span>
-                                {% elseif s == 'ja' %}
-                                    <span class="flag-icon flag-icon-jp"></span>
-                                {% else %}
-                                    <span class="flag-icon flag-icon-{{ s|lower }}"></span>
-                                {% endif %}
+                                <span class="flag-icon flag-icon-{{ s|lower }}"></span>
                             {% endfor %}
                         </li>
                     {% endif %}

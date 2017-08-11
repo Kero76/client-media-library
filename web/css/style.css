@@ -25,3 +25,13 @@ footer {
 footer p {
     padding-top: 10px;
 }
+
+/* Add flag for Japan */
+.flag-icon-ja {
+    background-image: url(../../vendor/components/flag-icon-css/flags/4x3/jp.svg);
+}
+
+/* Add flag for Great Britain */
+.flag-icon-en {
+    background-image: url(../../vendor/components/flag-icon-css/flags/4x3/gb.svg);
+}
