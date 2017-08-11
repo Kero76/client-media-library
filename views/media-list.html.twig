@@ -16,13 +16,17 @@
             <table class="table table-striped table-hover">
                 {% for m in medias %}
                     <tr>
-                        <td>
+                        <td class="col-md-6 col-sm-6 col-xs-6">
                             {{ m.title }}
                             {% if m.currentSeason is defined and m.numberOfSeasons != 1 %}
                                 - Season {{ m.currentSeason }}
                             {% endif %}
                         </td>
-                        <td><a href="{{ path('media', {'id' : m.id, 'media' : media_type}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                        <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
+                            <a href="{{ path('media', {'id' : m.id, 'media' : media_type}) }}" >
+                                <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
