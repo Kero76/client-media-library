@@ -23,9 +23,15 @@
                 {% for key, media in media_result %}
                     {% for m in media %}
                         <tr>
-                            <td>{{ m.title }}</td>
-                            <td><span class="label label-info">{{ key|capitalize|replace({'-' : ' '}) }}</span></td>
-                            <td><a href="{{ path('media', {'id' : m.id, 'media' : key}) }}" ><button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button></a></td>
+                            <td class="col-md-4 col-sm-4 col-xs-4">{{ m.title }}</td>
+                            <td class="col-md-4 col-sm-4 col-xs-4">
+                                <span class="label label-info">{{ key|capitalize|replace({'-' : ' '}) }}</span>
+                            </td>
+                            <td class="col-md-1 col-sm-1 col-xs-1">
+                                <a href="{{ path('media', {'id' : m.id, 'media' : key}) }}" >
+                                    <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 {% endfor %}
