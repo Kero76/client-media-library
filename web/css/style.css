@@ -26,12 +26,23 @@ footer p {
     padding-top: 10px;
 }
 
-/* Add flag for Japan */
+/* Style about information present on aside bloc on media layout. */
+.complementary-information {
+    margin-top: 10px;
+    border-left: 1px solid #DDD;
+}
+
+/* Style for label content about supports, genres, platform or format. */
+.label-content {
+    font-size: 1.0em;
+}
+
+/* Add flag for Japan. */
 .flag-icon-ja {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/jp.svg);
 }
 
-/* Add flag for Great Britain */
+/* Add flag for Great Britain. */
 .flag-icon-en {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/gb.svg);
 }
