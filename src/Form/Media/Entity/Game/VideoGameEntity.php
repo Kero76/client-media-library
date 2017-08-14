@@ -239,11 +239,17 @@
                 );
             }
             
-            $developers= array();
+            $developers = array();
             foreach ($this->getDevelopers() as $developer) {
                 $developers[] = array(
                     'name' => $developer->getName(),
                 );
+            }
+            
+            $platforms = array();
+            foreach ($this->getPlatforms() as $platform) {
+                $str_with_underscore = str_replace(' ', '_', $platform);
+                $platforms[] = strtoupper($str_with_underscore);
             }
             
             $data = array(
@@ -255,10 +261,10 @@
                 'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'genres' => array_map('strtoupper', $this->getGenres()),
                 'supports' => array_map('strtoupper', $this->getSupports()),
-                'languages' => $this->getLanguages(),
+                'languages' => array_map('strtolower', $this->getLanguages()),
                 'publishers' => $publishers,
                 'developers' => $developers,
-                'platforms' => $this->getPlatforms(),
+                'platforms' => $platforms,
             );
     
             return json_encode($data);
