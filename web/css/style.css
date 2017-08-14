@@ -46,3 +46,13 @@ footer p {
 .flag-icon-en {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/gb.svg);
 }
+
+/* Add flag for Great Britain. */
+.flag-icon-he {
+    background-image: url(../../vendor/components/flag-icon-css/flags/4x3/il.svg);
+}
+
+/* Add flag for Great Britain. */
+.flag-icon-cs {
+    background-image: url(../../vendor/components/flag-icon-css/flags/4x3/cz.svg);
+}
