@@ -25,6 +25,7 @@
     use MediaClient\Http\HttpCodeStatus;
     use MediaClient\Model\Media;
     use MediaClient\User\User;
+    use MediaClient\Utils\Pagination;
     use MediaClient\Utils\YamlReader;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
@@ -71,7 +72,7 @@
                 }
             }
     
-            // Form builder.
+            // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
     
@@ -104,48 +105,30 @@
          * @version 1.0
          */
         public function mediasAction(Application $app, Request $request, string $media) {
+            // Get the list of precise media.
             $medias = $app['rest']->get($media . '/');
-            $pagination = $request->get('pagination');
     
-            // Check if an error occurred during HTTP request.
+            // Check if an error occurred during HTTP request and generate an empty array for the view.
             if (isset($medias['code_error']) && $medias['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
                 $medias = array();
             }
     
-            // Build search form.
+            // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
             
-            // Media at display.
-            $media_list = array_slice($medias, $pagination * 10, 10);
-            
-            // Compute start/end/size of the pagination.
-            $pagination_start = floor($pagination / 10) * 10;
-            $pagination_end = $pagination_start + 9;
-            $pagination_size = floor(count($medias) / 10);
-            
-            // Update pagination end if necessary.
-            if ($pagination_end > $pagination_size) {
-                $pagination_end = $pagination_size;
+            // Generate the list of Pagination::$ELEMENTS_DISPLAYED at send on parameter for the view.
+            $active_pagination_element = $request->get('pagination');
+            $media_list = array_slice($medias, $active_pagination_element * Pagination::$ELEMENTS_DISPLAYED, Pagination::$ELEMENTS_DISPLAYED);
     
-                // pagination_start could'nt be negative.
-                if ($pagination_end > 10) {
-                    $pagination_start = $pagination_end - 9;
-                } else {
-                    $pagination_start = 0;
-                }
-            }
+            // Create an instance of Pagination with the current position of cursor on pagination and size of data at display.
+            $pagination = new Pagination(intval($active_pagination_element), count($medias));
     
             // Return view render by Twig.
             return $app['twig']->render('media-list.html.twig', array(
                 'medias' => $media_list,
                 'media_type' => $media,
-                'pagination' => array(
-                    'active' => $pagination,
-                    'size' => $pagination_size,
-                    'start' => $pagination_start,
-                    'end' => $pagination_end,
-                ),
+                'pagination' => $pagination,
                 'search_form' => $search_form_view,
             ));
         }
@@ -180,8 +163,8 @@
             if (isset($media['endDate']) === true) {
                 $media['endDate'] = $media['endDate'] / 1000;
             }
-            
-            // Form builder.
+    
+            // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
             

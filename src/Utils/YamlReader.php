@@ -18,6 +18,7 @@
     declare(strict_types=1);
     
     namespace MediaClient\Utils;
+    
     use Symfony\Component\Yaml\Yaml;
 
     /**
