@@ -14,61 +14,63 @@
      *
      * You should have received a copy of the GNU General Public License
      * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
-     */
+    */
     declare(strict_types=1);
     
-    namespace MediaClient\Model;
-
+    namespace MediaClient\Model\Video;
+    
     /**
-     * Class Company.
+     * Class Cartoon.
      *
      * @author Nicolas GILLE
-     * @package MediaClient\Model
+     * @package MediaClient\Model\Video
      * @since 1.0
      * @version 1.0
      */
-    class Company {
-    
+    class Cartoon extends AbstractVideo {
+        
         /**
-         * Name of the company.
+         * Runtime of the cartoon.
          *
-         * @var string
+         * @pre
+         *  0 < getRuntime() < 300
+         * @var integer
          */
-        private $_name;
-    
+        protected $runtime;
+        
         /**
-         * Company constructor.
+         * Cartoon constructor.
          *
-         * @param string $company
-         *  Name of the company.
+         * @param array $data
+         *  All data of the cartoon.
          * @since 1.0
          * @version 1.0
          */
-        public function __construct(string $company) {
-            $this->_name = $company;
+        public function __construct(array $data) {
+            $this->hydrate($data);
         }
-    
+        
         /**
-         * Return the name of the company.
+         * Get the runtime of the cartoon.
          *
-         * @return string
-         *  Name of the company.
+         * @return int
+         *  The runtime of the cartoon.
          * @since 1.0
          * @version 1.0
          */
-        public function getName(): string {
-            return $this->_name;
+        public function getRuntime(): int {
+            return $this->runtime;
         }
-    
+        
         /**
-         * Set the name of the company.
+         * Set the runtime of the cartoon.
          *
-         * @param string $name
-         *  New name.
+         * @param int $runtime
+         *  New runtime of the cartoon.
          * @since 1.0
          * @version 1.0
          */
-        public function setName(string $name) {
-            $this->_name = $name;
+        public function setRuntime(int $runtime) {
+            $this->runtime = $runtime;
         }
     }

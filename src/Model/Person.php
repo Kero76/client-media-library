@@ -13,7 +13,7 @@
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
+     * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
      */
     declare(strict_types=1);
     
@@ -62,6 +62,7 @@
                 $this->_firstName = $personName[0];
                 $this->_lastName  = "";
             } else {
+                // If second element of the name is A. for example, it's a last name element.
                 if (preg_match('/^[A-Za-z]\\./', $personName[1]) === 1) {
                     $this->_firstName = $personName[0];
                     $this->_lastName  = $personName[1] . ' ' . $personName[2];
@@ -119,6 +120,4 @@
         public function setLastName($lastName) {
             $this->_lastName = $lastName;
         }
-        
-        
     }

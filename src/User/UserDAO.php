@@ -13,7 +13,7 @@
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
+     * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
      */
     namespace MediaClient\User;
 
@@ -34,8 +34,7 @@
      * @version 1.0
      */
     class UserDAO extends AbstractDAO implements UserProviderInterface {
-    
-    
+        
         /**
          * @param \MediaClient\User\User $user
          *  User to register on Database.

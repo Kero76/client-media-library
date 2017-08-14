@@ -14,61 +14,61 @@
      *
      * You should have received a copy of the GNU General Public License
      * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
-     */
+    */
     declare(strict_types=1);
     
-    namespace MediaClient\Model;
-
+    namespace MediaClient\Model\Video;
+    
     /**
-     * Class Company.
+     * Class Movie.
      *
      * @author Nicolas GILLE
-     * @package MediaClient\Model
+     * @package MediaClient\Model\Video
      * @since 1.0
      * @version 1.0
      */
-    class Company {
-    
+    class Movie extends Cartoon {
+        
         /**
-         * Name of the company.
+         * List of all actors present on Movie.
          *
-         * @var string
+         * @var array
          */
-        private $_name;
-    
+        private $mainActors;
+        
         /**
-         * Company constructor.
+         * Movie constructor.
          *
-         * @param string $company
-         *  Name of the company.
+         * @param array $data
+         *  All data of the movie.
          * @since 1.0
          * @version 1.0
          */
-        public function __construct(string $company) {
-            $this->_name = $company;
+        public function __construct(array $data) {
+            parent::__construct($data);
         }
-    
+        
         /**
-         * Return the name of the company.
+         * Get all actors present on the movie.
          *
-         * @return string
-         *  Name of the company.
+         * @return array
+         *  List of all actors.
          * @since 1.0
          * @version 1.0
          */
-        public function getName(): string {
-            return $this->_name;
+        public function getMainActors(): array {
+            return $this->mainActors;
         }
-    
+        
         /**
-         * Set the name of the company.
+         * Set the list of actors present on the movie.
          *
-         * @param string $name
-         *  New name.
+         * @param array $mainActors
+         *  New list of actors.
          * @since 1.0
          * @version 1.0
          */
-        public function setName(string $name) {
-            $this->_name = $name;
+        public function setMainActors(array $mainActors) {
+            $this->mainActors = $mainActors;
         }
     }
