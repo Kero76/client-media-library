@@ -13,8 +13,9 @@
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
+     * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
      */
+    
     use Symfony\Component\Debug\ErrorHandler;
     use Symfony\Component\Debug\ExceptionHandler;
     
