@@ -61,21 +61,74 @@
             // Instantiate uri to get all media present on homepage.
             $uri      = array('animes', 'cartoons', 'movies', 'series', 'musics', 'books', 'comics', 'video-games');
             $uri_size = count($uri);
-            $medias = array();
+            $media_list = array();
     
             // Loop on each uri and get all media.
             for ($i = 0; $i < $uri_size; ++$i) {
                 $media_request = $app['rest']->get($uri[$i] . '/'); // Get all specific media.
-                $medias[$i] = array();
+                $media_list[$i] = array();
         
                 // If the request send on error, it must indicate the uri return nothing element, so add an empty array.
                 if (isset($media_request['code_error']) && $media_request['code_error'] == HttpCodeStatus::NO_CONTENT()->getValue()) {
-                    $medias[$i] = array();
+                    $media_list[$i] = array();
                 } else {
-                    // Loop on each media and place it on main array.
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $medias[$i][$id] = new Media($m);
+                    // Switch on media type from uri and instantiate right object.
+                    switch ($uri[$i]) {
+                        case 'animes':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Anime($m);
+                            }
+                            break;
+        
+                        case 'cartoons':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Cartoon($m);
+                            }
+                            break;
+        
+                        case 'movies':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Movie($m);
+                            }
+                            break;
+        
+                        case 'series':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Series($m);
+                            }
+                            break;
+        
+                        case 'books':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Book($m);
+                            }
+                            break;
+        
+                        case 'comics':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Comic($m);
+                            }
+                            break;
+        
+                        case 'video-games':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new VideoGame($m);
+                            }
+                            break;
+        
+                        case 'musics':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Album($m);
+                            }
+                            break;
                     }
                 }
             }
@@ -85,14 +138,14 @@
             $search_form_view = $search_form->createView();
     
             return $app['twig']->render('home.html.twig', array(
-                'animes'   => array_reverse(array_slice($medias[0], count($medias[0]) - 10)),
-                'cartoons' => array_reverse(array_slice($medias[1], count($medias[1]) - 10)),
-                'movies'   => array_reverse(array_slice($medias[2], count($medias[2]) - 10)),
-                'series'   => array_reverse(array_slice($medias[3], count($medias[3]) - 10)),
-                'musics'   => array_reverse(array_slice($medias[4], count($medias[4]) - 10)),
-                'books'    => array_reverse(array_slice($medias[5], count($medias[5]) - 10)),
-                'comics'   => array_reverse(array_slice($medias[6], count($medias[6]) - 10)),
-                'video_games' => array_reverse(array_slice($medias[7], count($medias[7]) - 10)),
+                'animes'   => array_reverse(array_slice($media_list[0], count($media_list[0]) - 10)),
+                'cartoons' => array_reverse(array_slice($media_list[1], count($media_list[1]) - 10)),
+                'movies'   => array_reverse(array_slice($media_list[2], count($media_list[2]) - 10)),
+                'series'   => array_reverse(array_slice($media_list[3], count($media_list[3]) - 10)),
+                'musics'   => array_reverse(array_slice($media_list[4], count($media_list[4]) - 10)),
+                'books'    => array_reverse(array_slice($media_list[5], count($media_list[5]) - 10)),
+                'comics'   => array_reverse(array_slice($media_list[6], count($media_list[6]) - 10)),
+                'video_games' => array_reverse(array_slice($media_list[7], count($media_list[7]) - 10)),
                 'search_form' => $search_form_view,
             ));
         }
@@ -119,69 +172,69 @@
     
             // Check if an error occurred during HTTP request and generate an empty array for the view.
             if (isset($media_request['code_error']) && $media_request['code_error'] === HttpCodeStatus::NO_CONTENT()->getValue()) {
-                $medias = array();
+                $media_object_list = array();
+            } else {
+                // Loop on media request and create an instance of right Media.
+                $media_object_list = array();
+                switch ($media) {
+                    case 'animes':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Anime($m);
+                        }
+                        break;
+        
+                    case 'cartoons':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Cartoon($m);
+                        }
+                        break;
+        
+                    case 'movies':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Movie($m);
+                        }
+                        break;
+        
+                    case 'series':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Series($m);
+                        }
+                        break;
+        
+                    case 'books':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Book($m);
+                        }
+                        break;
+        
+                    case 'comics':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Comic($m);
+                        }
+                        break;
+        
+                    case 'video-games':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new VideoGame($m);
+                        }
+                        break;
+        
+                    case 'musics':
+                        foreach ($media_request as $m) {
+                            $id = $m['id'];
+                            $media_object_list[$id] = new Album($m);
+                        }
+                        break;
+                }
             }
             
-            // Loop on media request and create an instance of right Media.
-            $media_object_list = array();
-            switch ($media) {
-                case 'animes':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Anime($m);
-                    }
-                    break;
-        
-                case 'cartoons':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Cartoon($m);
-                    }
-                    break;
-        
-                case 'movies':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Movie($m);
-                    }
-                    break;
-        
-                case 'series':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Series($m);
-                    }
-                    break;
-        
-                case 'books':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Book($m);
-                    }
-                    break;
-        
-                case 'comics':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Comic($m);
-                    }
-                    break;
-        
-                case 'video-games':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new VideoGame($m);
-                    }
-                    break;
-        
-                case 'musics':
-                    foreach ($media_request as $m) {
-                        $id = $m['id'];
-                        $media_object_list[$id] = new Album($m);
-                    }
-                    break;
-            }
-    
             // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();

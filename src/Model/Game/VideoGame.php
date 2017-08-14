@@ -153,7 +153,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function setLanguagesSpoken(array $languages) {
+        public function setLanguages(array $languages) {
             $this->languages = $languages;
         }
         
