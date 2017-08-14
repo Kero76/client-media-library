@@ -238,6 +238,7 @@
             // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
+            $search_form_view = $search_form->createView();
             
             // Generate the list of Pagination::$ELEMENTS_DISPLAYED at send on parameter for the view.
             $active_pagination_element = $request->get('pagination');
@@ -363,27 +364,80 @@
             // Instantiate uri's at request to search on each media present on app.
             $uri = array('animes', 'cartoons', 'movies', 'series', 'musics', 'books', 'comics', 'video-games');
             $uri_size = count($uri);
-            $medias = array();
+            $media_list = array();
     
             // Loop on each uri and get all medias.
             for ($i = 0; $i < $uri_size; ++$i) {
                 $media_request = $app['rest']->get($uri[$i] . '/search/title/' . urlencode($search->getSearch()));
-                $medias[$i] = array();
+                $media_list[$i] = array();
         
                 if (isset($media_request['code_error']) && $media_request['code_error'] == HttpCodeStatus::NO_CONTENT()->getValue()) {
-                    $medias[$i] = array();
+                    $media_list[$i] = array();
                 } else {
-                    // Loop on each media and place it on
-                    foreach ($media_request as $k) {
-                        $id = $k['id'];
-                        $medias[$i][$id] = new Media($k);
+                    // Switch on media type from uri and instantiate right object.
+                    switch ($uri[$i]) {
+                        case 'animes':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Anime($m);
+                            }
+                            break;
+        
+                        case 'cartoons':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Cartoon($m);
+                            }
+                            break;
+        
+                        case 'movies':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Movie($m);
+                            }
+                            break;
+        
+                        case 'series':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Series($m);
+                            }
+                            break;
+        
+                        case 'books':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Book($m);
+                            }
+                            break;
+        
+                        case 'comics':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Comic($m);
+                            }
+                            break;
+        
+                        case 'video-games':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new VideoGame($m);
+                            }
+                            break;
+        
+                        case 'musics':
+                            foreach ($media_request as $m) {
+                                $id = $m['id'];
+                                $media_list[$i][$id] = new Album($m);
+                            }
+                            break;
                     }
                 }
             }
     
             // If search found something, this variable became true and it use to indicate the result in view.
             $media_found = false;
-            foreach ($medias as $array) {
+            foreach ($media_list as $array) {
                 if (!empty($array)) {
                     $media_found = true;
                 }
@@ -392,14 +446,14 @@
             // Return all medias found.
             return $app['twig']->render('search-result.html.twig', array(
                 'media_result' => array(
-                    'animes' => $medias[0],
-                    'cartoons' => $medias[1],
-                    'movies' => $medias[2],
-                    'series' => $medias[3],
-                    'musics' => $medias[4],
-                    'books' => $medias[5],
-                    'comics' => $medias[6],
-                    'video-games' => $medias[7],
+                    'animes' => $media_list[0],
+                    'cartoons' => $media_list[1],
+                    'movies' => $media_list[2],
+                    'series' => $media_list[3],
+                    'musics' => $media_list[4],
+                    'books' => $media_list[5],
+                    'comics' => $media_list[6],
+                    'video-games' => $media_list[7],
                 ),
                 'search_form' => $search_form_view,
                 'result_search' => array(
