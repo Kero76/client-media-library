@@ -36,40 +36,44 @@
                     <!-- Links -->
                     <div class="collapse navbar-collapse" id="main-menu−collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a role="menuitem" href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                             {# Get all medias #}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-header">Videos section</li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'animes', 'pagination' : 0}) }}">Animes</a></li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'cartoons', 'pagination' : 0}) }}">Cartoons</a></li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'movies', 'pagination' : 0}) }}">Movies</a></li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'series', 'pagination' : 0}) }}">Series</a></li>
+                                <a id="menu-media-dropdown" class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu-media-dropdown">
+
+                                    <li class="dropdown-header" role="presentation">Videos section</li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'animes', 'pagination' : 0}) }}">Animes</a></li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'cartoons', 'pagination' : 0}) }}">Cartoons</a></li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'movies', 'pagination' : 0}) }}">Movies</a></li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'series', 'pagination' : 0}) }}">Series</a></li>
+
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Books section</li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'books', 'pagination' : 0}) }}">Books</a></li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'comics', 'pagination' : 0}) }}">Comics</a></li>
+                                    <li class="dropdown-header" role="presentation">Books section</li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'books', 'pagination' : 0}) }}">Books</a></li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'comics', 'pagination' : 0}) }}">Comics</a></li>
+
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Musics section</li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'musics', 'pagination' : 0}) }}">Musics</a></li>
+                                    <li class="dropdown-header" role="presentation">Musics section</li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'musics', 'pagination' : 0}) }}">Musics</a></li>
+
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Games section</li>
-                                    <li><a href="{{ path('media-list', { 'media' : 'video-games', 'pagination' : 0}) }}">Video Games</a></li>
+                                    <li class="dropdown-header" role="presentation">Games section</li>
+                                    <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'video-games', 'pagination' : 0}) }}">Video Games</a></li>
                                 </ul>
                             </li>
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
+                                <li role="presentation"><a role="menuitem" href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
                             {% endif %}
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.username }}</a></li>
-                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                                <li role="presentation"><a role="menuitem" href="{{ path('home') }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.username }}</a></li>
+                                <li role="presentation"><a role="menuitem" href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                             {% else %}
-                                <li><a href="{{ path('register') }}"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-                                <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li role="presentation"><a role="menuitem" href="{{ path('register') }}"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
+                                <li role="presentation"><a role="menuitem" href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             {% endif %}
                         </ul>
 
@@ -91,7 +95,7 @@
                                     })
                                 }}
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
+                                    <button class="btn btn-default" type="submit" role="button">
                                         <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </div>
