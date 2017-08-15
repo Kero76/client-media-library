@@ -37,6 +37,10 @@ footer p {
     font-size: 1.0em;
 }
 
+.label-media-sort {
+    font-size: 0.9em;
+}
+
 /* Add flag for Japan. */
 .flag-icon-ja {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/jp.svg);

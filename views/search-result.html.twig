@@ -9,7 +9,7 @@
 {# Body of the page #}
 {% block content %}
     <section class="col-md-12 col-sm-12 col-xs-12">
-        <h2>Result for {{ result_search.subject_search }}</h2>
+        <h2>Result for &quot;{{ result_search.subject_search }}&quot;</h2>
         {% if result_search.subject_found == 1 %}
             <table class="table table-striped table-hover">
                 <thead>
@@ -25,7 +25,7 @@
                         <tr>
                             <td class="col-md-4 col-sm-4 col-xs-4">{{ m.title }}</td>
                             <td class="col-md-4 col-sm-4 col-xs-4">
-                                <span class="label label-info">{{ key|capitalize|replace({'-' : ' '}) }}</span>
+                                <span class="label label-info label-media-sort">{{ key|capitalize|replace({'-' : ' '}) }}</span>
                             </td>
                             <td class="col-md-1 col-sm-1 col-xs-1">
                                 <a href="{{ path('media', {'id' : m.id, 'media' : key}) }}" >
