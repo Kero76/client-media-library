@@ -151,14 +151,16 @@
         
             // Return all medias.
             return $app['twig']->render('admin/home.html.twig', array(
-                'animes' => $media_list[0],
-                'cartoons' => $media_list[1],
-                'movies' => $media_list[2],
-                'series' => $media_list[3],
-                'musics' => $media_list[4],
-                'books' => $media_list[5],
-                'comics' => $media_list[6],
-                'video_games' => $media_list[7],
+                'media_list' => array(
+                    'cartoons' => $media_list[1],
+                    'animes' => $media_list[0],
+                    'movies' => $media_list[2],
+                    'series' => $media_list[3],
+                    'musics' => $media_list[4],
+                    'books' => $media_list[5],
+                    'comics' => $media_list[6],
+                    'video-games' => $media_list[7],
+                ),
                 'search_form' => $search_form_view,
             ));
         }

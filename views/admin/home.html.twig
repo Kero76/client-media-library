@@ -11,553 +11,89 @@
     <section class="col-md-12 col-sm-12 col-xs-12">
         <div>
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#cartoons" data-toggle="tab">Cartoons</a></li>
-                <li><a href="#movies" data-toggle="tab">Movies</a></li>
-                <li><a href="#animes" data-toggle="tab">Animes</a></li>
-                <li><a href="#series" data-toggle="tab">Series</a></li>
-                <li><a href="#books"  data-toggle="tab">Books</a></li>
-                <li><a href="#comics" data-toggle="tab">Comics</a></li>
-                <li><a href="#musics" data-toggle="tab">Musics</a></li>
-                <li><a href="#games"  data-toggle="tab">Video Game</a></li>
+                {% for key in media_list|keys %}
+                    {% if loop.first %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="#{{ key }}" data-toggle="tab">{{ key|capitalize|replace({'-' : ' '}) }}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
 
         <div class="tab-content">
-            <section class="tab-pane fade in active" id="cartoons">
-                <h2>Cartoons</h2>
-                {% if cartoons|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'cartoons'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Cartoon
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for c in cartoons %}
+            {% for key, media in media_list %}
+                {# Add class 'in' and 'active' when it's the first loop. #}
+                {% if loop.first %}
+                    <section class="tab-pane fade in active" id="{{ key }}">
+                {% else %}
+                    <section class="tab-pane fade" id="{{ key }}">
+                {% endif %}
+                        <h2>{{ key|capitalize|replace({'-' : ' '}) }}</h2>
+                        <table class="table table-striped table-hover">
                             <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'cartoons' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
+                                <td colspan="2">
+                                    <a href="{{ path('add-media', {'media' : key}) }}">
+                                        <button role="link" class="btn-link">
+                                            <span class="glyphicon glyphicon-plus"></span> Add {{ key|capitalize|replace({'-' : ' '}) }}
                                         </button>
                                     </a>
+                                </td>
+                            </tr>
+                            {% for m in media %}
+                                <tr>
+                                    <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
+                                    <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
+                                        <a href="{{ path('edit-media', {'id' : m.id, 'media' : key }) }}">
+                                            <button role="link" class="btn btn-primary btn-sm">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </a>
 
-                                    <!-- Modal button for remove Cartoon -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ c.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ c.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                        <!-- Modal button for remove Cartoon -->
+                                        <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ m.id }}">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                        <div class="modal fade" id="mediaDialog{{ m.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                            &times;
+                                                        </button>
+                                                        <h4 class="modal-title">Confirmation needed</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Do you really want to delete this {{ key|replace({'-' : ' '}) }} ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <a href="{{ path('remove-media', {'id' : m.id, 'media' : key }) }}" class="btn btn-primary">Confirm</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('add-media', {'media' : key}) }}">
+                                            <button role="link" class="btn-link">
+                                                <span class="glyphicon glyphicon-plus"></span> Add {{ key|capitalize|replace({'_' : ' '}) }}
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>No {{ key|capitalize|replace({'-' : ' '}) }} found.</td>
+                                </tr>
                         {% endfor %}
                     </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'cartoons'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Cartoon
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No cartoon found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="movies">
-                <h2>Movies</h2>
-                {% if movies|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'movies'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Movie
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for m in movies %}
-                            <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'movies' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Movie -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ m.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ m.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'movies'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Movie
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No movie found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="animes">
-                <h2>Animes</h2>
-                {% if animes|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'animes'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Anime
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for a in animes %}
-                            <tr>
-                                {% if a.numberOfSeasons == 1 %}
-                                    <td class="col-md-8 col-sm-8 col-xs-8">{{ a.title }}</td>
-                                {% else %}
-                                    <td class="col-md-8 col-sm-8 col-xs-8">{{ a.title }} - Season {{ a.currentSeason }}</td>
-                                {% endif %}
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : a.id, 'media' : 'animes' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Anime -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ a.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ a.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : a.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'animes'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Anime
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No anime found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="series">
-                <h2>Series</h2>
-                {% if series|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'series'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Serie
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for s in series %}
-                            <tr>
-                                {% if s.numberOfSeasons == 1 %}
-                                    <td class="col-md-8 col-sm-8 col-xs-8">{{ s.title }}</td>
-                                {% else %}
-                                    <td class="col-md-8 col-sm-8 col-xs-8">{{ s.title }} - Season {{ s.currentSeason }}</td>
-                                {% endif %}
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : s.id, 'media' : 'series' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Series -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ s.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ s.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : s.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'series'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Serie
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No serie found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="books">
-                <h2>Books</h2>
-                {% if books|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'books'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Book
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for b in books %}
-                            <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ b.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : b.id, 'media' : 'books' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Book -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ b.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ b.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : b.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'books'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Book
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No book found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="comics">
-                <h2>Comics</h2>
-                {% if comics|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'comics'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Comic
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for c in comics %}
-                            <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'comics' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Comic -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ c.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ c.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'comics'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Comic
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No comic found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="musics">
-                <h2>Albums</h2>
-                {% if musics|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'musics'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Music
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for m in musics %}
-                            <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'musics' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Music -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ m.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ m.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'musics'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Music
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No music found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
-
-            <section class="tab-pane fade" id="games">
-                <h2>Video Games</h2>
-                {% if video_games|length > 0 %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td colspan="2">
-                                <a href="{{ path('add-media', {'media' : 'video-games'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Video Game
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% for v in video_games %}
-                            <tr>
-                                <td class="col-md-8 col-sm-8 col-xs-8">{{ v.title }}</td>
-                                <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
-                                    <a href="{{ path('edit-media', {'id' : v.id, 'media' : 'video-games' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                    </a>
-
-                                    <!-- Modal button for remove Video Game -->
-                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ v.id }}">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="mediaDialog{{ v.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title">Confirmation needed</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Do you really want to delete this media ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a href="{{ path('remove-media', {'id' : v.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <td>
-                                <a href="{{ path('add-media', {'media' : 'video-games'}) }}">
-                                    <button role="link" class="btn-link">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Video Game
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr><td>No video game found.</td></tr>
-                    </table>
-                {% endif %}
-            </section>
+                </section>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
