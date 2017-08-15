@@ -77,9 +77,21 @@
                 ->add('supports', TextType::class, array(
                     'required' => true,
                 ))
-                ->add('synopsis', TextareaType::class)
-                ->add('publishers', TextareaType::class)
-                ->add('developers', TextareaType::class);
+                ->add('synopsis', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 5,
+                    ),
+                ))
+                ->add('publishers', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ))
+                ->add('developers', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ));
     
             $builder->get('languages')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());

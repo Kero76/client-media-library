@@ -116,9 +116,21 @@
                 ->add('genres', TextType::class, array(
                     'required' => true,
                 ))
-                ->add('synopsis', TextareaType::class)
-                ->add('producers', TextareaType::class)
-                ->add('directors', TextareaType::class);
+                ->add('synopsis', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 5,
+                    ),
+                ))
+                ->add('producers', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ))
+                ->add('directors', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ));
     
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());

@@ -75,9 +75,21 @@
                         )),
                     ),
                 ))
-                ->add('synopsis', TextareaType::class)
-                ->add('labelRecords', TextareaType::class)
-                ->add('singers', TextareaType::class);
+                ->add('synopsis', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 5,
+                    ),
+                ))
+                ->add('labelRecords', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ))
+                ->add('singers', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ));
     
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());

@@ -100,10 +100,26 @@
                         )),
                     ),
                 ))
-                ->add('synopsis', TextareaType::class)
-                ->add('publishers', TextareaType::class)
-                ->add('authors', TextareaType::class)
-                ->add('illustrators', TextareaType::class);
+                ->add('synopsis', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 5,
+                    ),
+                ))
+                ->add('publishers', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ))
+                ->add('authors', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ))
+                ->add('illustrators', TextareaType::class, array(
+                    'attr' => array(
+                        'rows' => 3,
+                    ),
+                ));
     
             $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
             $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());
