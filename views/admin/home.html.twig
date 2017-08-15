@@ -23,6 +23,12 @@
             </ul>
         </div>
 
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
         <div class="tab-content">
             {% for key, media in media_list %}
                 {# Add class 'in' and 'active' when it's the first loop. #}
@@ -79,16 +85,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td>
-                                        <a href="{{ path('add-media', {'media' : key}) }}">
-                                            <button role="link" class="btn-link">
-                                                <span class="glyphicon glyphicon-plus"></span> Add {{ key|capitalize|replace({'_' : ' '}) }}
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>No {{ key|capitalize|replace({'-' : ' '}) }} found.</td>
+                                    <td class="alert alert-warning">No {{ key|capitalize|replace({'-' : ' '}) }} found.</td>
                                 </tr>
                         {% endfor %}
                     </table>

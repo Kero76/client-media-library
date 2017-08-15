@@ -240,6 +240,9 @@
                 // Post object on service.
                 $app['rest']->post($media . '/', $media_object->getJson());
                 
+                // Add flashbag for displaying result of action on home page.
+                $app['session']->getFlashBag()->add('success', ucfirst($media) . ' was successfully added.');
+                
                 // Redirect admin into admin/home
                 return $app->redirect($app['url_generator']->generate('admin'));
             }
@@ -293,6 +296,7 @@
          */
         public function deleteMediaAction(Application $app, int $id, string $media) {
             $app['rest']->delete($media . '/' . $id);
+            $app['session']->getFlashBag()->add('success', ucfirst($media) . ' was successfully deleted.');
             return $app->redirect($app['url_generator']->generate('admin'));
         }
     }
