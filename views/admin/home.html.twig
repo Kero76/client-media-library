@@ -41,12 +41,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'cartoons' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Cartoon -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ c.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ c.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -85,12 +107,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'movies' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'movies' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Movie -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ m.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ m.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -133,12 +177,34 @@
                                 {% endif %}
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : a.id, 'media' : 'animes' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : a.id, 'media' : 'animes' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Anime -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ a.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ a.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : a.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -181,12 +247,34 @@
                                 {% endif %}
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : s.id, 'media' : 'series' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : s.id, 'media' : 'series' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Series -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ s.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ s.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : s.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -225,12 +313,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ b.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : b.id, 'media' : 'books' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : b.id, 'media' : 'books' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Book -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ b.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ b.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : b.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -269,12 +379,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ c.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : c.id, 'media' : 'comics' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'comics' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Comic -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ c.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ c.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : c.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -313,12 +445,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ m.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : m.id, 'media' : 'musics' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'musics' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Music -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ m.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ m.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : m.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -357,12 +511,34 @@
                                 <td class="col-md-8 col-sm-8 col-xs-8">{{ v.title }}</td>
                                 <td class="col-md-offset-3 col-md-1 col-sm-offset-3 col-sm-1 col-xs-offset-3 col-xs-1">
                                     <a href="{{ path('edit-media', {'id' : v.id, 'media' : 'video-games' }) }}">
-                                        <button role="link" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button role="link" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </a>
 
-                                    <a href="{{ path('remove-media', {'id' : v.id, 'media' : 'video-games' }) }}">
-                                        <button role="link" class="btn btn-danger  btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
-                                    </a>
+                                    <!-- Modal button for remove Video Game -->
+                                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#mediaDialog{{ v.id }}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="mediaDialog{{ v.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title">Confirmation needed</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really want to delete this media ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a href="{{ path('remove-media', {'id' : v.id, 'media' : 'cartoons' }) }}" class="btn btn-primary">Confirm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
