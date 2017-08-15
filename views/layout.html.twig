@@ -61,22 +61,11 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.user.username }} <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.username }}</a></li>
+                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                             {% else %}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-                                        <li><a href="{{ path('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{ path('register') }}"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
+                                <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             {% endif %}
                         </ul>
 
