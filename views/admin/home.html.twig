@@ -24,7 +24,7 @@
         </div>
 
         {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="alert alert-success alert-dismissable">
+            <div class="alert alert-success fade in">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 {{ flashMessage }}
             </div>

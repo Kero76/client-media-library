@@ -102,7 +102,9 @@
                         {% endif %}
                     </ul>
                     {% else %}
-                        <p>No {{ media_type|capitalize|replace({'-' : ' '}) }} found.</p>
+                        <div class="alert alert-warning">
+                            <p>No {{ media_type|capitalize|replace({'-' : ' '}) }} found.</p>
+                        </div>
                     {% endif %}
                 </aside>
             </div>
