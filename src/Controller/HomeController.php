@@ -58,94 +58,85 @@
          * @version 1.0
          */
         public function homeAction(Application $app) {
-            // Instantiate uri to get all media present on homepage.
-            $uri      = array('animes', 'cartoons', 'movies', 'series', 'musics', 'books', 'comics', 'video-games');
-            $uri_size = count($uri);
-            $media_list = array();
-    
-            // Loop on each uri and get all media.
-            for ($i = 0; $i < $uri_size; ++$i) {
-                $media_request = $app['rest']->get($uri[$i] . '/'); // Get all specific media.
-                $media_list[$i] = array();
-        
-                // If the request send on error, it must indicate the uri return nothing element, so add an empty array.
-                if (isset($media_request['code_error']) && $media_request['code_error'] == HttpCodeStatus::NO_CONTENT()->getValue()) {
-                    $media_list[$i] = array();
-                } else {
-                    // Switch on media type from uri and instantiate right object.
-                    switch ($uri[$i]) {
-                        case 'animes':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Anime($m);
-                            }
-                            break;
-        
-                        case 'cartoons':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Cartoon($m);
-                            }
-                            break;
-        
-                        case 'movies':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Movie($m);
-                            }
-                            break;
-        
-                        case 'series':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Series($m);
-                            }
-                            break;
-        
-                        case 'books':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Book($m);
-                            }
-                            break;
-        
-                        case 'comics':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Comic($m);
-                            }
-                            break;
-        
-                        case 'video-games':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new VideoGame($m);
-                            }
-                            break;
-        
-                        case 'musics':
-                            foreach ($media_request as $m) {
-                                $id = $m['id'];
-                                $media_list[$i][$id] = new Album($m);
-                            }
-                            break;
-                    }
+            $mediaName = array('animes', 'cartoons', 'movies', 'series', 'musics', 'books', 'comics', 'video-games');
+            $mediaReturn = array();
+            $mediaRequest = $app['rest']->get('home/');
+            
+            // Loop on each media type name, create an array for each media type and instantiate object on it.
+            foreach ($mediaName as $mediaType) {
+                $mediaReturn[$mediaType] = array();
+                switch ($mediaType) {
+                    case 'animes':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Anime($mediaData);
+                        }
+                        break;
+
+                    case 'cartoons':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Cartoon($mediaData);
+                        }
+                        break;
+
+                    case 'movies':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Movie($mediaData);
+                        }
+                        break;
+
+                    case 'series':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Series($mediaData);
+                        }
+                        break;
+
+                    case 'books':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Book($mediaData);
+                        }
+                        break;
+
+                    case 'comics':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Comic($mediaData);
+                        }
+                        break;
+
+                    case 'video-games':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new VideoGame($mediaData);
+                        }
+                        break;
+
+                    case 'musics':
+                        foreach ($mediaRequest[$mediaType] as $mediaData) {
+                            $id = $mediaData['id'];
+                            $mediaReturn[$mediaType][$id] = new Album($mediaData);
+                        }
+                        break;
                 }
             }
-    
+
             // Build the search form object present on the view.
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
     
             return $app['twig']->render('home.html.twig', array(
-                'animes'   => array_reverse(array_slice($media_list[0], count($media_list[0]) - 10)),
-                'cartoons' => array_reverse(array_slice($media_list[1], count($media_list[1]) - 10)),
-                'movies'   => array_reverse(array_slice($media_list[2], count($media_list[2]) - 10)),
-                'series'   => array_reverse(array_slice($media_list[3], count($media_list[3]) - 10)),
-                'musics'   => array_reverse(array_slice($media_list[4], count($media_list[4]) - 10)),
-                'books'    => array_reverse(array_slice($media_list[5], count($media_list[5]) - 10)),
-                'comics'   => array_reverse(array_slice($media_list[6], count($media_list[6]) - 10)),
-                'video_games' => array_reverse(array_slice($media_list[7], count($media_list[7]) - 10)),
+                'animes'   => array_reverse($mediaReturn[$mediaName[0]]),
+                'cartoons' => array_reverse($mediaReturn[$mediaName[1]]),
+                'movies'   => array_reverse($mediaReturn[$mediaName[2]]),
+                'series'   => array_reverse($mediaReturn[$mediaName[3]]),
+                'musics'   => array_reverse($mediaReturn[$mediaName[4]]),
+                'books'    => array_reverse($mediaReturn[$mediaName[5]]),
+                'comics'   => array_reverse($mediaReturn[$mediaName[6]]),
+                'video_games' => array_reverse($mediaReturn[$mediaName[7]]),
                 'search_form' => $search_form_view,
             ));
         }
