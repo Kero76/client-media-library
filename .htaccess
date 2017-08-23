@@ -1,9 +1,3 @@
 <IfModule mod_rewrite.c>
-    Options -MultiViews
-    Options +FollowSymlinks
-
-    RewriteEngine On
-    RewriteBase /media-library/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ web/index.php [QSA,L]
+    FallbackResource /web/index.php
 </IfModule>
