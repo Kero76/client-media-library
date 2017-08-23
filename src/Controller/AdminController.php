@@ -252,7 +252,7 @@
             $search_form = $app['form.factory']->create(SearchType::class, new SearchEntity());
             $search_form_view = $search_form->createView();
             
-            // Return all medias.
+            // Return objects for view.
             return $app['twig']->render($template_name, array(
                 'search_form' => $search_form_view,
                 'media_form' => $media_form_view,
@@ -260,7 +260,7 @@
                 'help' => array(
                     'platforms' => $app['rest']->get('video-games/platforms/'),
                     'formats' => $app['rest']->get('books/formats/'),
-                    'genres' => $app['rest']->get('media/genres/'),
+                    'genres' => $app['rest']->get($media . '/genres/'),
                     'supports' => $app['rest']->get('media/supports/'),
                 )
             ));
