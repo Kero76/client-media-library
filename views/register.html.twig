@@ -7,7 +7,7 @@
 {% block keywords %}register, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Register{% endblock %}
+{% block title %}Sign up{% endblock %}
 
 {# Body of the page #}
 {% block content %}
@@ -15,7 +15,7 @@
         <h2 class="text-center">{{ block('title') }}</h2>
         {% if error %}
             <div class="alert alert-danger">
-                <strong>Registration failed!</strong> {{ error }}
+                <strong>Sign up failed!</strong> {{ error }}
             </div>
         {% endif %}
 
@@ -42,7 +42,7 @@
             {# Submit #}
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Registration</button>
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Sign up</button>
                     <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clean form</button>
                 </div>
             </div>

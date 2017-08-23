@@ -81,12 +81,32 @@
 
             {# Submit #}
             <div class="form-group">
-                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-save"></span> Save new {{ media|capitalize|replace({'-' : ' '}) }}</button>
-                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clear form</button>
+                <div class="col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-1">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save new {{ media|capitalize|replace({'-' : ' '}) }}</button>
+                    <button type="reset" class="btn btn-primary"><span class="glyphicon glyphicon-erase"></span> Clear form</button>
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-toggle="popover"
+                            title="Platforms available"
+                            data-content=
+                            "
+                            {% for platform in help.platforms %}
+                                {% if loop.last %}
+                                    {{ platform|capitalize|replace({'_' : ' '}) }}
+                                {% else %}
+                                    {{ platform|capitalize|replace({'_' : ' '}) }},
+                                {% endif %}
+                            {% endfor %}
+                            ">
+                        <span class="glyphicon glyphicon-question-sign"> Help</span>
+                    </button>
                 </div>
             </div>
             {{ form_end(media_form) }}
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('../web/js/popover.js') }}"></script>
 {% endblock %}

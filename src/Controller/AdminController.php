@@ -257,6 +257,10 @@
                 'search_form' => $search_form_view,
                 'media_form' => $media_form_view,
                 'media' => $media,
+                'help' => array(
+                    'platforms' => $app['rest']->get('video-games/platforms/'),
+                    'formats' => $app['rest']->get('books/formats/'),
+                )
             ));
         }
     
