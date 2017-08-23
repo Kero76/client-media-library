@@ -81,13 +81,42 @@
 
             {# Submit #}
             <div class="form-group">
-                <div class="col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-1">
+                <div class="col-md-12 col-md-offset-2 col-sm-6 col-sm-offset-1">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save new {{ media|capitalize|replace({'-' : ' '}) }}</button>
                     <button type="reset" class="btn btn-primary"><span class="glyphicon glyphicon-erase"></span> Clear form</button>
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-toggle="popover"
-                            title="Platforms available"
+                    <!-- Genres -->
+                    <button type="button" class="btn btn-secondary"
+                            data-toggle="popover" data-trigger="focus" title="Genres available"
+                            data-content=
+                            "
+                            {% for genre in help.genres %}
+                                {% if loop.last %}
+                                    {{ genre|capitalize|replace({'_' : ' '}) }}
+                                {% else %}
+                                    {{ genre|capitalize|replace({'_' : ' '}) }},
+                                {% endif %}
+                            {% endfor %}
+                            ">
+                        <span class="glyphicon glyphicon-question-sign"> Genres</span>
+                    </button>
+                    <!-- Supports -->
+                    <button type="button" class="btn btn-secondary"
+                            data-toggle="popover" data-trigger="focus" title="Supports available"
+                            data-content=
+                            "
+                            {% for support in help.supports %}
+                                {% if loop.last %}
+                                    {{ support|capitalize|replace({'_' : ' '}) }}
+                                {% else %}
+                                    {{ support|capitalize|replace({'_' : ' '}) }},
+                                {% endif %}
+                            {% endfor %}
+                            ">
+                        <span class="glyphicon glyphicon-question-sign"> Supports</span>
+                    </button>
+                    <!-- Platforms -->
+                    <button type="button" class="btn btn-secondary"
+                            data-toggle="popover" data-trigger="focus" title="Platforms available"
                             data-content=
                             "
                             {% for platform in help.platforms %}
@@ -98,7 +127,7 @@
                                 {% endif %}
                             {% endfor %}
                             ">
-                        <span class="glyphicon glyphicon-question-sign"> Help</span>
+                        <span class="glyphicon glyphicon-question-sign"> Platform</span>
                     </button>
                 </div>
             </div>

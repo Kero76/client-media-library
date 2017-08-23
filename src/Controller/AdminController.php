@@ -260,6 +260,8 @@
                 'help' => array(
                     'platforms' => $app['rest']->get('video-games/platforms/'),
                     'formats' => $app['rest']->get('books/formats/'),
+                    'genres' => $app['rest']->get('media/genres/'),
+                    'supports' => $app['rest']->get('media/supports/'),
                 )
             ));
         }
