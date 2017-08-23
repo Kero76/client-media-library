@@ -51,12 +51,17 @@ footer p {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/gb.svg);
 }
 
-/* Add flag for Great Britain. */
+/* Add flag for Israel. */
 .flag-icon-he {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/il.svg);
 }
 
-/* Add flag for Great Britain. */
+/* Add flag for Czech Republic. */
 .flag-icon-cs {
     background-image: url(../../vendor/components/flag-icon-css/flags/4x3/cz.svg);
+}
+
+/* Add flag for Denmark. */
+.flag-icon-da {
+    background-image: url(../../vendor/components/flag-icon-css/flags/4x3/dk.svg);
 }
