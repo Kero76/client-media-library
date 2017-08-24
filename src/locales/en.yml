@@ -3,14 +3,22 @@ home: Home
 sign_up: Sign up
 login: Login
 logout: Log out
+administration: Administration
+
+# Body content translation section
 more_information: Read more
 last: Last
-administration: Administration
+result_for: Result for
 copyright: All Rights Reserved
 
 # Page title translation section
 homepage_title: Homepage
 login_title: Login
+sign_up_title: Sign Up
+search_result_title: Search result
+title: Title
+media: Media
+link: Link
 
 # Form translation section
 username_label: Username
@@ -39,3 +47,4 @@ no_books_found: No books found
 no_comics_found: No comics found
 no_musics_found: No musics found
 no_video_games_found: No video games found
+no_media_found: No media found for

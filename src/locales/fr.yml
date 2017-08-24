@@ -3,14 +3,22 @@ home: Accueil
 sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
+administration: Administration
+
+# Body content translation section
 more_information: En savoir plus
 last: Dernier
-administration: Administration
+result_for: Résultat pour
 copyright: Tous droits réservés
 
 # Page title translation section
 homepage_title: Accueil
 login_title: Connexion
+sign_up_title: Inscription
+search_result_title: Page de résultat
+title: Ttire
+media: Média
+link: Lien
 
 # Form translation section
 username_label: Nom d'utilisateur
@@ -39,3 +47,4 @@ no_books_found: Aucun livres trouvé
 no_comics_found: Aucune bande dessinés trouvé
 no_musics_found: Aucun albums musicals trouvé
 no_video_games_found: Aucun jeux vidéos trouvé
+no_media_found: Aucun média trouvé pour
