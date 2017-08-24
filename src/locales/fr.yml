@@ -1,16 +1,23 @@
 # Layout translation section
 home: Accueil
-search_media: Rechercher ...
 sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
-more_information: En savoir plus ...
+more_information: En savoir plus
 last: Dernier
 administration: Administration
 copyright: Tous droits réservés
 
 # Page title translation section
-homepage: Accueil
+homepage_title: Accueil
+login_title: Connexion
+
+# Form translation section
+username_label: Nom d'utilisateur
+password_label: Mot de Passe
+search_media_form: Rechercher ...
+clean_form: Effacer les données
+login_fail_error: Erreur de connexion!
 
 # Media translation section
 animes: Japanime

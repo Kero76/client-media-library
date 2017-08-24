@@ -1,16 +1,23 @@
 # Layout translation section
 home: Home
-search_media: Search media
 sign_up: Sign up
 login: Login
 logout: Log out
-more_information: Read more ...
+more_information: Read more
 last: Last
 administration: Administration
 copyright: All Rights Reserved
 
 # Page title translation section
-homepage: Homepage
+homepage_title: Homepage
+login_title: Login
+
+# Form translation section
+username_label: Username
+password_label: Password
+search_media_form: Search media
+clean_form: Clean form
+login_fail_error: Login failed!
 
 # Media translation section
 animes: Animes
