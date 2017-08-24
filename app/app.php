@@ -23,10 +23,18 @@
     ErrorHandler::register();
     ExceptionHandler::register();
     
-    // Registers Twig services providers.
+    // Register Twig services providers.
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__ . '/../views/',
     ));
+    // Extends Twig with some services.
+    $app->extend('twig', function(Twig_Environment $twig, $app) {
+        $twig->addExtension(new Twig_Extensions_Extension_Intl());
+        $twig->addExtension(new Twig_Extensions_Extension_Text());
+        return $twig;
+    });
+    
+    // Register Asset service provider.
     $app->register(new Silex\Provider\AssetServiceProvider(), array(
        'assets.version' => 'v1',
     ));
@@ -40,8 +48,20 @@
     
     // I18N / Globalization services providers.
     $app->register(new Silex\Provider\LocaleServiceProvider());
-    $app->register(new Silex\Provider\TranslationServiceProvider());
-    
+    $app->register(new Silex\Provider\TranslationServiceProvider(), array(
+        'locale' => \MediaClient\Utils\WebBrowser::getClientLanguage(),
+        'locale_fallback' => 'en',
+        'translation.class_path' => __DIR__ . '/vender/Symfony/Component',
+    ));
+    $app->extend('translator', function($translator, $app) {
+        $translator->addLoader('yaml', new \Symfony\Component\Translation\Loader\YamlFileLoader());
+        
+        $translator->addResource('yaml', __DIR__ . '/../src/locales/fr.yml', 'fr');
+        $translator->addResource('yaml', __DIR__ . '/../src/locales/en.yml', 'en');
+        
+        return $translator;
+    });
+        
     // Security services providers.
     $app->register(new Silex\Provider\SessionServiceProvider());
     $app->register(new Silex\Provider\SecurityServiceProvider(), array(
@@ -66,13 +86,6 @@
             array('^/admin', 'ROLE_ADMIN'),
         ),
     ));
-    
-    // Extends Twig with some services.
-    $app->extend('twig', function(Twig_Environment $twig, $app) {
-        $twig->addExtension(new Twig_Extensions_Extension_Intl());
-        $twig->addExtension(new Twig_Extensions_Extension_Text());
-        return $twig;
-    });
     
     // Register Restful service providers.
     $app['rest'] = function() {
