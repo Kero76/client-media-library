@@ -34,7 +34,7 @@
             <div class="row">
                 {# Cartoons article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Cartoons</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}cartoons{% endtrans %}</h2>
                     {% if cartoons|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for c in cartoons %}
@@ -42,20 +42,20 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ c.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : c.id, 'media' : 'cartoons'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No cartoons found.</p>
+                        <p>{% trans %}no_cartoons_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
 
                 {# Movie article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Movies</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}movies{% endtrans %}</h2>
                     {% if movies|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for m in movies %}
@@ -63,14 +63,14 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ m.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : m.id, 'media' : 'movies'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No movies found.</p>
+                        <p>{% trans %}no_movies_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
             </div>
@@ -78,7 +78,7 @@
             <div class="row">
                 {# Anime article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Animes</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}animes{% endtrans %}</h2>
                     {% if animes|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for a in animes %}
@@ -90,20 +90,20 @@
                                     {% endif %}
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : a.id, 'media' : 'animes'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No animes found.</p>
+                        <p>{% trans %}no_animes_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
 
                 {# Series article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Series</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}series{% endtrans %}</h2>
                     {% if series|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for s in series %}
@@ -115,14 +115,14 @@
                                     {% endif %}
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : s.id, 'media' : 'series'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No series found.</p>
+                        <p>{% trans %}no_series_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
             </div>
@@ -132,7 +132,7 @@
             <div class="row">
                 {# Books article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Books</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}books{% endtrans %}</h2>
                     {% if books|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for b in books %}
@@ -140,20 +140,20 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ b.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : b.id, 'media' : 'books'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No books found.</p>
+                        <p>{% trans %}no_books_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
 
                 {# Comics article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Comics</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}comics{% endtrans %}</h2>
                     {% if comics|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for c in comics %}
@@ -161,14 +161,14 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ c.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : c.id, 'media' : 'comics'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No comics found.</p>
+                        <p>{% trans %}no_comics_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
             </div>
@@ -178,7 +178,7 @@
             <div class="row">
                 {# Musics article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Albums</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}musics{% endtrans %}</h2>
                     {% if musics|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for m in musics %}
@@ -186,20 +186,20 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ m.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : m.id, 'media' : 'musics'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No albums found.</p>
+                        <p>{% trans %}no_musics_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
 
                 {# Video games article #}
                 <article class="col-md-6 col-sm-12 col-xs-12">
-                    <h2>Last Video Games</h2>
+                    <h2>{% trans %}last{% endtrans %} {% trans %}video_games{% endtrans %}</h2>
                     {% if video_games|length > 0 %}
                         <table class="table table-striped table-hover">
                             {% for v in video_games %}
@@ -207,14 +207,14 @@
                                     <td class="col-md-6 col-sm-6 col-xs-6">{{ v.title }}</td>
                                     <td class="col-md-offset-1 col-md-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
                                         <a href="{{ path('media', {'id' : v.id, 'media' : 'video-games'}) }}" >
-                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">Read more ...</button>
+                                            <button role="link" class="btn btn-primary btn-sm" value="Read more ...">{% trans %}more_information{% endtrans %}</button>
                                         </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>No video games found.</p>
+                        <p>{% trans %}no_video_games_found{% endtrans %}.</p>
                     {% endif %}
                 </article>
             </div>

@@ -4,7 +4,7 @@ search_media: Search media
 sign_up: Sign up
 login: Login
 logout: Log out
-read_more: Read more ...
+more_information: Read more ...
 last: Last
 administration: Administration
 copyright: All Rights Reserved
@@ -19,3 +19,12 @@ comics: Comics
 musics: Musics
 video_games: Video Games
 
+# Not found translation section
+no_animes_found: No animes found
+no_cartoons_found: No cartoons found
+no_movies_found: No movies found
+no_series_found: No series found
+no_books_found: No books found
+no_comics_found: No comics found
+no_musics_found: No musics found
+no_video_games_found: No video games found

@@ -4,7 +4,7 @@ search_media: Rechercher ...
 sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
-read_more: En savoir plus ...
+more_information: En savoir plus ...
 last: Dernier
 administration: Administration
 copyright: Tous droits réservés
@@ -15,6 +15,16 @@ cartoons: Dessin Animés
 movies: Films
 series: Séries
 books: Livres
-comics: Bande Dessiné
-musics: Musique
+comics: Bande Dessinés
+musics: Album Musicals
 video_games: Jeux Vidéos
+
+# Not found translation section
+no_animes_found: Aucun animes trouvé
+no_cartoons_found: Aucun dessin animés trouvé
+no_movies_found: Aucun films trouvé
+no_series_found: Aucune séries trouvé
+no_books_found: Aucun livres trouvé
+no_comics_found: Aucune bande dessinés trouvé
+no_musics_found: Aucun albums musicals trouvé
+no_video_games_found: Aucun jeux vidéos trouvé
