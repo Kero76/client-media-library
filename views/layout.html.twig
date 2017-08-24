@@ -42,23 +42,23 @@
                                 <a id="menu-media-dropdown" class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu-media-dropdown">
 
-                                    <li class="dropdown-header" role="presentation">Videos section</li>
+                                    <li class="dropdown-header" role="presentation">{% trans %}videos_section{% endtrans %}</li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'animes', 'pagination' : 0}) }}">{% trans %}animes{% endtrans %}</a></li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'cartoons', 'pagination' : 0}) }}">{% trans %}cartoons{% endtrans %}</a></li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'movies', 'pagination' : 0}) }}">{% trans %}movies{% endtrans %}</a></li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'series', 'pagination' : 0}) }}">{% trans %}series{% endtrans %}</a></li>
 
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header" role="presentation">Books section</li>
+                                    <li class="dropdown-header" role="presentation">{% trans %}books_section{% endtrans %}</li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'books', 'pagination' : 0}) }}">{% trans %}books{% endtrans %}</a></li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'comics', 'pagination' : 0}) }}">{% trans %}comics{% endtrans %}</a></li>
 
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header" role="presentation">Musics section</li>
+                                    <li class="dropdown-header" role="presentation">{% trans %}musics_section{% endtrans %}</li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'musics', 'pagination' : 0}) }}">{% trans %}musics{% endtrans %}</a></li>
 
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header" role="presentation">Games section</li>
+                                    <li class="dropdown-header" role="presentation">{% trans %}games_section{% endtrans %}</li>
                                     <li role="presentation"><a role="menuitem" href="{{ path('media-list', { 'media' : 'video-games', 'pagination' : 0}) }}">{% trans %}video_games{% endtrans %}</a></li>
                                 </ul>
                             </li>

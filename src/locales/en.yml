@@ -4,12 +4,18 @@ sign_up: Sign up
 login: Login
 logout: Log out
 administration: Administration
+videos_section: Videos section
+books_section: Books section
+musics_section: Musics section
+games_section: Games section
 
 # Body content translation section
 more_information: Read more
 last: Last
 result_for: Result for
 copyright: All Rights Reserved
+list_of: List of
+season: Season
 
 # Page title translation section
 homepage_title: Homepage
@@ -37,6 +43,23 @@ books: Books
 comics: Comics
 musics: Musics
 video_games: Video Games
+
+# Media page translation section
+synopsis: Synopsis
+original_title: Original Title
+original_release: Original Release
+multiplayers: Multiplayer
+yes: Yes
+no: No
+number_of_tracks: Number of Tracks
+tracks: Tracks
+length: Length
+runtime: Runtime
+number_abbr: Number
+of_episode: of Episodes
+of_season: of Seasons
+languages: Languages
+subtitles: Subtitles
 
 # Not found translation section
 no_animes_found: No animes found

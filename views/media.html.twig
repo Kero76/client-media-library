@@ -16,9 +16,9 @@
                     <h1>{{ media.title }}</h1>
                 {% endif %}
 
-                <h2>Synopsis</h2>
+                <h2>{% trans %}synopsis{% endtrans %}</h2>
                 {% if media.synopsis is defined and media.synopsis is not empty %}
-                    <p>{{ media.synopsis }}</p>
+                    <p>{% autoescape false %}{{ media.synopsis }}{% endautoescape %}</p>
                 {% else %}
                     <p>No synopsis found.</p>
                 {% endif %}
@@ -211,14 +211,14 @@
                 <h2>Information</h2>
                 <ul class="list-unstyled">
                     {% if media.originalTitle is defined %}
-                        <li>Original Title : {{ media.originalTitle }}</li>
+                        <li>{% trans %}original_title{% endtrans %} : {{ media.originalTitle }}</li>
                     {% endif %}
 
                     {% if media.releaseDate is defined %}
                         {% if media.endDate is defined  %}
-                            <li>Original Release : {{ media.releaseDate|localizeddate('long', 'none', global.request.locale) }} - {{ media.endDate|localizeddate('long', 'none', global.request.locale) }}</li>
+                            <li>{% trans %}original_release{% endtrans %} : {{ media.releaseDate|localizeddate('long', 'none', global.request.locale) }} - {{ media.endDate|localizeddate('long', 'none', global.request.locale) }}</li>
                         {% else %}
-                            <li>Original Release : {{ media.releaseDate|date('d F Y') }}</li>
+                            <li>{% trans %}original_release{% endtrans %} : {{ media.releaseDate|date('d F Y') }}</li>
                         {% endif %}
                     {% endif %}
 
@@ -235,39 +235,41 @@
                     {% endif %}
 
                     {% if media.multiplayers is defined %}
+                        <li>{% trans %}multiplayers{% endtrans %} :
                         {% if media.multiplayers == true %}
-                            <li>Multiplayers : Yes</li>
+                            {% trans %}yes{% endtrans %}
                         {% else %}
-                            <li>Multiplayers : No</li>
+                            {% trans %}no{% endtrans %}
                         {% endif %}
+                        </li>
                     {% endif %}
 
                     {% if media.nbTracks is defined %}
-                        <li>Number of Tracks : {{ media.nbTracks }} Tracks</li>
+                        <li>{% trans %}number_of_tracks{% endtrans %} : {{ media.nbTracks }} {% trans %}tracks{% endtrans %}</li>
                     {% endif %}
 
                     {% if media.length is defined %}
-                        <li>Length : {{ media.length|replace({'.' : ':'}) }}</li>
+                        <li>{% trans %}length{% endtrans %} : {{ media.length|replace({'.' : ':'}) }}</li>
                     {% endif %}
 
                     {% if media.runtime is defined %}
-                        <li>Runtime : {{ media.runtime }} Minutes</li>
+                        <li>{% trans %}runtime{% endtrans %} : {{ media.runtime }} Minutes</li>
                     {% endif %}
 
                     {% if media.averageEpisodeRuntime is defined %}
-                        <li>Running time : {{ media.averageEpisodeRuntime }} Minutes</li>
+                        <li>{% trans %}runtime{% endtrans %} : {{ media.averageEpisodeRuntime }} Minutes</li>
                     {% endif %}
 
                     {% if media.numberOfEpisode is defined and media.maxEpisodes is defined %}
-                        <li><abbr title="Number">No.</abbr> of Episode : {{ media.numberOfEpisode }} / {{ media.maxEpisodes }}</li>
+                        <li><abbr title="{% trans %}number_abbr{% endtrans %}">No.</abbr> {% trans %}of_episode{% endtrans %} : {{ media.numberOfEpisode }} / {{ media.maxEpisodes }}</li>
                     {% endif %}
 
                     {% if media.currentSeason is defined and media.numberOfSeasons is defined %}
-                        <li><abbr title="Number">No.</abbr> of seasons : {{ media.currentSeason }} / {{ media.numberOfSeasons }}</li>
+                        <li><abbr title="{% trans %}number_abbr{% endtrans %}">No.</abbr> {% trans %}of_season{% endtrans %} : {{ media.currentSeason }} / {{ media.numberOfSeasons }}</li>
                     {% endif %}
 
                     {% if media.languagesSpoken is defined %}
-                        <li>Languages :
+                        <li>{% trans %}languages{% endtrans %} :
                             {% for l in media.languagesSpoken %}
                                 <span class="flag-icon flag-icon-{{ l|lower }}"></span>
                             {% endfor %}
@@ -275,7 +277,7 @@
                     {% endif %}
 
                     {% if media.languages is defined %}
-                        <li>Languages :
+                        <li>{% trans %}languages{% endtrans %} :
                             {% for l in media.languages %}
                                 <span class="flag-icon flag-icon-{{ l|lower }}"></span>
                             {% endfor %}
@@ -283,7 +285,7 @@
                     {% endif %}
 
                     {% if media.subtitles is defined and media.subtitles|length > 0 %}
-                        <li>Subtitles :
+                        <li>{% trans %}subtitles{% endtrans %} :
                             {% for s in media.subtitles %}
                                 <span class="flag-icon flag-icon-{{ s|lower }}"></span>
                             {% endfor %}
