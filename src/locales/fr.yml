@@ -17,7 +17,8 @@ username_label: Nom d'utilisateur
 password_label: Mot de Passe
 search_media_form: Rechercher ...
 clean_form: Effacer les données
-login_fail_error: Erreur de connexion!
+login_fail_error: Erreur de connexion !
+signup_fail_error: Erreur lors de l'inscription !
 
 # Media translation section
 animes: Japanime

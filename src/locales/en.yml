@@ -18,6 +18,7 @@ password_label: Password
 search_media_form: Search media
 clean_form: Clean form
 login_fail_error: Login failed!
+signup_fail_error: Sign up failed!
 
 # Media translation section
 animes: Animes

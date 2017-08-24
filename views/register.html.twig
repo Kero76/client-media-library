@@ -15,7 +15,7 @@
         <h2 class="text-center">{{ block('title') }}</h2>
         {% if error %}
             <div class="alert alert-danger">
-                <strong>Sign up failed!</strong> {{ error }}
+                <strong>{% trans %}signup_fail_error{% endtrans %}</strong> {{ error }}
             </div>
         {% endif %}
 
@@ -42,8 +42,8 @@
             {# Submit #}
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Sign up</button>
-                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clean form</button>
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> {% trans %}sign_up{% endtrans %}</button>
+                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}</button>
                 </div>
             </div>
             {{ form_end(register_form) }}
