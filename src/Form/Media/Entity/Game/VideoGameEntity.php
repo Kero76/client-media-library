@@ -245,7 +245,13 @@
                     'name' => $developer->getName(),
                 );
             }
-            
+    
+            $supports = array();
+            foreach ($this->getSupports() as $support) {
+                $str_with_underscore = str_replace(' ', '_', $support);
+                $supports[] = strtoupper($str_with_underscore);
+            }
+    
             $platforms = array();
             foreach ($this->getPlatforms() as $platform) {
                 $str_with_underscore = str_replace(' ', '_', $platform);
@@ -260,7 +266,7 @@
                 'multiplayers' => $this->isMultiplayers(),
                 'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
                 'genres' => array_map('strtoupper', $this->getGenres()),
-                'supports' => array_map('strtoupper', $this->getSupports()),
+                'supports' => $supports,
                 'languages' => array_map('strtolower', $this->getLanguages()),
                 'publishers' => $publishers,
                 'developers' => $developers,
