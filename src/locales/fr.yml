@@ -90,3 +90,156 @@ no_developers_found: Aucun dévelopeurs trouvés
 no_publishers_found: Aucun éditeurs trouvés
 no_singer_found: Aucun chanteurs ou groupes trouvés
 no_label_records_found: Aucun labels trouvés
+
+# Book format translation section
+classical: Broché
+pocket: Poche
+unspecified: Non spécifié
+
+# Media support translation section
+video_tape: K7 Vidéo
+dvd: DVD
+blu_ray: Blu-Ray
+paper: Papier
+audio_tape: K7 Audio
+vynil: Vynile
+cd: CD
+rom_cartridge: Cartouche
+digital: Numérique
+
+# Book/Video genre translation section
+adventure: Aventure
+animation: Animation
+biopic: Biopic
+buddy_cop: Buddy Cop
+comedy: Comédie
+cop: Policier
+crime: Crime
+cyberpunk: Cyberpunk
+disaster: Catastrophe
+drama: Drame
+dystopian: Dystopie
+epic: Epique
+fantasy: Fantasy
+family: Famille
+heroic_fantasy: Heroic Fantasy
+historical: Historique
+horror: Horreur
+magical_girl: Magical Girl
+martial_art: Art Martial
+mecha: Mecha
+monster: Monstre
+musical: Musicale
+mystery: Mystère
+romantic: Romantique
+science_fiction: Science Fiction
+space_opera: Space Opera
+spaguetti_western: Western Spaghetti
+sport: Sport
+spy: Espionnage
+superhero: Super Héros
+supernatural: Surnaturel
+technical: Technique
+teen: Adolescent
+theater: Théatre
+thriller: Thriller
+tokusatsu: Super Sentaï
+war: Guerre
+western: Western
+
+# Video game genre translation section
+action: Action
+action_rpg: Action RPG
+beat_em_all: Beat'em All
+beat_em_up: Beat'em Up
+courses: Course
+fps: FPS
+idle: Idle
+management: Gestion
+platforms: Plates-Formes
+puzzle_game: Puzzle Game
+rogue_like: Rogue Like
+rpg: Role Playing Game
+rts: Stratégie temps-réelle
+sandbox: Bac à Sable
+shooter: Shooter
+sport: Sport
+survival_horror: Survival Horror
+tactical_rpg: Tactical RPG
+tps: Tir à la 3ième personne
+versus_fighting: Versus Fighting
+
+# Music genre translation section
+alternative_metal: Metal Alternatif
+alternative_rock: Rock Alternatif
+ballad: Balade
+blue_eyes_soul: Blue-eyes Soul
+blues: Blues
+blues_rock: Blues Rock
+classic: Classique
+celtic: Celtique
+country: Country
+dance: Dance
+dance_pop: Dance-Pop
+disco: Disco
+electro: Electro
+eurodance: Eurodance
+europop: Europop
+french_variety: Variété Française
+funk: Funk
+jazz: Jazz
+j_pop: J Pop
+J_rock: J Rock
+hard_rock: Hard Rock
+heavy_metal: Heavy Metal
+hip_hop: Hip Hop
+house: House
+metal: Metal
+new_wave: New Wave
+opera: Opéra
+orchestra: Orchestre
+ost: Original Soundtrack
+pop: Pop
+pop_funk: Pop Funk
+pop_rock: Pop Rock
+post_grunge: Post Grunge
+power_ballad: Power Ballad
+progressive_rock: Progressive Rock
+punk: Punk
+reggae: Reggae
+reggae_fusion: Reggae Fusion
+rap: Rap
+rap_celtiq: Rap Celtic
+rock: Rock
+rock_n_roll: Rock'n'Roll
+rnb: R'n'B
+ska: Ska
+soul: Soul
+southern_rock: Southern Rock
+synthpop: Synthpop
+techno: Techno
+zouk: Zouk
+
+# Videogame platform translation section
+nes: Nes
+snes: Snes
+n64: Nintendo 64
+gamecube: Gamecube
+wii: Wii
+wii_u : Wii U
+gameboy: Gameboy
+gameboy_advance: Gameboy Advance
+nintendo_ds: Nintendo DS
+nintendo_3ds: Nintendo 3DS
+mega_drive: Mega Drive
+sega_saturn: Sega Saturn
+dreamcast: Dreamcast
+psx: Playstation
+ps2: Playstation 2
+ps3: Playstation 3
+ps3: Playstation 4
+psp: Playstation Portable
+xbox: Xbox
+xbox_360: Xbox 360
+xbox_one: Xbox One
+pc: PC

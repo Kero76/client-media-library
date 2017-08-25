@@ -90,3 +90,156 @@ no_developers_found: No developers found
 no_publishers_found: No publishers found
 no_singer_found: No singers or bands found
 no_label_records_found: No label records found
+
+# Book format translation section
+classical: Classical
+pocket: Pocket
+unspecified: Unspecified
+
+# Media support translation section
+video_tape: Video tape
+dvd: DVD
+blu_ray: Blu-Ray
+paper: Paper
+audio_tape: Audio tape
+vynil: Vynil
+cd: CD
+rom_cartridge: Rom Cartridge
+digital: Digital
+
+# Book genre translation section
+adventure: Adventure
+animation: Animation
+biopic: Biopic
+buddy_cop: Buddy Cop
+comedy: Comedy
+cop: Cop
+crime: Crime
+cyberpunk: Cyberpunk
+disaster: Disaster
+drama: Drama
+dystopian: Dystopian
+epic: Epic
+fantasy: Fantasy
+family: Family
+heroic_fantasy: Heroic Fantasy
+historical: Historical
+horror: Horror
+magical_girl: Magical Girl
+martial_art: Martial Art
+mecha: Mecha
+monster: Monster
+musical: Musical
+mystery: Mystery
+romantic: Romantic
+science_fiction: Science Fiction
+space_opera: Space Opera
+spaguetti_western: Spaghetti Western
+sport: Sport
+spy: Spy
+superhero: Superhero
+supernatural: Supernatural
+technical: Technical
+teen: Teen
+theater: Theater
+thriller: Thriller
+tokusatsu: Tokusatsu
+war: War
+western: Western
+
+# Video game genre translation section
+action: Action
+action_rpg: Action RPG
+beat_em_all: Beat'em All
+beat_em_up: Beat'em Up
+courses: Course
+fps: FPS
+idle: Idle
+management: Management
+platforms: Platforms
+puzzle_game: Puzzle Game
+rogue_like: Rogue Like
+rpg: Role Playing Game
+rts: Real-Time Strategy
+sandbox: Sandbox
+shooter: Shooter
+sport: Sport
+survival_horror: Survival Horror
+tactical_rpg: Tactical RPG
+tps: Third Person Shooter
+versus_fighting: Versus Fighting
+
+# Music genre translation section
+alternative_metal: Alternative Metal
+alternative_rock: Alternative Rock
+ballad: Ballad
+blue_eyes_soul: Blue-eyes Soul
+blues: Blues
+blues_rock: Blues Rock
+classic: Classic
+celtic: Celtic
+country: Country
+dance: Dance
+dance_pop: Dance-Pop
+disco: Disco
+electro: Electro
+eurodance: Eurodance
+europop: Europop
+french_variety: French Variety
+funk: Funk
+jazz: Jazz
+j_pop: J Pop
+J_rock: J Rock
+hard_rock: Hard Rock
+heavy_metal: Heavy Metal
+hip_hop: Hip Hop
+house: House
+metal: Metal
+new_wave: New Wave
+opera: Opera
+orchestra: Orchestra
+ost: Original Soundtrack
+pop: Pop
+pop_funk: Pop Funk
+pop_rock: Pop Rock
+post_grunge: Post Grunge
+power_ballad: Power Ballad
+progressive_rock: Progressive Rock
+punk: Punk
+reggae: Reggae
+reggae_fusion: Reggae Fusion
+rap: Rap
+rap_celtiq: Rap Celtic
+rock: Rock
+rock_n_roll: Rock'n'Roll
+rnb: R'n'B
+ska: Ska
+soul: Soul
+southern_rock: Southern Rock
+synthpop: Synthpop
+techno: Techno
+zouk: Zouk
+
+# Videogame platform translation section
+nes: Nes
+snes: Snes
+n64: Nintendo 64
+gamecube: Gamecube
+wii: Wii
+wii_u : Wii U
+gameboy: Gameboy
+gameboy_advance: Gameboy Advance
+nintendo_ds: Nintendo DS
+nintendo_3ds: Nintendo 3DS
+mega_drive: Mega Drive
+sega_saturn: Sega Saturn
+dreamcast: Dreamcast
+psx: Playstation
+ps2: Playstation 2
+ps3: Playstation 3
+ps3: Playstation 4
+psp: Playstation Portable
+xbox: Xbox
+xbox_360: Xbox 360
+xbox_one: Xbox One
+pc: PC

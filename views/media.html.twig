@@ -186,23 +186,23 @@
                 <p>
                     {% if media.genres is defined %}
                         {% for g in media.genres %}
-                            <span class="label label-primary label-content">{{ g|lower|capitalize|replace({'_' : ' '}) }}</span>
+                            <span class="label label-primary label-content">{{ g|lower|trans }}</span>
                         {% endfor %}
                     {% endif %}
 
                     {% if media.supports is defined %}
                         {% for s in media.supports %}
-                            <span class="label label-info label-content">{{ s|lower|capitalize|replace({'_' : ' '}) }}</span>
+                            <span class="label label-info label-content">{{ s|lower|trans }}</span>
                         {% endfor %}
                     {% endif %}
 
                     {% if media.format is defined %}
-                        <span class="label label-success label-content">{{ media.format|lower|capitalize }}</span>
+                        <span class="label label-success label-content">{{ media.format|lower|trans }}</span>
                     {% endif %}
 
                     {% if media.platforms is defined %}
                         {% for p in media.platforms %}
-                            <span class="label label-success label-content">{{ p|lower|capitalize|replace({'_' : ' '}) }}</span>
+                            <span class="label label-success label-content">{{ p|lower|trans }}</span>
                         {% endfor %}
                     {% endif %}
                 </p>
