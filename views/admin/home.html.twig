@@ -4,7 +4,7 @@
 {% block keywords %}homepage, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Administration - Homepage{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {# Body of the page #}
 {% block content %}
@@ -17,7 +17,7 @@
                     {% else %}
                         <li>
                     {% endif %}
-                        <a href="#{{ key }}" data-toggle="tab">{{ key|capitalize|replace({'-' : ' '}) }}</a>
+                        <a href="#{{ key }}" data-toggle="tab">{{ key|replace({'-' : '_'})|trans }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -38,13 +38,13 @@
                 {% else %}
                     <section class="tab-pane fade" id="{{ key }}">
                 {% endif %}
-                        <h2>{{ key|capitalize|replace({'-' : ' '}) }}</h2>
+                        <h2>{{ key|replace({'-' : '_'})|trans }}</h2>
                         <table class="table table-striped table-hover">
                             <tr>
                                 <td colspan="2">
                                     <a href="{{ path('add-media', {'media' : key}) }}">
                                         <button role="link" class="btn-link">
-                                            <span class="glyphicon glyphicon-plus"></span> Add {{ key|capitalize|replace({'-' : ' '}) }}
+                                            <span class="glyphicon glyphicon-plus"></span> {% trans %}add{% endtrans %} {{ key|replace({'-' : '_'})|trans }}
                                         </button>
                                     </a>
                                 </td>
