@@ -60,6 +60,15 @@ of_episode: of Episodes
 of_season: of Seasons
 languages: Languages
 subtitles: Subtitles
+actors: Main Actors
+producers: Producers
+directors: Directors
+writters: Writter
+illustrators: Illustrators
+developers: Developers
+publishers: Publishers
+singers: Singers or Groups
+label_records: Label Records
 
 # Not found translation section
 no_animes_found: No animes found
@@ -71,3 +80,13 @@ no_comics_found: No comics found
 no_musics_found: No musics found
 no_video_games_found: No video games found
 no_media_found: No media found for
+no_synopsis_found: No synopsis found
+no_actors_found: No actors found
+no_producers_found: No producers found
+no_directors_found: No directors found
+no_authors_found: Np authors found
+no_illustrators_found: No illustrators found
+no_developers_found: No developers found
+no_publishers_found: No publishers found
+no_singer_found: No singers or bands found
+no_label_records_found: No label records found

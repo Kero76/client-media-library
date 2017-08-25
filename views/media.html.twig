@@ -20,14 +20,14 @@
                 {% if media.synopsis is defined and media.synopsis is not empty %}
                     <p>{% autoescape false %}{{ media.synopsis }}{% endautoescape %}</p>
                 {% else %}
-                    <p>No synopsis found.</p>
+                    <p>{% trans %}no_synopsis_found{% endtrans %}.</p>
                 {% endif %}
 
                 {# Video Block. #}
                 {% if media.mainActors is defined %}
+                    <h2>{% trans %}actors{% endtrans %}</h2>
                     {% if media.mainActors is not empty %}
                         <p>
-                            With
                             {% for person in media.mainActors %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -37,14 +37,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No actors found.</p>
+                        <p>{% trans %}no_actors_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.producers is defined %}
+                    <h2>{% trans %}producers{% endtrans %}</h2>
                     {% if media.producers is not empty %}
                         <p>
-                            Produce by
                             {% for person in media.producers %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -54,13 +54,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No producers found.</p>
+                        <p>{% trans %}no_producers_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.directors is defined %}
+                    <h2>{% trans %}directors{% endtrans %}</h2>
                     {% if media.directors is not empty %}
-                            <p>Direct by
+                        <p>
                             {% for person in media.directors %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -70,16 +71,16 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No directors found.</p>
+                        <p>{% trans %}no_directors_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
                 {# End Video Block. #}
 
                 {# Book/Game Block #}
                 {% if media.authors is defined %}
+                    <h2>{% trans %}writters{% endtrans %}</h2>
                     {% if media.authors is not empty %}
                         <p>
-                            Write by
                             {% for person in media.authors %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -89,14 +90,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No author found.</p>
+                        <p>{% trans %}no_authors_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.illustrators is defined %}
+                    <h2>{% trans %}illustrators{% endtrans %}</h2>
                     {% if media.illustrators is not empty %}
                         <p>
-                            Illustrate by
                             {% for person in media.illustrators %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -106,14 +107,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No illustrators found.</p>
+                        <p>{% trans %}no_illustrators_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.developers is defined %}
+                    <h2>{% trans %}developers{% endtrans %}</h2>
                     {% if media.developers is not empty %}
                         <p>
-                            Develop by
                             {% for company in media.developers %}
                                 {% if loop.last %}
                                     {{ company.name }}
@@ -123,14 +124,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No developers found.</p>
+                        <p>{% trans %}no_developers_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.publishers is defined %}
+                    <h2>{% trans %}publishers{% endtrans %}</h2>
                     {% if media.publishers is not empty %}
                         <p>
-                            Publish by
                             {% for company in media.publishers %}
                                 {% if loop.last %}
                                     {{ company.name }}
@@ -140,16 +141,16 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No publishers found.</p>
+                        <p>{% trans %}no_publishers_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
                 {# End Book/Game Block #}
 
                 {# Music Block #}
                 {% if media.singers is defined %}
+                    <h2>{% trans %}singers{% endtrans %}</h2>
                     {% if media.singers is not empty %}
                         <p>
-                            Sing by
                             {% for person in media.singers %}
                                 {% if loop.last %}
                                     {{ person.firstName }} {{ person.lastName }}
@@ -159,13 +160,14 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No singer/band found.</p>
+                        <p>{% trans %}no_singers_found{% endtrans %}.</p>
                     {% endif %}
                 {% endif %}
 
                 {% if media.labelRecords is defined %}
+                    <h2>{% trans %}label_records{% endtrans %}</h2>
                     {% if media.labelRecords is not empty %}
-                            <p>Recorded by
+                        <p>
                             {% for company in media.labelRecords %}
                                 {% if loop.last %}
                                     {{ company.name }}
@@ -175,7 +177,7 @@
                             {% endfor %}
                         </p>
                     {% else %}
-                        <p>No label records found.<p/>
+                        <p>{% trans %}no_label_records_found{% endtrans %}.<p/>
                     {% endif %}
                 {% endif %}
                 {# End Music Block #}
