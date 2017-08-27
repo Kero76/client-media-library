@@ -1,24 +1,26 @@
 <?php
-    /*
-     * This file is part of Media-Client.
+    /**
+     * MediaClient.
+     * Copyright (C) 2017 Nicolas GILLE
      *
-     * Media-Client is free software: you can redistribute it and/or modify
+     * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
      * the Free Software Foundation, either version 3 of the License, or
      * (at your option) any later version.
      *
-     * Media-Client is distributed in the hope that it will be useful,
+     * This program is distributed in the hope that it will be useful,
      * but WITHOUT ANY WARRANTY; without even the implied warranty of
-     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
-    */
+     * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     */
+
     declare(strict_types=1);
-    
+
     namespace MediaClient\Form\Media\Entity\Video;
-    
+
     use MediaClient\Form\Media\Entity\AbstractMediaEntity;
     use MediaClient\Model\Person;
 
@@ -32,43 +34,43 @@
      * @since 1.0
      * @version 1.0
      */
-    abstract class AbstractVideoEntity extends AbstractMediaEntity  {
-        
+    abstract class AbstractVideoEntity extends AbstractMediaEntity {
+
         /**
          * Original title of the media.
          *
          * @var string
          */
         protected $_original_title = '';
-        
+
         /**
          * An array with all languages available on the media.
          *
          * @var array
          */
         protected $_languages_spoken = array();
-        
+
         /**
          * An array with all subtitles of the media.
          *
          * @var array
          */
         protected $_subtitles = array();
-        
+
         /**
          * An array with all producers present on the media.
          *
          * @var array
          */
         protected $_producers = array();
-        
+
         /**
          * An array with all directors present on the media.
          *
          * @var array
          */
         protected $_directors = array();
-        
+
         /**
          * Get original title of the media.
          *
@@ -80,19 +82,20 @@
         public function getOriginalTitle(): string {
             return $this->_original_title;
         }
-        
+
         /**
          * Set the original title of the media.
          *
          * @param string $original_title
          *  New original title of the media.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setOriginalTitle(string $original_title) {
             $this->_original_title = $original_title;
         }
-        
+
         /**
          * Get all languages available on media.
          *
@@ -104,19 +107,20 @@
         public function getLanguagesSpoken(): array {
             return $this->_languages_spoken;
         }
-        
+
         /**
          * Set the list of all languages spoken available on media.
          *
          * @param array $languages_spoken
          *  An array with all new languages spoken on format ISO-639-1
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setLanguagesSpoken(array $languages_spoken) {
             $this->_languages_spoken = $languages_spoken;
         }
-        
+
         /**
          * Get the list of all subtitles available on media who respected the format ISO-639-1.
          *
@@ -128,19 +132,20 @@
         public function getSubtitles(): array {
             return $this->_subtitles;
         }
-        
+
         /**
          * Set the list of all subtitles available on media.
          *
          * @param array $subtitles
          *  An array with all subtitles on format ISO-639-1.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setSubtitles(array $subtitles) {
             $this->_subtitles = $subtitles;
         }
-        
+
         /**
          * Get the list of all producers present on media.
          *
@@ -154,21 +159,23 @@
             foreach ($this->_producers as $producer) {
                 $producers[] = new Person($producer);
             }
+
             return $producers;
         }
-        
+
         /**
          * Set the list of producers of the media.
          *
          * @param array $producers
          *  New list of all producers.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setProducers(array $producers) {
             $this->_producers = $producers;
         }
-        
+
         /**
          * Get the list of all directors present on media.
          *
@@ -182,14 +189,16 @@
             foreach ($this->_directors as $director) {
                 $directors[] = new Person($director);
             }
+
             return $directors;
         }
-        
+
         /**
          * Set the list of all directors present on the media.
          *
          * @param array $directors
          *  New list of directors present on the media.
+         *
          * @since 1.0
          * @version 1.0
          */

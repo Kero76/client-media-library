@@ -1,24 +1,26 @@
 <?php
-    /*
-     * This file is part of Media-Client.
+    /**
+     * MediaClient.
+     * Copyright (C) 2017 Nicolas GILLE
      *
-     * Media-Client is free software: you can redistribute it and/or modify
+     * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
      * the Free Software Foundation, either version 3 of the License, or
      * (at your option) any later version.
      *
-     * Media-Client is distributed in the hope that it will be useful,
+     * This program is distributed in the hope that it will be useful,
      * but WITHOUT ANY WARRANTY; without even the implied warranty of
-     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
-    */
+     * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     */
+
     declare(strict_types=1);
-    
+
     namespace MediaClient\Form\Media\Entity\Game;
-    
+
     use MediaClient\Form\Media\Entity\AbstractMediaEntity;
     use MediaClient\Model\Company;
 
@@ -31,47 +33,47 @@
      * @version 1.0
      */
     class VideoGameEntity extends AbstractMediaEntity {
-        
+
         /**
          * Original title of the video game.
          *
          * @var string
          */
         private $_originalTitle = '';
-        
+
         /**
          * Indicate if the video game is multiplayable or not.
          *
          * @var bool
          */
         private $_multiplayers = false;
-        
+
         /**
          * @var array
          */
         private $_languages = array();
-        
+
         /**
          * List of all developers.
          *
          * @var array
          */
         private $_developers = array();
-        
+
         /**
          * List of publishers.
          *
          * @var array
          */
         private $_publishers = array();
-        
+
         /**
          * Platforms for the video game (video game console).
          *
          * @var array
          */
         private $_platforms = array();
-    
+
         /**
          * Get the original title of the video game.
          *
@@ -83,19 +85,20 @@
         public function getOriginalTitle(): string {
             return $this->_originalTitle;
         }
-        
+
         /**
          * Set the original title of the media.
          *
          * @param string $originalTitle
          *  New original title of the media.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setOriginalTitle(string $originalTitle) {
             $this->_originalTitle = $originalTitle;
         }
-        
+
         /**
          * Return if the video game is multiplayable or not.
          *
@@ -107,19 +110,20 @@
         public function isMultiplayers(): bool {
             return $this->_multiplayers;
         }
-        
+
         /**
          * Set the variable multiplayers.
          *
          * @param boolean $multiplayers
          *  New value of multiplayer boolean.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setMultiplayers(bool $multiplayers) {
             $this->_multiplayers = $multiplayers;
         }
-        
+
         /**
          * Get the list of language spoken on format ISO-639-1.
          *
@@ -131,19 +135,20 @@
         public function getLanguages(): array {
             return $this->_languages;
         }
-        
+
         /**
          * Set the list of language spoken on format ISO-639-1.
          *
          * @param array $languages
          *  New list of languages spoken.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setLanguages(array $languages) {
             $this->_languages = $languages;
         }
-        
+
         /**
          * List of all developers present on the video game.
          *
@@ -157,21 +162,23 @@
             foreach ($this->_developers as $developer) {
                 $developers[] = new Company($developer);
             }
+
             return $developers;
         }
-        
+
         /**
          * Set the list of developers.
          *
          * @param array $developers
          *  New list of developers.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setDevelopers(array $developers) {
             $this->_developers = $developers;
         }
-        
+
         /**
          * Get the list of publishers.
          *
@@ -185,21 +192,23 @@
             foreach ($this->_publishers as $publisher) {
                 $publishers[] = new Company($publisher);
             }
+
             return $publishers;
         }
-        
+
         /**
          * Set the list of publishers.
          *
          * @param array $publishers
          *  New list of publishers.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setPublishers(array $publishers) {
             $this->_publishers = $publishers;
         }
-        
+
         /**
          * Get the list of platform.
          *
@@ -211,60 +220,63 @@
         public function getPlatforms(): array {
             return $this->_platforms;
         }
-        
+
         /**
          * Set the list of platform.
          *
          * @param array $platforms
          *  New list of platforms.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setPlatforms(array $platforms) {
             $this->_platforms = $platforms;
         }
-    
+
         /**
          * Get the json representation of the entity.
+         *
          * @return string
          *  Return the json representation of the entity.
          * @since 1.0
          * @version 1.0
          */
-        function getJson() : string {
+        function getJson(): string {
             $publishers = array();
             foreach ($this->getPublishers() as $publisher) {
                 $publishers[] = array(
                     'name' => $publisher->getName(),
                 );
             }
-            
+
             $developers = array();
             foreach ($this->getDevelopers() as $developer) {
                 $developers[] = array(
                     'name' => $developer->getName(),
                 );
             }
-    
+
             $supports = array();
             foreach ($this->getSupports() as $support) {
                 $str_with_underscore = str_replace(' ', '_', $support);
                 $supports[] = strtoupper($str_with_underscore);
             }
-    
+
             $platforms = array();
             foreach ($this->getPlatforms() as $platform) {
                 $str_with_underscore = str_replace(' ', '_', $platform);
                 $platforms[] = strtoupper($str_with_underscore);
             }
-            
+
             $data = array(
                 'id' => $this->getId(),
                 'title' => $this->getTitle(),
                 'originalTitle' => $this->getOriginalTitle(),
                 'synopsis' => $this->getSynopsis(),
                 'multiplayers' => $this->isMultiplayers(),
-                'releaseDate' => $this->getReleaseDate()->format('Y-m-d'),
+                'releaseDate' => $this->getReleaseDate()
+                                      ->format('Y-m-d'),
                 'genres' => array_map('strtoupper', $this->getGenres()),
                 'supports' => $supports,
                 'languages' => array_map('strtolower', $this->getLanguages()),
@@ -272,7 +284,7 @@
                 'developers' => $developers,
                 'platforms' => $platforms,
             );
-    
+
             return json_encode($data);
         }
     }

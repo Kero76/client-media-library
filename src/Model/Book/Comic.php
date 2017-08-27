@@ -1,24 +1,26 @@
 <?php
-    /*
-     * This file is part of Media-Client.
+    /**
+     * MediaClient.
+     * Copyright (C) 2017 Nicolas GILLE
      *
-     * Media-Client is free software: you can redistribute it and/or modify
+     * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
      * the Free Software Foundation, either version 3 of the License, or
      * (at your option) any later version.
      *
-     * Media-Client is distributed in the hope that it will be useful,
+     * This program is distributed in the hope that it will be useful,
      * but WITHOUT ANY WARRANTY; without even the implied warranty of
-     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Client. If not, see <http://www.gnu.org/licenses/>.
-    */
+     * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     */
+
     declare(strict_types=1);
-    
+
     namespace MediaClient\Model\Book;
-    
+
     /**
      * Class Comic
      *
@@ -28,7 +30,7 @@
      * @version 1.0
      */
     class Comic extends Book {
-        
+
         /**
          * The volumes present on the comic.
          *
@@ -37,7 +39,7 @@
          * @var int
          */
         private $volumes;
-        
+
         /**
          * The current volume of the book.
          *
@@ -46,19 +48,20 @@
          * @var int
          */
         private $currentVolume;
-    
+
         /**
          * List of illustrators who illustrate comics.
          *
          * @var array
          */
         private $illustrators = array();
-        
+
         /**
          * Comic constructor.
          *
          * @param array $data
          *  All data of the comic.
+         *
          * @since 1.0
          * @version 1.0
          */
@@ -66,7 +69,7 @@
             parent::__construct($data);
             $this->hydrate($data);
         }
-        
+
         /**
          * Get the number of volumes of the book.
          *
@@ -78,19 +81,20 @@
         public function getVolumes(): int {
             return $this->volumes;
         }
-        
+
         /**
          * Set the number of volumes of the book.
          *
          * @param int $volumes
          *  The new number of volumes of the book.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setVolumes(int $volumes) {
             $this->volumes = $volumes;
         }
-        
+
         /**
          * Get the current volume of the comic.
          *
@@ -102,19 +106,20 @@
         public function getCurrentVolume(): int {
             return $this->currentVolume;
         }
-        
+
         /**
          * Set the current volume of the book.
          *
          * @param int $currentVolume
          *  New current volume of the book.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setCurrentVolume(int $currentVolume) {
             $this->currentVolume = $currentVolume;
         }
-    
+
         /**
          * Get the list of all illustrators of the book.
          *
@@ -126,12 +131,13 @@
         public function getIllustrators(): array {
             return $this->illustrators;
         }
-    
+
         /**
          * Set the illustrators of the book.
          *
          * @param array $illustrators
          *  New array of illustrators for the book.
+         *
          * @since 1.0
          * @version 1.0
          */

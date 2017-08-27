@@ -1,24 +1,26 @@
 <?php
-    /*
-     * This file is part of Media-Client.
+    /**
+     * MediaClient.
+     * Copyright (C) 2017 Nicolas GILLE
      *
-     * Media-Client is free software: you can redistribute it and/or modify
+     * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
      * the Free Software Foundation, either version 3 of the License, or
      * (at your option) any later version.
      *
-     * Media-Client is distributed in the hope that it will be useful,
+     * This program is distributed in the hope that it will be useful,
      * but WITHOUT ANY WARRANTY; without even the implied warranty of
-     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      * GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License
-     * along with Media-Library. If not, see <http://www.gnu.org/licenses/>.
+     * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
     declare(strict_types=1);
-    
+
     namespace MediaClient\Form\Media\Type;
-    
+
     use MediaClient\Form\DataTransformer\StringToArrayTransformer;
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,10 +29,9 @@
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\Validator\Constraints\NotBlank;
-    use Symfony\Component\Validator\Constraints\Regex;
 
     class VideoGameType extends AbstractType {
-    
+
         /**
          * Build form on twig template.
          *
@@ -38,67 +39,118 @@
          *  Interface to build form.
          * @param array $options
          *  Options to build form.
+         *
          * @since 1.0
          * @version 1.0
          */
         public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder
-                ->add('title', TextType::class, array(
-                    'required' => true,
-                    'constraints' => array(
-                        new NotBlank(),
-                    ),
-                ))
-                ->add('originalTitle', TextType::class, array(
-                    'required' => true,
-                    'constraints' => array(
-                        new NotBlank(),
-                    ),
-                ))
-                ->add('releaseDate', DateType::class, array(
-                    'required' => true,
-                    'widget' => 'single_text',
-                ))
-                ->add('multiplayers', ChoiceType::class, array(
-                    'choices' => array(
-                        'Yes' => true,
-                        'No' => false,
+                ->add(
+                    'title',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                        'constraints' => array(
+                            new NotBlank(),
+                        ),
                     )
-                ))
-                ->add('platforms', TextType::class, array(
-                    'required' => true,
-                ))
-                ->add('languages', TextType::class, array(
-                    'required' => true,
-                ))
-                ->add('genres', TextType::class, array(
-                    'required' => true,
-                ))
-                ->add('supports', TextType::class, array(
-                    'required' => true,
-                ))
-                ->add('synopsis', TextareaType::class, array(
-                    'attr' => array(
-                        'rows' => 5,
-                    ),
-                ))
-                ->add('publishers', TextareaType::class, array(
-                    'attr' => array(
-                        'rows' => 3,
-                    ),
-                ))
-                ->add('developers', TextareaType::class, array(
-                    'attr' => array(
-                        'rows' => 3,
-                    ),
-                ));
-    
-            $builder->get('languages')->addModelTransformer(new StringToArrayTransformer());
-            $builder->get('genres')->addModelTransformer(new StringToArrayTransformer());
-            $builder->get('supports')->addModelTransformer(new StringToArrayTransformer());
-            $builder->get('platforms')->addModelTransformer(new StringToArrayTransformer());
-            $builder->get('publishers')->addModelTransformer(new StringToArrayTransformer());
-            $builder->get('developers')->addModelTransformer(new StringToArrayTransformer());
+                )
+                ->add(
+                    'originalTitle',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                        'constraints' => array(
+                            new NotBlank(),
+                        ),
+                    )
+                )
+                ->add(
+                    'releaseDate',
+                    DateType::class,
+                    array(
+                        'required' => true,
+                        'widget' => 'single_text',
+                    )
+                )
+                ->add(
+                    'multiplayers',
+                    ChoiceType::class,
+                    array(
+                        'choices' => array(
+                            'Yes' => true,
+                            'No' => false,
+                        ),
+                    )
+                )
+                ->add(
+                    'platforms',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                    )
+                )
+                ->add(
+                    'languages',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                    )
+                )
+                ->add(
+                    'genres',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                    )
+                )
+                ->add(
+                    'supports',
+                    TextType::class,
+                    array(
+                        'required' => true,
+                    )
+                )
+                ->add(
+                    'synopsis',
+                    TextareaType::class,
+                    array(
+                        'attr' => array(
+                            'rows' => 5,
+                        ),
+                    )
+                )
+                ->add(
+                    'publishers',
+                    TextareaType::class,
+                    array(
+                        'attr' => array(
+                            'rows' => 3,
+                        ),
+                    )
+                )
+                ->add(
+                    'developers',
+                    TextareaType::class,
+                    array(
+                        'attr' => array(
+                            'rows' => 3,
+                        ),
+                    )
+                );
+
+            $builder->get('languages')
+                    ->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('genres')
+                    ->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('supports')
+                    ->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('platforms')
+                    ->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('publishers')
+                    ->addModelTransformer(new StringToArrayTransformer());
+            $builder->get('developers')
+                    ->addModelTransformer(new StringToArrayTransformer());
         }
 
         /**
@@ -109,7 +161,7 @@
          * @since 1.0
          * @version 1.0
          */
-        public function getName() : string {
+        public function getName(): string {
             return 'video-game-form';
         }
     }

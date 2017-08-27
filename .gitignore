@@ -1,5 +1,2 @@
 .idea/
 vendor/
-
-# Database information
-app/config/prod.php
