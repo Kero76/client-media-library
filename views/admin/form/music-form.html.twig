@@ -7,7 +7,7 @@
 {% block keywords %}register, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Add {{ media }}{% endblock %}
+{% block title %}{% trans %}add{% endtrans %} {{ media|replace({'-' : '_'})|trans }}{% endblock %}
 
 {# Body of the page #}
 {% block content %}
@@ -24,7 +24,7 @@
 
             {# Main information block. #}
             <fieldset>
-                <legend>Main Information</legend>
+                <legend>{% trans %}main_information{% endtrans %}</legend>
                 {{ form_row(media_form.title) }}
                 {{ form_widget(media_form.title) }}
 
@@ -41,7 +41,7 @@
 
             {# Specific information from each media type. #}
             <fieldset>
-                <legend>Musics information</legend>
+                <legend>{% trans %}complementary_information{% endtrans %}</legend>
                 {{ form_row(media_form.nbTracks) }}
                 {{ form_widget(media_form.nbTracks) }}
 
@@ -51,7 +51,7 @@
 
             {# Persons block. #}
             <fieldset>
-                <legend>Information about persons / companies</legend>
+                <legend>{% trans %}person_company_information{% endtrans %}</legend>
                 {{ form_row(media_form.labelRecords) }}
                 {{ form_widget(media_form.labelRecords) }}
 
@@ -61,7 +61,7 @@
 
             {# Genres / Supports / Formats / .. block. #}
             <fieldset>
-                <legend>Genres and supports information</legend>
+                <legend>{% trans %}genres_supports_information{% endtrans %}</legend>
                 {{ form_row(media_form.genres) }}
                 {{ form_widget(media_form.genres) }}
 
@@ -71,12 +71,15 @@
 
             {# Submit #}
             <div class="form-group">
-                <div class="col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-1">
-                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-save"></span> Save new {{ media|capitalize|replace({'-' : ' '}) }}</button>
-                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-erase"></span> Clear form</button>
+                <div class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1">
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon
+                    glyphicon-save"></span> {% trans %}save_new{% endtrans %} {{ media|replace({'-' : '_'})|trans }}
+                    </button>
+                    <button type="reset" class="btn btn-default btn-primary"><span class="glyphicon
+                    glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}</button>
                     <!-- Genres -->
                     <button type="button" class="btn btn-secondary"
-                            data-toggle="popover" data-trigger="focus" title="Genres available"
+                            data-toggle="popover" data-trigger="focus" title="{% trans %}genres_available{% endtrans %}"
                             data-content=
                             "
                             {% for genre in help.genres %}
@@ -91,7 +94,7 @@
                     </button>
                     <!-- Supports -->
                     <button type="button" class="btn btn-secondary"
-                            data-toggle="popover" data-trigger="focus" title="Supports available"
+                            data-toggle="popover" data-trigger="focus" title="{% trans %}supports_available{% endtrans %}"
                             data-content=
                             "
                             {% for support in help.supports %}

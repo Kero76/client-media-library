@@ -17,6 +17,18 @@ copyright: All Rights Reserved
 list_of: List of
 season: Season
 
+# Administration translation section
+main_information: Main Information
+complementary_information: Complementary Information
+person_company_information: Information about Persons/Companies
+genres_supports_information: Information about Genres and Supports
+save_new: Save new
+genres_available: Genre Available
+supports_available: Support Available
+formats_available: Format Available
+platforms_available: Platform Available
+platform: Platforms
+
 # Page title translation section
 homepage_title: Homepage
 login_title: Login
