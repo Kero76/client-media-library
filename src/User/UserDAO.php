@@ -138,7 +138,7 @@
          */
         protected function buildObject(array $data) {
             $user = new User();
-            $user->setId($data['usr_id']);
+            $user->setId(intval($data['usr_id']));
             $user->setEmail($data['usr_mail']);
             $user->setUsername($data['usr_name']);
             $user->setPassword($data['usr_password']);
