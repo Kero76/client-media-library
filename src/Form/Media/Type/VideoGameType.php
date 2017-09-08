@@ -49,6 +49,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -59,6 +60,7 @@
                     'originalTitle',
                     TextType::class,
                     array(
+                        'label_format' => 'original_title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -69,6 +71,7 @@
                     'releaseDate',
                     DateType::class,
                     array(
+                        'label_format' => 'release_date_label',
                         'required' => true,
                         'widget' => 'single_text',
                     )
@@ -77,16 +80,24 @@
                     'multiplayers',
                     ChoiceType::class,
                     array(
+                        'label_format' => 'formats_label',
                         'choices' => array(
                             'Yes' => true,
                             'No' => false,
                         ),
+                        'choice_label' => function($value) {
+                            if ($value === true) {
+                                return 'yes';
+                            }
+                            return 'no';
+                        },
                     )
                 )
                 ->add(
                     'platforms',
                     TextType::class,
                     array(
+                        'label_format' => 'platforms_label',
                         'required' => true,
                     )
                 )
@@ -94,6 +105,7 @@
                     'languages',
                     TextType::class,
                     array(
+                        'label_format' => 'languages_spoken_label',
                         'required' => true,
                     )
                 )
@@ -101,6 +113,7 @@
                     'genres',
                     TextType::class,
                     array(
+                        'label_format' => 'genres_label',
                         'required' => true,
                     )
                 )
@@ -108,6 +121,7 @@
                     'supports',
                     TextType::class,
                     array(
+                        'label_format' => 'supports_label',
                         'required' => true,
                     )
                 )
@@ -115,6 +129,7 @@
                     'synopsis',
                     TextareaType::class,
                     array(
+                        'label_format' => 'synopsis_label',
                         'attr' => array(
                             'rows' => 5,
                         ),
@@ -124,6 +139,7 @@
                     'publishers',
                     TextareaType::class,
                     array(
+                        'label_format' => 'publishers_label',
                         'attr' => array(
                             'rows' => 3,
                         ),
@@ -133,6 +149,7 @@
                     'developers',
                     TextareaType::class,
                     array(
+                        'label_format' => 'developers_label',
                         'attr' => array(
                             'rows' => 3,
                         ),

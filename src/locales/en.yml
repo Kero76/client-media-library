@@ -46,6 +46,41 @@ clean_form: Clean form
 login_fail_error: Login failed!
 signup_fail_error: Sign up failed!
 
+# Form label translation section
+title_label: Title
+original_title_label: Original Title
+release_date_label: Release Date
+end_date_label: End Date
+runtime_label: Runtime
+average_episode_runtime_label: Runtime
+number_of_season_label: Number of Seasons
+current_season_label: Current season
+number_of_episode_label: Number of Episodes
+max_episodes_label: Max Episodes
+languages_spoken_label: Languages
+subtitles_label: Subtitles
+supports_label: Supports
+genres_label: Genres
+synopsis_label: Synopsis
+producers_label: Producers
+directors_label: Directors
+isbn_label: ISBN
+number_of_pages_label: Number of Pages
+format_label: Formats
+publishers_label: Publishers
+authors_label: Authors
+illustrators_label: Illustrators
+volumes_label: Volumes
+current_volume_label: Current Volume
+number_of_tracks_label: Number of Tracks
+length_label: Length
+label_records_label: Label Records
+singers_label: Singers or Bands
+developers_label: Developers
+formats_label: Formats
+platforms_label: Platforms
+actors_label: Actors
+
 # Media translation section
 animes: Animes
 cartoons: Cartoons

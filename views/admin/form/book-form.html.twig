@@ -113,12 +113,12 @@
                             ">
                         <span class="glyphicon glyphicon-question-sign"> Supports</span>
                     </button>
-                    <!--  -->
+                    <!-- Formats -->
                     <button type="button" class="btn btn-secondary"
-                            data-toggle="popover" data-trigger="focus" title="{% trans %}_available{% endtrans %}"
+                            data-toggle="popover" data-trigger="focus" title="{% trans %}formats_available{% endtrans %}"
                             data-content=
                             "
-                            {% for format in help. %}
+                            {% for format in help.formats %}
                                 {% if loop.last %}
                                     {{ format|capitalize|replace({'_' : ' '}) }}
                                 {% else %}
@@ -126,7 +126,7 @@
                                 {% endif %}
                             {% endfor %}
                             ">
-                        <span class="glyphicon glyphicon-question-sign"> </span>
+                        <span class="glyphicon glyphicon-question-sign"> Formats</span>
                     </button>
                 </div>
             </div>

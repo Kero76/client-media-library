@@ -50,6 +50,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -60,6 +61,7 @@
                     'originalTitle',
                     TextType::class,
                     array(
+                        'label_format' => 'original_title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -70,6 +72,7 @@
                     'releaseDate',
                     DateType::class,
                     array(
+                        'label_format' => 'release_date_label',
                         'required' => true,
                         'widget' => 'single_text',
                     )
@@ -78,6 +81,7 @@
                     'runtime',
                     NumberType::class,
                     array(
+                        'label_format' => 'runtime_label',
                         'required' => true,
                         'constraints' => array(
                             new Range(
@@ -93,6 +97,7 @@
                     'languagesSpoken',
                     TextType::class,
                     array(
+                        'label_format' => 'languages_spoken_label',
                         'required' => true,
                     )
                 )
@@ -100,6 +105,7 @@
                     'subtitles',
                     TextType::class,
                     array(
+                        'label_format' => 'subtitles_label',
                         'required' => true,
                     )
                 )
@@ -107,6 +113,7 @@
                     'supports',
                     TextType::class,
                     array(
+                        'label_format' => 'supports_label',
                         'required' => true,
                     )
                 )
@@ -114,6 +121,7 @@
                     'genres',
                     TextType::class,
                     array(
+                        'label_format' => 'genres_label',
                         'required' => true,
                     )
                 )
@@ -121,6 +129,7 @@
                     'synopsis',
                     TextareaType::class,
                     array(
+                        'label_format' => 'synopsis_label',
                         'attr' => array(
                             'rows' => 5,
                         ),
@@ -130,6 +139,7 @@
                     'producers',
                     TextareaType::class,
                     array(
+                        'label_format' => 'producers_label',
                         'attr' => array(
                             'rows' => 3,
                         ),
@@ -139,6 +149,7 @@
                     'directors',
                     TextareaType::class,
                     array(
+                        'label_format' => 'directors_label',
                         'attr' => array(
                             'rows' => 3,
                         ),

@@ -7,7 +7,7 @@
 {% block keywords %}register, media, client, rest-client{% endblock %}
 
 {# Title of the page present on head markup #}
-{% block title %}Add {{ media }}{% endblock %}
+{% block title %}{% trans %}add{% endtrans %} {{ media|replace({'-' : '_'})|trans }}{% endblock %}
 
 {# Body of the page #}
 {% block content %}

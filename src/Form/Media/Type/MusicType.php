@@ -50,6 +50,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -60,6 +61,7 @@
                     'releaseDate',
                     DateType::class,
                     array(
+                        'label_format' => 'release_date_label',
                         'required' => true,
                         'widget' => 'single_text',
                     )
@@ -68,6 +70,7 @@
                     'supports',
                     TextType::class,
                     array(
+                        'label_format' => 'supports_label',
                         'required' => true,
                     )
                 )
@@ -75,6 +78,7 @@
                     'genres',
                     TextType::class,
                     array(
+                        'label_format' => 'genres_label',
                         'required' => true,
                     )
                 )
@@ -82,6 +86,7 @@
                     'nbTracks',
                     NumberType::class,
                     array(
+                        'label_format' => 'number_of_tracks_label',
                         'required' => true,
                         'constraints' => array(
                             new Range(
@@ -96,6 +101,7 @@
                     'length',
                     NumberType::class,
                     array(
+                        'label_format' => 'length_label',
                         'required' => true,
                         'constraints' => array(
                             new Range(
@@ -110,6 +116,7 @@
                     'synopsis',
                     TextareaType::class,
                     array(
+                        'label_format' => 'synopsis_label',
                         'attr' => array(
                             'rows' => 5,
                         ),
@@ -119,6 +126,7 @@
                     'labelRecords',
                     TextareaType::class,
                     array(
+                        'label_format' => 'label_records_label',
                         'attr' => array(
                             'rows' => 3,
                         ),
@@ -128,6 +136,7 @@
                     'singers',
                     TextareaType::class,
                     array(
+                        'label_format' => 'singers_label',
                         'attr' => array(
                             'rows' => 3,
                         ),

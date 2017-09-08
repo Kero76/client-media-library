@@ -52,6 +52,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -62,6 +63,7 @@
                     'originalTitle',
                     TextType::class,
                     array(
+                        'label_format' => 'original_title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -72,6 +74,7 @@
                     'releaseDate',
                     DateType::class,
                     array(
+                        'label_format' => 'release_date_label',
                         'required' => true,
                         'widget' => 'single_text',
                     )
@@ -80,6 +83,7 @@
                     'supports',
                     TextType::class,
                     array(
+                        'label_format' => 'supports_label',
                         'required' => true,
                     )
                 )
@@ -87,6 +91,7 @@
                     'genres',
                     TextType::class,
                     array(
+                        'label_format' => 'genres_label',
                         'required' => true,
                     )
                 )
@@ -94,6 +99,7 @@
                     'isbn',
                     TextType::class,
                     array(
+                        'label_format' => 'isbn_label',
                         'constraints' => array(
                             new Isbn(),
                         ),
@@ -103,6 +109,7 @@
                     'nbPages',
                     NumberType::class,
                     array(
+                        'label_format' => 'number_of_pages_label',
                         'constraints' => array(
                             new Range(
                                 array(
@@ -116,6 +123,7 @@
                     'format',
                     TextType::class,
                     array(
+                        'label_format' => 'format_label',
                         'constraints' => array(
                             new Regex(
                                 array(
@@ -129,6 +137,7 @@
                     'synopsis',
                     TextareaType::class,
                     array(
+                        'label_format' => 'synopsis_label',
                         'attr' => array(
                             'rows' => 5,
                         ),
@@ -138,6 +147,7 @@
                     'publishers',
                     TextareaType::class,
                     array(
+                        'label_format' => 'publishers_label',
                         'attr' => array(
                             'rows' => 3,
                         ),
@@ -147,6 +157,7 @@
                     'authors',
                     TextareaType::class,
                     array(
+                        'label_format' => 'authors_label',
                         'attr' => array(
                             'rows' => 3,
                         ),

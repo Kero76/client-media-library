@@ -34,7 +34,7 @@ homepage_title: Accueil
 login_title: Connexion
 sign_up_title: Inscription
 search_result_title: Page de résultat
-title: Ttire
+title: Titre
 media: Média
 link: Lien
 
@@ -45,6 +45,41 @@ search_media_form: Rechercher ...
 clean_form: Effacer les données
 login_fail_error: Erreur de connexion !
 signup_fail_error: Erreur lors de l'inscription !
+
+# Form label translation section
+title_label: Titre
+original_title_label: Titre original
+release_date_label: Date de sortie
+end_date_label: Date de fin
+runtime_label: Temps
+average_episode_runtime_label: Temps moyen d'un épisode
+number_of_season_label: Nombre de saisons
+current_season_label: Saison actuelle
+number_of_episode_label: Nombre d'épisodes
+max_episodes_label: Nombre total d'épisode
+languages_spoken_label: Langues
+subtitles_label: Sous-titres
+supports_label: Supports
+genres_label: Genres
+synopsis_label: Résumé
+producers_label: Produceteurs
+directors_label: Réalisateurs
+isbn_label: ISBN
+number_of_pages_label: Nombre de pages
+format_label: Formats
+publishers_label: Editeurs
+authors_label: Auteurs
+illustrators_label: Dessinateurs
+volumes_label: Nombre de volume total
+current_volume_label: Volume actuel
+number_of_tracks_label: Nombre de chanson
+length_label: Temps de l'album
+label_records_label: Label Records
+singers_label: Chanteurs ou Groupes
+developers_label: Développeurs
+formats_label: Formats
+platforms_label: Consoles
+actors_label: Acteurs
 
 # Media translation section
 animes: Japanime
